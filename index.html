@@ -35,7 +35,7 @@
   .brand .txt .eyebrow { font-size: 10.5px; letter-spacing: .14em; color: var(--muted-on-dark); text-transform: uppercase; }
   .brand .txt .name { font-size: 14.5px; color: var(--ink-on-dark); font-weight: 600; letter-spacing: -0.01em; }
 
-  .tabs { display: flex; gap: 4px; padding: 10px 0; }
+  .tabs { display: flex; gap: 4px; padding: 10px 0; flex-wrap: wrap; }
   .tab {
     appearance: none; border: 1px solid transparent; background: transparent; cursor: pointer;
     padding: 8px 18px; border-radius: 10px; text-align: left; display: flex; flex-direction: column; gap: 2px;
@@ -52,7 +52,7 @@
   .panel.active { display: block; }
   .panel iframe { width: 100%; height: 100%; border: 0; display: block; background: #fff; }
 
-  @media (max-width: 640px) {
+  @media (max-width: 900px) {
     .brand .txt .name { display: none; }
     .tab .title { font-size: 13px; }
   }
@@ -82,12 +82,17 @@
         <span class="eyebrow">Part II &middot; Execution</span>
         <span class="title">Entity Setup &amp; Investment Plan</span>
       </button>
+      <button class="tab" role="tab" aria-selected="false" data-target="panel-c">
+        <span class="eyebrow">Part III &middot; Financials</span>
+        <span class="title">10-Year Revenue Plan</span>
+      </button>
     </div>
   </div>
 
   <div class="panels">
     <div class="panel active" id="panel-a"><iframe id="frame-a" title="Strategic Business Case"></iframe></div>
     <div class="panel" id="panel-b"><iframe id="frame-b" title="Entity Setup and Investment Plan"></iframe></div>
+    <div class="panel" id="panel-c"><iframe id="frame-c" title="10-Year Revenue Plan"></iframe></div>
   </div>
 </div>
 
@@ -723,6 +728,1083 @@
     <p class="note">Amounts converted at USD 1 = KRW 1,430 and rounded to the nearest dollar. Tax rates and fees are current as of August 2026. Confirm with the competent registry office, district tax office and Korean legal counsel before execution.</p>
   </section>
 </div></script>
+<script type="text/plain" id="src-c"><!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tenarai Korea · 10-Year Revenue Plan v1</title>
+<style>
+  /* ===== Apple Precision — design tokens (DESIGN-apple.md) ===== */
+  :root{
+    --canvas:#ffffff; --parchment:#f5f5f7; --pearl:#fafafc;
+    --ink:#1d1d1f; --ink-80:#333333; --muted:#7a7a7a; --muted-2:#86868b;
+    --hairline:#e0e0e0; --divider:#f0f0f0;
+    --primary:#0066cc; --primary-focus:#0071e3;
+    --tile:#1d1d1f; --on-dark:#ffffff; --on-dark-muted:#a1a1a6; --tile-hairline:#3a3a3c;
+    --shadow-product:0 18px 40px rgba(0,0,0,.10);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --canvas:#000000; --parchment:#1d1d1f; --pearl:#161617;
+      --ink:#f5f5f7; --ink-80:#d2d2d7; --muted:#a1a1a6; --muted-2:#86868b;
+      --hairline:#2c2c2e; --divider:#242426;
+      --primary:#2997ff; --primary-focus:#2997ff;
+      --tile:#161617; --on-dark:#f5f5f7; --on-dark-muted:#a1a1a6; --tile-hairline:#2c2c2e;
+      --shadow-product:0 18px 40px rgba(0,0,0,.5);
+    }
+  }
+  :root[data-theme="dark"]{
+    --canvas:#000000; --parchment:#1d1d1f; --pearl:#161617;
+    --ink:#f5f5f7; --ink-80:#d2d2d7; --muted:#a1a1a6; --muted-2:#86868b;
+    --hairline:#2c2c2e; --divider:#242426;
+    --primary:#2997ff; --primary-focus:#2997ff;
+    --tile:#161617; --on-dark:#f5f5f7; --on-dark-muted:#a1a1a6; --tile-hairline:#2c2c2e;
+    --shadow-product:0 18px 40px rgba(0,0,0,.5);
+  }
+  :root[data-theme="light"]{
+    --canvas:#ffffff; --parchment:#f5f5f7; --pearl:#fafafc;
+    --ink:#1d1d1f; --ink-80:#333333; --muted:#7a7a7a; --muted-2:#86868b;
+    --hairline:#e0e0e0; --divider:#f0f0f0;
+    --primary:#0066cc; --primary-focus:#0071e3;
+    --tile:#1d1d1f; --on-dark:#ffffff; --on-dark-muted:#a1a1a6; --tile-hairline:#3a3a3c;
+    --shadow-product:0 18px 40px rgba(0,0,0,.10);
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  @media (prefers-reduced-motion:reduce){ html{ scroll-behavior:auto; } *{ transition:none !important; animation:none !important; } }
+
+  body{
+    margin:0; background:var(--canvas); color:var(--ink);
+    font-family:"SF Pro Text",-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,system-ui,sans-serif;
+    font-size:17px; line-height:1.47; letter-spacing:-0.374px;
+    -webkit-font-smoothing:antialiased; font-variant-numeric:tabular-nums;
+  }
+
+  .tile{ padding:80px 0; background:var(--canvas); }
+  .tile.alt{ background:var(--parchment); }
+  .tile.dark{ background:var(--tile); color:var(--on-dark); }
+  .tile.dark .eyebrow{ color:var(--on-dark-muted); }
+  .tile.dark .lead, .tile.dark .fine{ color:var(--on-dark-muted); }
+  .tile.dark h2, .tile.dark h3{ color:var(--on-dark); }
+  .wrap{ max-width:1060px; margin:0 auto; padding:0 24px; }
+
+  .eyebrow{ font-size:14px; font-weight:600; line-height:1.29; letter-spacing:-0.224px; color:var(--primary); margin:0 0 14px; }
+  h1{ font-family:"SF Pro Display",-apple-system,Inter,system-ui,sans-serif;
+      font-size:clamp(38px,6.4vw,60px); font-weight:600; line-height:1.06;
+      letter-spacing:-0.028em; margin:0 0 24px; text-wrap:balance; }
+  h2{ font-family:"SF Pro Display",-apple-system,Inter,system-ui,sans-serif;
+      font-size:clamp(28px,4.2vw,40px); font-weight:600; line-height:1.1;
+      letter-spacing:-0.025em; margin:0 0 20px; text-wrap:balance; }
+  h3{ font-family:"SF Pro Display",-apple-system,Inter,system-ui,sans-serif;
+      font-size:23px; font-weight:600; line-height:1.24; letter-spacing:-0.02em; margin:48px 0 14px; }
+  p{ margin:0 0 16px; max-width:68ch; }
+  .lead{ font-size:21px; line-height:1.38; letter-spacing:-0.01em; color:var(--muted); max-width:60ch; }
+  .fine{ font-size:14px; line-height:1.43; letter-spacing:-0.224px; color:var(--muted); }
+  .micro{ font-size:12px; line-height:1.4; letter-spacing:-0.12px; color:var(--muted); }
+  a{ color:var(--primary); text-decoration:none; }
+  a:hover{ text-decoration:underline; }
+  a:focus-visible, summary:focus-visible{ outline:2px solid var(--primary); outline-offset:3px; border-radius:5px; }
+  strong{ font-weight:600; }
+
+  ul{ margin:0 0 16px; padding:0; list-style:none; max-width:68ch; }
+  li{ position:relative; padding-left:18px; margin-bottom:10px; }
+  li::before{ content:""; position:absolute; left:0; top:.72em; width:5px; height:5px; border-radius:50%; background:var(--primary); }
+  ol{ margin:0 0 16px; padding-left:22px; max-width:70ch; }
+  ol li{ padding-left:4px; }
+  ol li::before{ display:none; }
+
+  .hero{ padding:96px 0 64px; }
+  .hero .meta{ display:flex; gap:10px; flex-wrap:wrap; margin:0 0 40px; }
+  .chip{ font-size:12px; letter-spacing:-0.12px; color:var(--ink-80);
+    background:var(--pearl); border:1px solid var(--hairline); padding:7px 13px; border-radius:11px; }
+
+  .stats{ display:grid; gap:0; border-top:1px solid var(--hairline); margin:44px 0 0; }
+  .stats.c4{ grid-template-columns:repeat(4,1fr); }
+  .stats.c3{ grid-template-columns:repeat(3,1fr); }
+  .stat{ padding:24px 20px 24px 0; border-right:1px solid var(--hairline); }
+  .stats.c4 .stat:nth-child(4n), .stats.c3 .stat:nth-child(3n){ border-right:0; }
+  .stat .v{ font-family:"SF Pro Display",-apple-system,Inter,system-ui,sans-serif;
+    font-size:clamp(28px,3.4vw,38px); font-weight:600; line-height:1.05; letter-spacing:-0.03em; }
+  .stat .v.b{ color:var(--primary); }
+  .stat .k{ font-size:14px; color:var(--muted); margin-top:8px; letter-spacing:-0.224px; }
+  .stat .s{ font-size:12px; color:var(--muted-2); margin-top:4px; }
+  .tile.dark .stats, .tile.dark .stat{ border-color:var(--tile-hairline); }
+  @media (max-width:760px){
+    .stats.c4{ grid-template-columns:repeat(2,1fr); }
+    .stats.c3{ grid-template-columns:1fr; }
+    .stats.c4 .stat:nth-child(2n){ border-right:0; }
+    .stats.c3 .stat{ border-right:0; border-bottom:1px solid var(--hairline); }
+  }
+
+  .figure{ background:var(--canvas); border:1px solid var(--hairline); border-radius:18px;
+    padding:28px 26px 22px; margin:32px 0 0; box-shadow:var(--shadow-product); }
+  .tile.dark .figure{ background:var(--tile); border-color:var(--tile-hairline); }
+  .figure .cap{ font-size:14px; font-weight:600; letter-spacing:-0.224px; margin:0 0 4px; }
+  .figure .sub{ font-size:12px; color:var(--muted); margin:0 0 20px; }
+  .figure .src{ font-size:12px; color:var(--muted-2); margin:16px 0 0; }
+  .figure svg{ display:block; width:100%; height:auto; overflow:visible; }
+  .fig2{ display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  @media (max-width:760px){ .fig2{ grid-template-columns:1fr; } }
+
+  .grid-line{ stroke:var(--hairline); stroke-width:1; }
+  .axis-txt{ font-size:11px; fill:var(--muted); letter-spacing:0; font-variant-numeric:tabular-nums; }
+  .axis-txt.b{ fill:var(--ink); font-weight:600; }
+  .mark-fill{ fill:var(--primary); }
+  .mark-line{ fill:none; stroke:var(--primary); stroke-width:2; stroke-linejoin:round; stroke-linecap:round; }
+  .lbl{ font-size:12px; font-weight:600; fill:var(--ink); font-variant-numeric:tabular-nums; }
+  .lbl.b{ fill:var(--primary); }
+
+  .tw{ overflow-x:auto; margin:28px 0 0; -webkit-overflow-scrolling:touch; }
+  table{ border-collapse:collapse; width:100%; min-width:640px; font-size:14px;
+    letter-spacing:-0.224px; font-variant-numeric:tabular-nums; }
+  caption{ text-align:left; font-size:14px; font-weight:600; margin:0 0 12px; color:var(--ink); }
+  th, td{ padding:11px 12px; text-align:right; border-bottom:1px solid var(--hairline); }
+  thead th{ font-weight:600; color:var(--muted); border-bottom:1px solid var(--ink); white-space:nowrap; font-size:12px; }
+  th:first-child, td:first-child{ text-align:left; }
+  tbody tr:last-child td{ border-bottom:0; }
+  tr.rule td{ border-top:1px solid var(--ink); font-weight:600; }
+  td.hi{ color:var(--primary); font-weight:600; }
+  td.neg{ color:var(--muted); }
+  table.txt th, table.txt td{ text-align:left; vertical-align:top; }
+  .tile.dark th, .tile.dark td{ border-color:var(--tile-hairline); }
+  .tile.dark thead th{ border-bottom-color:var(--on-dark); }
+
+  .callout{ border-left:3px solid var(--primary); padding:4px 0 4px 20px; margin:28px 0; max-width:68ch; }
+  .callout .t{ font-weight:600; margin:0 0 8px; }
+  .callout p:last-child{ margin-bottom:0; }
+
+  .rate{ white-space:nowrap; letter-spacing:1px; color:var(--primary); font-size:13px; }
+  .rate .off{ color:var(--hairline); }
+
+  .toc{ display:grid; grid-template-columns:repeat(2,1fr); gap:0 32px; margin:36px 0 0; border-top:1px solid var(--hairline); }
+  .toc a{ display:flex; gap:14px; padding:14px 0; border-bottom:1px solid var(--divider); color:var(--ink); font-size:15px; }
+  .toc a .n{ color:var(--muted-2); font-variant-numeric:tabular-nums; min-width:22px; }
+  .toc a:hover{ color:var(--primary); text-decoration:none; }
+  @media (max-width:640px){ .toc{ grid-template-columns:1fr; } }
+
+  .foot{ background:var(--parchment); padding:44px 0 60px; }
+  details{ margin:12px 0; }
+  summary{ cursor:pointer; font-size:14px; font-weight:600; color:var(--primary); }
+  details ol{ font-size:13px; color:var(--muted); margin-top:12px; }
+  details ol li{ margin-bottom:8px; }
+
+  .tagbad{ display:inline-block; font-size:11px; font-weight:600; letter-spacing:0;
+    color:var(--muted); border:1px solid var(--hairline); border-radius:5px; padding:2px 6px; margin-left:6px; vertical-align:1px; }
+
+  @media print{
+    body{ background:#fff; color:#1d1d1f; font-size:10pt; }
+    .tile{ padding:20px 0; background:#fff !important; color:#1d1d1f !important; page-break-inside:avoid; }
+    .tile.dark, .tile.dark h2, .tile.dark h3{ color:#1d1d1f !important; }
+    .tile.dark .stat, .tile.dark .stats, .tile.dark th, .tile.dark td{ border-color:#e0e0e0 !important; }
+    .figure{ box-shadow:none; page-break-inside:avoid; }
+    .tw{ overflow:visible; } table{ min-width:0; font-size:8.5pt; }
+    .hero{ padding:0 0 20px; }
+    a{ color:#1d1d1f; }
+    @page{ size:A4; margin:16mm 14mm; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<div class="tile hero">
+  <div class="wrap">
+    <p class="eyebrow">Tenarai Korea Entity · Revenue Plan</p>
+    <h1>10-Year Revenue Plan<br>for the Korea Entity</h1>
+    <p class="lead">A technical-sales-only subsidiary. Engineering and delivery remain with global HQ. This document sets out the revenue trajectory from USD 0.07M in Year 1 to USD 35.0M at steady state, and the bottom-up basis, go-to-market plan and KPI system behind it.</p>
+    <div class="meta">
+      <span class="chip">Aug 2026 · v1</span>
+      <span class="chip">Internal review / HQ investment committee</span>
+      <span class="chip">USD 1 = KRW 1,430 (planning rate)</span>
+      <span class="chip">Technical sales only · Delivery by HQ</span>
+    </div>
+
+    <div class="stats c4">
+      <div class="stat"><div class="v b">USD 35.0M</div><div class="k">Steady-state revenue (Year 10 · 2036)</div><div class="s">KRW 50.0B</div></div>
+      <div class="stat"><div class="v">USD 7.0M</div><div class="k">Year 7 revenue (2033)</div><div class="s">KRW 10.0B · CAGR 115%</div></div>
+      <div class="stat"><div class="v">2033</div><div class="k">Annual break-even (Year 7)</div><div class="s">Cumulative payback in 2035</div></div>
+      <div class="stat"><div class="v">USD 1.65M</div><div class="k">Peak cumulative investment (end of Year 6)</div><div class="s">KRW 2.36B</div></div>
+    </div>
+
+    <nav class="toc" aria-label="Contents">
+      <a href="#s1"><span class="n">01</span><span>Business model and what applies in Korea</span></a>
+      <a href="#s2"><span class="n">02</span><span>Market size and where the target sits</span></a>
+      <a href="#s3"><span class="n">03</span><span>10-year revenue plan and its basis</span></a>
+      <a href="#s4"><span class="n">04</span><span>Go-to-market: marketing, PR, sales</span></a>
+      <a href="#s5"><span class="n">05</span><span>Sales KPI system and headcount</span></a>
+      <a href="#s6"><span class="n">06</span><span>P&amp;L structure and payback</span></a>
+      <a href="#s7"><span class="n">07</span><span>Risks and prerequisites</span></a>
+      <a href="#s8"><span class="n">08</span><span>Sources</span></a>
+    </nav>
+  </div>
+</div>
+
+<!-- ============ EXEC SUMMARY ============ -->
+<div class="tile dark">
+  <div class="wrap">
+    <p class="eyebrow">Executive Summary</p>
+    <h2>The conclusion in five sentences</h2>
+    <ol>
+      <li><strong>The Korea entity is designed as a technical-sales-only organisation.</strong> Engineering and delivery stay with HQ and the India delivery hub (3,374 staff), so the entity's P&amp;L is SG&amp;A-driven and its headcount stays smaller than every local competitor at the same revenue.</li>
+      <li><strong>USD 35.0M is not an aggressive share of the market.</strong> It is <strong>0.065%</strong> of the 2030 Korean IT services market (USD 53.63B) and 2.5% of the USD 1.40B of Korean financial-sector core-system tenders expected across 2026–2027.</li>
+      <li><strong>Revenue is decomposed into "active accounts × revenue per account" and verified on both.</strong> Year 10 is <strong>45 accounts × USD 777K</strong>, which is 16% of a single Korean core-banking programme (NH Nonghyup Bank, USD 213.6M).</li>
+      <li><strong>Two offerings carry the entry: Tenarai-Archer (legacy modernisation) and Hybrid Agentic PODs.</strong> They map precisely onto the two demand pools unique to Korea — USD 1.40B of committed financial-sector modernisation spend, and a structural AI/IT talent shortage.</li>
+      <li><strong>Annual break-even is Year 7, cumulative payback Year 9, and peak cumulative investment is USD 1.65M</strong> — within the USD 1.81M five-year funding requirement already approved in the Korea Entity Investment Report.</li>
+    </ol>
+
+    <div class="stats c4">
+      <div class="stat"><div class="v">0.065%</div><div class="k">Target share of 2030 Korean IT services market</div></div>
+      <div class="stat"><div class="v">45</div><div class="k">Active accounts at Year 10</div><div class="s">vs FPT Korea's 30+ (2022)</div></div>
+      <div class="stat"><div class="v">50</div><div class="k">Korea headcount at Year 10</div><div class="s">20% of Wipro Korea's 250+</div></div>
+      <div class="stat"><div class="v">4.7×</div><div class="k">10-yr cumulative contribution ÷ peak investment</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 01 ============ -->
+<div class="tile" id="s1">
+  <div class="wrap">
+    <p class="eyebrow">01 · Business Model</p>
+    <h2>Business model and<br>what applies in Korea</h2>
+    <p class="lead">Tenarai's six solutions were scored against Korean demand certainty and competitive intensity. Two of them carry the entry.</p>
+
+    <h3>1-1. Korea fit by solution</h3>
+    <div class="tw"><table class="txt">
+      <caption>Scored on three axes — demand certainty, competitive intensity, and Tenarai's relative advantage</caption>
+      <thead><tr>
+        <th style="width:20%;">Solution</th><th style="width:21%;">Application in Korea</th>
+        <th style="width:11%;">Fit</th><th style="width:48%;">Basis</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Tenarai-Archer</strong><br><span class="micro">Legacy data infrastructure modernisation</span></td>
+          <td>Bank and insurance core-system replacement; public-sector information systems</td>
+          <td><span class="rate">●●●●●</span></td>
+          <td>Korean financial-sector large IT tenders across 2026–2027 are estimated at <strong>over KRW 2 trillion (USD 1.40B)</strong>. NH Nonghyup Bank's core-banking phase 1 alone was tendered at KRW 305.5B (USD 213.6M) — the largest single financial IT project in Korean history. The demand is already in published tenders; no market creation is required. <span class="micro">[1]</span></td>
+        </tr>
+        <tr>
+          <td><strong>Hybrid Agentic PODs</strong><br><span class="micro">AI-agent-based delivery teams</span></td>
+          <td>Substituting for scarce enterprise IT talent; managed development capacity</td>
+          <td><span class="rate">●●●●●</span></td>
+          <td>Korean universities produce 22,000–25,000 IT graduates a year while demand in AI, 5G, blockchain and automation runs far ahead of supply. FPT has already proven this demand with its Vietnam GDC model; Tenarai can reproduce the same structure from its 3,374-strong India delivery hub. <span class="micro">[2][9]</span></td>
+        </tr>
+        <tr>
+          <td><strong>Demand Forecasting with AI</strong><br><span class="micro">Forecasting, pricing, inventory</span></td>
+          <td>Retail majors, manufacturing SCM, e-commerce</td>
+          <td><span class="rate">●●●●<span class="off">●</span></span></td>
+          <td>Korea's Ministry of Science and ICT projects manufacturing to contribute KRW 77T (USD 53.8B) of annual AI-driven economic effect. Demand is large but Korean majors often hold in-house data teams, so partner co-sell beats direct pursuit. <span class="micro">[3]</span></td>
+        </tr>
+        <tr>
+          <td><strong>AI Content Transformation</strong><br><span class="micro">Marketing content automation</span></td>
+          <td>Retail/CPG and telco marketing organisations</td>
+          <td><span class="rate">●●●<span class="off">●●</span></span></td>
+          <td>55.7% of Korean enterprises already use generative AI and 35.1% of large enterprises use it company-wide. Adoption is broad but contract values are low and local agencies and SaaS compete hard. Treat as a land-and-expand item inside Archer/PODs accounts rather than a standalone entry. <span class="micro">[4]</span></td>
+        </tr>
+        <tr>
+          <td><strong>AI Enabling e-Commerce Platforms</strong><br><span class="micro">Commerce content automation and migration</span></td>
+          <td>Top-tier e-commerce operators, brand DTC sites</td>
+          <td><span class="rate">●●●<span class="off">●●</span></span></td>
+          <td>Korea's leading commerce operators build in-house, leaving little vendor room. Viable only if narrowed to mid-market brand DTC and export-expansion support. <span class="tagbad">competitive disadvantage</span></td>
+        </tr>
+        <tr>
+          <td><strong>Tenarai-IGNIS</strong><br><span class="micro">Agent orchestration platform</span></td>
+          <td>Enterprise-wide AI platforms</td>
+          <td><span class="rate">●●<span class="off">●●●</span></span></td>
+          <td>Samsung SDS, LG CNS and SK AX all attack this space with proprietary platforms (Q3 2025 revenue of USD 2.37B, USD 1.06B and USD 465M respectively). Selling a platform is not a viable opening move for an entity with zero local track record. <span class="tagbad">competitive disadvantage</span> <span class="micro">[5]</span></td>
+        </tr>
+      </tbody>
+    </table></div>
+    <p class="fine" style="margin-top:14px;">Fit scores are <strong>this document's own assessment</strong> on a five-point scale across the three axes named above. They are not an external index.</p>
+
+    <h3>1-2. Entry priority — concentrate on two</h3>
+    <div class="callout">
+      <p class="t">Priority 1: Tenarai-Archer + Hybrid Agentic PODs</p>
+      <p>Together the two form a single proposition — <strong>"we modernise the legacy estate, and we supply the AI-agent team that does the work."</strong> This addresses the two demand pools that exist only in Korea (USD 1.40B of committed financial modernisation spend plus a structural talent shortage) and stakes a position that does not collide head-on with the Korean SI majors.</p>
+    </div>
+    <p>Priority 2, Demand Forecasting, runs through partner co-sell (Databricks, Google Cloud, Salesforce Korea). Priority 3, Content and e-Commerce, is an expansion item inside won accounts. <strong>Standalone IGNIS platform sales are deferred beyond Year 5.</strong></p>
+
+    <h3>1-3. Division of responsibility</h3>
+    <div class="tw"><table class="txt">
+      <thead><tr><th style="width:26%;">Function</th><th style="width:37%;">Korea entity (new)</th><th style="width:37%;">HQ / India delivery hub</th></tr></thead>
+      <tbody>
+        <tr><td>Account development</td><td><strong>Owns</strong> — account sales, chaebol vendor registration, RFP response</td><td>Global account introductions</td></tr>
+        <tr><td>Solution design and proposal</td><td><strong>Owns</strong> — presales architects, PoC scoping</td><td>Reference architectures, demo assets</td></tr>
+        <tr><td>Contracting and revenue recognition</td><td><strong>Owns</strong> — local contracting party, tax invoicing</td><td>Intercompany transfer-pricing agreement</td></tr>
+        <tr><td>Engineering and build</td><td>Not performed</td><td><strong>Owns</strong> — Noida, Gurgaon, Mumbai, Pune, Bengaluru</td></tr>
+        <tr><td>Project execution</td><td>Client-facing delivery management only</td><td><strong>Owns</strong> — all build and run staff</td></tr>
+        <tr><td>Product and platform R&amp;D</td><td>Not performed</td><td><strong>Owns</strong></td></tr>
+      </tbody>
+    </table></div>
+    <p class="fine" style="margin-top:14px;">This split underpins every figure in this document. Because the Korea entity holds no engineering staff, <strong>revenue per head is set far above a typical SI firm</strong> (USD 700K at Year 10) — and the transfer-pricing structure in section 6-1 must be settled first for the plan to hold.</p>
+  </div>
+</div>
+
+<!-- ============ 02 ============ -->
+<div class="tile alt" id="s2">
+  <div class="wrap">
+    <p class="eyebrow">02 · Market Sizing</p>
+    <h2>How large is<br>USD 35M in this market?</h2>
+    <p class="lead">A target is credible or not by its share, not its absolute value. USD 35.0M is 0.065% of the Korean IT services market.</p>
+
+    <div class="stats c3">
+      <div class="stat"><div class="v">USD 53.6B</div><div class="k">TAM · Korean IT services market, 2030</div><div class="s">KRW 76.7T <span class="micro">[6]</span></div></div>
+      <div class="stat"><div class="v">USD 8.0B</div><div class="k">SAM · Tenarai's six verticals + AI/modernisation</div><div class="s">assumed 15% of TAM <span class="tagbad">estimate</span></div></div>
+      <div class="stat"><div class="v b">USD 35.0M</div><div class="k">SOM · Year 10 target revenue</div><div class="s">0.43% of SAM · 0.065% of TAM</div></div>
+    </div>
+
+    <h3>2-1. The market estimates disagree</h3>
+    <p>Research houses scope "IT services" differently, so the Korean figures diverge widely. The conclusion is unchanged whichever is used, so this document works from <strong>the most conservative reading</strong>.</p>
+    <div class="tw"><table>
+      <thead><tr><th>Source</th><th>2025</th><th>Forecast</th><th>CAGR</th><th>KRW (forecast year)</th></tr></thead>
+      <tbody>
+        <tr><td>Mordor Intelligence <span class="micro">[6]</span></td><td>USD 29.92B</td><td>USD 53.63B (2030)</td><td>12.38%</td><td class="hi">KRW 76.7T</td></tr>
+        <tr><td>Grand View Research <span class="micro">[7]</span></td><td>USD 35.8B</td><td>— (11% to 2033)</td><td>11.0%</td><td>—</td></tr>
+        <tr><td>IMARC Group <span class="micro">[8]</span></td><td>USD 23.2B</td><td>USD 43.9B (2034)</td><td>6.6%</td><td>KRW 62.8T</td></tr>
+      </tbody>
+    </table></div>
+    <p class="fine" style="margin-top:14px;">The three 2025 estimates span USD 23.2B to USD 35.8B — a <strong>1.54× spread</strong>. The likely cause is scope (whether hardware maintenance, BPO and telecom services are included), but the underlying methodology documents were not obtained. <span class="tagbad">to be verified</span></p>
+
+    <h3>2-2. Demand already committed — financial-sector modernisation</h3>
+    <p>Published tenders are stronger evidence than analyst forecasts. This is Tenarai-Archer's direct target market.</p>
+    <div class="tw"><table class="txt">
+      <thead><tr><th style="width:28%;">Programme</th><th style="width:22%;">Value</th><th style="width:50%;">Detail</th></tr></thead>
+      <tbody>
+        <tr><td>Korean financial-sector large IT tenders</td><td class="hi">over USD 1.40B<br><span class="micro">KRW 2T+, 2026–2027</span></td><td>Two-year industry estimate including core-system replacements <span class="micro">[1]</span></td></tr>
+        <tr><td>NH Nonghyup Bank "NEO" phase 1</td><td>USD 213.6M<br><span class="micro">KRW 305.5B</span></td><td>LG CNS as prime, 27 months to April 2028. Largest single financial IT project in Korean history <span class="micro">[1]</span></td></tr>
+        <tr><td>NH Nonghyup Bank phases 1+2</td><td>USD 420–434M<br><span class="micro">KRW 600–620B</span></td><td>Including the information-systems phase 2 <span class="micro">[1]</span></td></tr>
+        <tr><td>Nonghyup Mutual Finance</td><td>undisclosed</td><td>SK AX selected, 25 months to January 2028, serving 1,110 local cooperatives <span class="micro">[1]</span></td></tr>
+      </tbody>
+    </table></div>
+    <div class="callout">
+      <p class="t">What this table establishes</p>
+      <p>The Year 10 target of USD 35.0M equals <strong>16% of one programme</strong> (NH Nonghyup phase 1) and <strong>2.5%</strong> of two years of financial-sector tendering. The primes on these programmes are the Korean SI majors, however, and a newly incorporated foreign entity is <strong>not realistically going to win prime position</strong> — subcontract and specialist-partner roles are the credible route.</p>
+    </div>
+
+    <h3>2-3. Demand-side indicators</h3>
+    <div class="stats c4">
+      <div class="stat"><div class="v">85%</div><div class="k">Korean enterprises expected to use generative AI in 2026</div><div class="s">55.7% today <span class="micro">[4]</span></div></div>
+      <div class="stat"><div class="v">35.1%</div><div class="k">Large enterprises using generative AI company-wide</div><div class="s">2× the SME rate <span class="micro">[4]</span></div></div>
+      <div class="stat"><div class="v">74.0%</div><div class="k">Enterprises that increased AI investment year on year</div><div class="s">n = 749 <span class="micro">[4]</span></div></div>
+      <div class="stat"><div class="v">USD 217B</div><div class="k">Government forecast of 2026 AI economic effect</div><div class="s">KRW 310T · MSIT <span class="micro">[3]</span></div></div>
+    </div>
+    <p class="fine" style="margin-top:20px;">Korean enterprise generative-AI market estimates <strong>conflict within a single research house</strong>: Grand View Research publishes both USD 370.6M by 2030 (38.8% CAGR from 2025) and USD 130M in 2025 rising to USD 2,333M in 2033. The two are not reconcilable (the former implies roughly USD 72M in 2025), so neither is used as a sizing basis here — only the IT services figures above. <span class="tagbad">sources conflict</span></p>
+  </div>
+</div>
+
+<!-- ============ 03 ============ -->
+<div class="tile" id="s3">
+  <div class="wrap">
+    <p class="eyebrow">03 · Revenue Plan</p>
+    <h2>10-year revenue plan<br>and its basis</h2>
+    <p class="lead">The revenue targets are given. This section decomposes them into an achievable structure and exposes the assumption behind every year.</p>
+
+    <div class="figure">
+      <p class="cap">10-year revenue trajectory</p>
+      <p class="sub">USD M · Year 1 = 2027 (incorporation assumed Q4 2026)</p>
+      <svg viewBox="0 0 1000 330" role="img" aria-label="Revenue curve rising from USD 0.07M in year 1 to USD 35.0M in year 10">
+        <title>10-year revenue trajectory</title>
+        <g>
+          <line class="grid-line" x1="60" y1="20" x2="980" y2="20"></line>
+          <line class="grid-line" x1="60" y1="72" x2="980" y2="72"></line>
+          <line class="grid-line" x1="60" y1="124" x2="980" y2="124"></line>
+          <line class="grid-line" x1="60" y1="176" x2="980" y2="176"></line>
+          <line class="grid-line" x1="60" y1="228" x2="980" y2="228"></line>
+          <line class="grid-line" x1="60" y1="280" x2="980" y2="280" stroke="currentColor" opacity=".35"></line>
+          <text class="axis-txt" x="52" y="24" text-anchor="end">35</text>
+          <text class="axis-txt" x="52" y="76" text-anchor="end">28</text>
+          <text class="axis-txt" x="52" y="128" text-anchor="end">21</text>
+          <text class="axis-txt" x="52" y="180" text-anchor="end">14</text>
+          <text class="axis-txt" x="52" y="232" text-anchor="end">7</text>
+          <text class="axis-txt" x="52" y="284" text-anchor="end">0</text>
+        </g>
+        <path d="M60,279.5 L162.2,277.9 L264.4,274.3 L366.7,270.6 L468.9,264.4 L571.1,251.4 L673.3,228 L775.6,191.6 L877.8,129.2 L980,20 L980,280 L60,280 Z"
+              fill="var(--primary)" opacity=".10"></path>
+        <path class="mark-line" d="M60,279.5 L162.2,277.9 L264.4,274.3 L366.7,270.6 L468.9,264.4 L571.1,251.4 L673.3,228 L775.6,191.6 L877.8,129.2 L980,20"></path>
+        <circle cx="980" cy="20" r="5" class="mark-fill"></circle>
+        <circle cx="673.3" cy="228" r="4.5" fill="var(--canvas)" stroke="var(--primary)" stroke-width="2"></circle>
+        <text class="lbl b" x="962" y="10" text-anchor="end">USD 35.0M</text>
+        <text class="lbl" x="673.3" y="216" text-anchor="middle">USD 7.0M</text>
+        <g class="axis-txt">
+          <text x="60" y="302" text-anchor="middle">Y1</text>
+          <text x="162.2" y="302" text-anchor="middle">Y2</text>
+          <text x="264.4" y="302" text-anchor="middle">Y3</text>
+          <text x="366.7" y="302" text-anchor="middle">Y4</text>
+          <text x="468.9" y="302" text-anchor="middle">Y5</text>
+          <text x="571.1" y="302" text-anchor="middle">Y6</text>
+          <text x="673.3" y="302" text-anchor="middle">Y7</text>
+          <text x="775.6" y="302" text-anchor="middle">Y8</text>
+          <text x="877.8" y="302" text-anchor="middle">Y9</text>
+          <text x="980" y="302" text-anchor="middle">Y10</text>
+        </g>
+        <g class="axis-txt">
+          <text x="60" y="320" text-anchor="middle">2027</text>
+          <text x="673.3" y="320" text-anchor="middle">2033</text>
+          <text x="980" y="320" text-anchor="middle">2036</text>
+        </g>
+      </svg>
+      <p class="src">Years 1–5 are almost flat on this axis. The magnified view below shows the actual early growth.</p>
+    </div>
+
+    <div class="fig2">
+      <div class="figure">
+        <p class="cap">Years 1–5, magnified</p>
+        <p class="sub">USD M · 0 to 2.1 range</p>
+        <svg viewBox="0 0 480 210" role="img" aria-label="Revenue rising from USD 0.07M to USD 2.10M over years one to five">
+          <title>Years 1 to 5 magnified</title>
+          <line class="grid-line" x1="45" y1="15" x2="465" y2="15"></line>
+          <line class="grid-line" x1="45" y1="66.7" x2="465" y2="66.7"></line>
+          <line class="grid-line" x1="45" y1="118.3" x2="465" y2="118.3"></line>
+          <line class="grid-line" x1="45" y1="170" x2="465" y2="170" stroke="currentColor" opacity=".35"></line>
+          <text class="axis-txt" x="38" y="19" text-anchor="end">2.1</text>
+          <text class="axis-txt" x="38" y="70.7" text-anchor="end">1.4</text>
+          <text class="axis-txt" x="38" y="122.3" text-anchor="end">0.7</text>
+          <text class="axis-txt" x="38" y="174" text-anchor="end">0</text>
+          <path d="M45,164.8 L150,149.3 L255,113.2 L360,77 L465,15 L465,170 L45,170 Z" fill="var(--primary)" opacity=".10"></path>
+          <path class="mark-line" d="M45,164.8 L150,149.3 L255,113.2 L360,77 L465,15"></path>
+          <circle cx="45" cy="164.8" r="3.5" class="mark-fill"></circle>
+          <circle cx="150" cy="149.3" r="3.5" class="mark-fill"></circle>
+          <circle cx="255" cy="113.2" r="3.5" class="mark-fill"></circle>
+          <circle cx="360" cy="77" r="3.5" class="mark-fill"></circle>
+          <circle cx="465" cy="15" r="4.5" class="mark-fill"></circle>
+          <text class="lbl" x="45" y="157" text-anchor="start">0.07</text>
+          <text class="lbl" x="150" y="141" text-anchor="middle">0.28</text>
+          <text class="lbl" x="255" y="105" text-anchor="middle">0.77</text>
+          <text class="lbl" x="360" y="69" text-anchor="middle">1.26</text>
+          <text class="lbl b" x="465" y="8" text-anchor="end">2.10</text>
+          <g class="axis-txt">
+            <text x="45" y="192" text-anchor="middle">Y1</text>
+            <text x="150" y="192" text-anchor="middle">Y2</text>
+            <text x="255" y="192" text-anchor="middle">Y3</text>
+            <text x="360" y="192" text-anchor="middle">Y4</text>
+            <text x="465" y="192" text-anchor="middle">Y5</text>
+          </g>
+        </svg>
+      </div>
+      <div class="figure">
+        <p class="cap">Year-on-year growth</p>
+        <p class="sub">% · from Year 2</p>
+        <svg viewBox="0 0 480 210" role="img" aria-label="Growth starting at 300 percent and settling in the 60 to 80 percent band">
+          <title>Year-on-year growth rate</title>
+          <line class="grid-line" x1="45" y1="15" x2="465" y2="15"></line>
+          <line class="grid-line" x1="45" y1="66.7" x2="465" y2="66.7"></line>
+          <line class="grid-line" x1="45" y1="118.3" x2="465" y2="118.3"></line>
+          <line class="grid-line" x1="45" y1="170" x2="465" y2="170" stroke="currentColor" opacity=".35"></line>
+          <text class="axis-txt" x="38" y="19" text-anchor="end">300</text>
+          <text class="axis-txt" x="38" y="70.7" text-anchor="end">200</text>
+          <text class="axis-txt" x="38" y="122.3" text-anchor="end">100</text>
+          <text class="axis-txt" x="38" y="174" text-anchor="end">0</text>
+          <g class="mark-fill">
+            <rect x="49" y="15" width="38" height="155" rx="4"></rect>
+            <rect x="95" y="79.7" width="38" height="90.3" rx="4"></rect>
+            <rect x="141" y="137" width="38" height="33" rx="4"></rect>
+            <rect x="187" y="135.4" width="38" height="34.6" rx="4"></rect>
+            <rect x="233" y="127.1" width="38" height="42.9" rx="4"></rect>
+            <rect x="279" y="127.7" width="38" height="42.3" rx="4"></rect>
+            <rect x="325" y="133.9" width="38" height="36.1" rx="4"></rect>
+            <rect x="371" y="133.4" width="38" height="36.6" rx="4"></rect>
+            <rect x="417" y="132.7" width="38" height="37.3" rx="4"></rect>
+          </g>
+          <g class="axis-txt b">
+            <text x="68" y="10" text-anchor="middle">300</text>
+            <text x="114" y="74.7" text-anchor="middle">175</text>
+            <text x="160" y="132" text-anchor="middle">64</text>
+            <text x="206" y="130.4" text-anchor="middle">67</text>
+            <text x="252" y="122.1" text-anchor="middle">83</text>
+            <text x="298" y="122.7" text-anchor="middle">82</text>
+            <text x="344" y="128.9" text-anchor="middle">70</text>
+            <text x="390" y="128.4" text-anchor="middle">71</text>
+            <text x="436" y="127.7" text-anchor="middle">72</text>
+          </g>
+          <g class="axis-txt">
+            <text x="68" y="192" text-anchor="middle">Y2</text>
+            <text x="114" y="192" text-anchor="middle">Y3</text>
+            <text x="160" y="192" text-anchor="middle">Y4</text>
+            <text x="206" y="192" text-anchor="middle">Y5</text>
+            <text x="252" y="192" text-anchor="middle">Y6</text>
+            <text x="298" y="192" text-anchor="middle">Y7</text>
+            <text x="344" y="192" text-anchor="middle">Y8</text>
+            <text x="390" y="192" text-anchor="middle">Y9</text>
+            <text x="436" y="192" text-anchor="middle">Y10</text>
+          </g>
+        </svg>
+        <p class="src">Growth settles into a 64–83% band from Year 4. The rebound at Years 6–7 (67% → 83%) reflects a step change from anchor accounts; the assumption is stated explicitly in 3-3.</p>
+      </div>
+    </div>
+
+    <h3>3-1. Annual revenue targets</h3>
+    <div class="tw"><table>
+      <caption>10-year revenue plan — USD and KRW (USD 1 = KRW 1,430, as of 4 Aug 2026) <span class="micro">[10]</span></caption>
+      <thead><tr>
+        <th>Year</th><th>Calendar</th><th>Revenue (USD M)</th><th>Revenue (KRW B)</th><th>YoY</th>
+        <th>Active accounts</th><th>Revenue / account (USD K)</th>
+      </tr></thead>
+      <tbody>
+        <tr><td>Year 1</td><td>2027</td><td>0.07</td><td>0.1</td><td class="neg">—</td><td>2</td><td>35</td></tr>
+        <tr><td>Year 2</td><td>2028</td><td>0.28</td><td>0.4</td><td>+300%</td><td>4</td><td>70</td></tr>
+        <tr><td>Year 3</td><td>2029</td><td>0.77</td><td>1.1</td><td>+175%</td><td>7</td><td>110</td></tr>
+        <tr><td>Year 4</td><td>2030</td><td>1.26</td><td>1.8</td><td>+64%</td><td>9</td><td>140</td></tr>
+        <tr><td>Year 5</td><td>2031</td><td>2.10</td><td>3.0</td><td>+67%</td><td>12</td><td>175</td></tr>
+        <tr><td>Year 6</td><td>2032</td><td>3.85</td><td>5.5</td><td>+83%</td><td>16</td><td>240</td></tr>
+        <tr><td>Year 7</td><td>2033</td><td class="hi">6.99</td><td class="hi">10.0</td><td>+82%</td><td>22</td><td>318</td></tr>
+        <tr><td>Year 8</td><td>2034</td><td>11.89</td><td>17.0</td><td>+70%</td><td>28</td><td>425</td></tr>
+        <tr><td>Year 9</td><td>2035</td><td>20.28</td><td>29.0</td><td>+71%</td><td>36</td><td>563</td></tr>
+        <tr class="rule"><td>Year 10</td><td>2036</td><td class="hi">34.97</td><td class="hi">50.0</td><td>+72%</td><td>45</td><td>777</td></tr>
+      </tbody>
+    </table></div>
+    <p class="fine" style="margin-top:14px;">Years 1, 2, 3, 5 and 7 (KRW 0.1B, 0.4B, 1.1B, 3.0B, 10.0B) and the steady-state KRW 50.0B are <strong>HQ-set targets</strong>. Years 4, 6, 8 and 9 are interpolated at the compound rate between adjacent set points; Years 8–10 continue at 71% to reach KRW 50.0B. Revenue per account is revenue ÷ active accounts, rounded for display, so multiplying the two columns directly differs from the revenue line by up to about 1%.</p>
+
+    <h3>3-2. Decomposition — only two variables</h3>
+    <p>The target resolves into <strong>active accounts</strong> and <strong>revenue per account</strong>. Each must survive scrutiny independently for the target to hold.</p>
+
+    <div class="fig2">
+      <div class="figure">
+        <p class="cap">Active accounts</p>
+        <p class="sub">count · 10% annual churn assumed</p>
+        <svg viewBox="0 0 480 200" role="img" aria-label="Active accounts growing from 2 in year one to 45 in year ten">
+          <title>Active accounts by year</title>
+          <line class="grid-line" x1="40" y1="20" x2="470" y2="20"></line>
+          <line class="grid-line" x1="40" y1="70" x2="470" y2="70"></line>
+          <line class="grid-line" x1="40" y1="120" x2="470" y2="120"></line>
+          <line class="grid-line" x1="40" y1="160" x2="470" y2="160" stroke="currentColor" opacity=".35"></line>
+          <text class="axis-txt" x="33" y="24" text-anchor="end">45</text>
+          <text class="axis-txt" x="33" y="74" text-anchor="end">30</text>
+          <text class="axis-txt" x="33" y="124" text-anchor="end">15</text>
+          <text class="axis-txt" x="33" y="164" text-anchor="end">0</text>
+          <g class="mark-fill">
+            <rect x="44" y="153" width="33" height="7" rx="3.5"></rect>
+            <rect x="87" y="147" width="33" height="13" rx="3.5"></rect>
+            <rect x="130" y="137" width="33" height="23" rx="3.5"></rect>
+            <rect x="173" y="130" width="33" height="30" rx="3.5"></rect>
+            <rect x="216" y="120" width="33" height="40" rx="4"></rect>
+            <rect x="259" y="107" width="33" height="53" rx="4"></rect>
+            <rect x="302" y="87" width="33" height="73" rx="4"></rect>
+            <rect x="345" y="67" width="33" height="93" rx="4"></rect>
+            <rect x="388" y="40" width="33" height="120" rx="4"></rect>
+            <rect x="431" y="20" width="33" height="140" rx="4"></rect>
+          </g>
+          <g class="axis-txt b">
+            <text x="60.5" y="149" text-anchor="middle">2</text>
+            <text x="146.5" y="133" text-anchor="middle">7</text>
+            <text x="232.5" y="116" text-anchor="middle">12</text>
+            <text x="318.5" y="83" text-anchor="middle">22</text>
+            <text x="447.5" y="16" text-anchor="middle">45</text>
+          </g>
+          <g class="axis-txt">
+            <text x="60.5" y="180" text-anchor="middle">Y1</text>
+            <text x="146.5" y="180" text-anchor="middle">Y3</text>
+            <text x="232.5" y="180" text-anchor="middle">Y5</text>
+            <text x="318.5" y="180" text-anchor="middle">Y7</text>
+            <text x="447.5" y="180" text-anchor="middle">Y10</text>
+          </g>
+        </svg>
+        <p class="src">45 accounts at Year 10 is not excessive against FPT Software Korea, which held 30+ Korean accounts by its sixth year (2022). <span class="micro">[9]</span></p>
+      </div>
+      <div class="figure">
+        <p class="cap">Revenue per account</p>
+        <p class="sub">USD K · reflects account maturity and expansion</p>
+        <svg viewBox="0 0 480 200" role="img" aria-label="Revenue per account growing from USD 35K to USD 777K">
+          <title>Revenue per account by year</title>
+          <line class="grid-line" x1="40" y1="20" x2="470" y2="20"></line>
+          <line class="grid-line" x1="40" y1="66.7" x2="470" y2="66.7"></line>
+          <line class="grid-line" x1="40" y1="113.3" x2="470" y2="113.3"></line>
+          <line class="grid-line" x1="40" y1="160" x2="470" y2="160" stroke="currentColor" opacity=".35"></line>
+          <text class="axis-txt" x="33" y="24" text-anchor="end">840</text>
+          <text class="axis-txt" x="33" y="70.7" text-anchor="end">560</text>
+          <text class="axis-txt" x="33" y="117.3" text-anchor="end">280</text>
+          <text class="axis-txt" x="33" y="164" text-anchor="end">0</text>
+          <g class="mark-fill">
+            <rect x="44" y="154.2" width="33" height="5.8" rx="2.9"></rect>
+            <rect x="87" y="148.3" width="33" height="11.7" rx="3.5"></rect>
+            <rect x="130" y="141.3" width="33" height="18.7" rx="3.5"></rect>
+            <rect x="173" y="136.7" width="33" height="23.3" rx="3.5"></rect>
+            <rect x="216" y="130.8" width="33" height="29.2" rx="4"></rect>
+            <rect x="259" y="120.3" width="33" height="39.7" rx="4"></rect>
+            <rect x="302" y="107.5" width="33" height="52.5" rx="4"></rect>
+            <rect x="345" y="88.8" width="33" height="71.2" rx="4"></rect>
+            <rect x="388" y="65.5" width="33" height="94.5" rx="4"></rect>
+            <rect x="431" y="30.5" width="33" height="129.5" rx="4"></rect>
+          </g>
+          <g class="axis-txt b">
+            <text x="60.5" y="150" text-anchor="middle">35</text>
+            <text x="146.5" y="137" text-anchor="middle">110</text>
+            <text x="232.5" y="127" text-anchor="middle">175</text>
+            <text x="318.5" y="103" text-anchor="middle">318</text>
+            <text x="447.5" y="26" text-anchor="middle">777</text>
+          </g>
+          <g class="axis-txt">
+            <text x="60.5" y="180" text-anchor="middle">Y1</text>
+            <text x="146.5" y="180" text-anchor="middle">Y3</text>
+            <text x="232.5" y="180" text-anchor="middle">Y5</text>
+            <text x="318.5" y="180" text-anchor="middle">Y7</text>
+            <text x="447.5" y="180" text-anchor="middle">Y10</text>
+          </g>
+        </svg>
+        <p class="src">USD 777K per account at Year 10 is 0.36% of a single Korean core-banking programme (USD 213.6M) — a small share of one large enterprise's annual IT budget.</p>
+      </div>
+    </div>
+
+    <h3>3-3. Deal tiers and contract structure</h3>
+    <p>The same revenue built from different contracts implies a different organisation and a different risk profile. Four tiers are managed.</p>
+    <div class="tw"><table class="txt">
+      <thead><tr>
+        <th style="width:16%;">Tier</th><th style="width:18%;">Average value</th><th style="width:13%;">Term</th>
+        <th style="width:19%;">Primary solution</th><th style="width:34%;">Role</th>
+      </tr></thead>
+      <tbody>
+        <tr><td><strong>T1 · PoC / pilot</strong></td><td>USD 21–70K</td><td>2–3 months</td><td>Demand Forecasting, Content</td><td>The objective is a reference, not margin. Treat the cost as buying <strong>one citable case</strong>. Most of Years 1–3 revenue</td></tr>
+        <tr><td><strong>T2 · Build project</strong></td><td>USD 210–560K</td><td>6–12 months</td><td>Archer, Agentic PODs</td><td>The production engagement after a successful PoC. The engine of Years 3–6</td></tr>
+        <tr><td><strong>T3 · Large build</strong></td><td>USD 700K–1.4M</td><td>12–24 months</td><td>Archer (incl. core-system subcontract)</td><td>Specialist-partner position under a Korean prime. Appears from Year 6</td></tr>
+        <tr><td><strong>T4 · Anchor account MSA</strong></td><td>USD 1.75–2.8M / yr</td><td>3–5 years</td><td>Agentic PODs, managed</td><td>The source of revenue predictability. <strong>Two to three of these from Year 8 is the prerequisite for USD 35M</strong></td></tr>
+      </tbody>
+    </table></div>
+    <div class="callout">
+      <p class="t">Why growth rebounds at Years 6–7</p>
+      <p>Growth falls to 64–67% at Years 4–5 and then rises to 83% and 82% at Years 6–7. This is not an arithmetic artefact — it assumes <strong>T3 and T4 contracts first appear at that point</strong>: one T3 large build (about USD 1.05M) in Year 6 and one T4 anchor account (about USD 2.1M) in Year 8. Without them the band stays near 60% and <strong>Year 10 converges on USD 17–21M rather than USD 35M</strong> (the conservative case in 3-4).</p>
+    </div>
+
+    <h3>3-4. Three scenarios</h3>
+    <p>The base case assumes anchor accounts are secured. The cases where that assumption fails and where it is exceeded are shown alongside.</p>
+
+    <div class="figure">
+      <p class="cap">Revenue by scenario</p>
+      <p class="sub">USD M</p>
+      <svg viewBox="0 0 1000 330" role="img" aria-label="Three scenarios reaching USD 17.5M conservative, 35.0M base and 49.0M upside at year ten">
+        <title>Revenue trajectory by scenario</title>
+        <g>
+          <line class="grid-line" x1="60" y1="20" x2="900" y2="20"></line>
+          <line class="grid-line" x1="60" y1="88.6" x2="900" y2="88.6"></line>
+          <line class="grid-line" x1="60" y1="157.1" x2="900" y2="157.1"></line>
+          <line class="grid-line" x1="60" y1="225.7" x2="900" y2="225.7"></line>
+          <line class="grid-line" x1="60" y1="260" x2="900" y2="260" stroke="currentColor" opacity=".35"></line>
+          <text class="axis-txt" x="52" y="24" text-anchor="end">49</text>
+          <text class="axis-txt" x="52" y="92.6" text-anchor="end">35</text>
+          <text class="axis-txt" x="52" y="161.1" text-anchor="end">21</text>
+          <text class="axis-txt" x="52" y="229.7" text-anchor="end">7</text>
+          <text class="axis-txt" x="52" y="264" text-anchor="end">0</text>
+        </g>
+        <path fill="none" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round" stroke-dasharray="5 4"
+              d="M60,259.7 L153.3,258.3 L246.7,255.5 L340,251.8 L433.3,247 L526.7,236 L620,215.4 L713.3,182.9 L806.7,122.9 L900,20"></path>
+        <path class="mark-line" stroke-width="2.5"
+              d="M60,259.7 L153.3,258.6 L246.7,256.2 L340,253.8 L433.3,249.7 L526.7,241.1 L620,225.7 L713.3,201.7 L806.7,160.6 L900,88.6"></path>
+        <path fill="none" stroke="var(--muted-2)" stroke-width="2" stroke-linejoin="round"
+              d="M60,259.7 L153.3,259 L246.7,257.3 L340,255.5 L433.3,253.1 L526.7,248 L620,239.4 L713.3,225.7 L806.7,203.4 L900,174.3"></path>
+        <circle cx="900" cy="20" r="4.5" fill="var(--ink)"></circle>
+        <circle cx="900" cy="88.6" r="5.5" class="mark-fill"></circle>
+        <circle cx="900" cy="174.3" r="4.5" fill="var(--muted-2)"></circle>
+        <text class="lbl" x="915" y="17" fill="var(--ink)">Upside 49.0</text>
+        <text class="lbl b" x="915" y="86">Base 35.0</text>
+        <text class="lbl" x="915" y="172" fill="var(--muted-2)">Conservative 17.5</text>
+        <g class="axis-txt">
+          <text x="60" y="282" text-anchor="middle">Y1</text>
+          <text x="246.7" y="282" text-anchor="middle">Y3</text>
+          <text x="433.3" y="282" text-anchor="middle">Y5</text>
+          <text x="620" y="282" text-anchor="middle">Y7</text>
+          <text x="806.7" y="282" text-anchor="middle">Y9</text>
+          <text x="900" y="282" text-anchor="middle">Y10</text>
+        </g>
+      </svg>
+    </div>
+
+    <div class="tw"><table>
+      <caption>USD M</caption>
+      <thead><tr><th>Scenario</th><th>Year 3</th><th>Year 5</th><th>Year 7</th><th>Year 10</th><th style="text-align:left;">Condition</th></tr></thead>
+      <tbody>
+        <tr><td>Conservative</td><td>0.56</td><td>1.40</td><td>4.20</td><td>17.48</td><td style="text-align:left;">Organic T1/T2 growth only; no anchor account secured</td></tr>
+        <tr class="rule"><td><strong>Base (target)</strong></td><td class="hi">0.77</td><td class="hi">2.10</td><td class="hi">6.99</td><td class="hi">34.97</td><td style="text-align:left;">Two to three T4 anchor accounts from Year 8</td></tr>
+        <tr><td>Upside</td><td>0.91</td><td>2.66</td><td>9.09</td><td>48.95</td><td style="text-align:left;">Base plus acquisition of a Korean mid-market SI/AI firm, or succession of HQ global accounts into their Korean subsidiaries</td></tr>
+      </tbody>
+    </table></div>
+    <p class="fine" style="margin-top:14px;">Conservative and upside figures are set at roughly −50% and +40% of base. They are <strong>this document's own construction</strong>, not externally sourced values.</p>
+  </div>
+</div>
+
+<!-- ============ 04 ============ -->
+<div class="tile alt" id="s4">
+  <div class="wrap">
+    <p class="eyebrow">04 · Go-to-Market</p>
+    <h2>Marketing, PR<br>and sales execution</h2>
+    <p class="lead">Starting from zero local track record, the first two years spend resources on <strong>the right to contract and the right to be cited</strong> — not on revenue.</p>
+
+    <h3>4-1. Three-stage entry</h3>
+    <div class="tw"><table class="txt">
+      <thead><tr>
+        <th style="width:17%;">Stage</th><th style="width:14%;">Revenue</th><th style="width:34%;">Core activity</th><th style="width:35%;">Exit criteria</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Stage 1 · Earn the right to bid</strong><br><span class="micro">Years 1–2 (2027–2028)</span></td>
+          <td>USD 0.07M → 0.28M</td>
+          <td>
+            · Vendor registration with Korean conglomerates (Samsung, SK, Hyundai, the three telcos, retail majors)<br>
+            · Public procurement (KONEPS) bidder registration<br>
+            · Partner registration: Databricks, Google Cloud, Salesforce, Adobe Korea<br>
+            · Three PoCs delivered free or at cost
+          </td>
+          <td>
+            · 5+ conglomerate vendor registrations<br>
+            · <strong>2 citable Korean references</strong> with named-client consent<br>
+            · 3 partner co-sell opportunities registered
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Stage 2 · Vertical expansion</strong><br><span class="micro">Years 3–5 (2029–2031)</span></td>
+          <td>USD 0.77M → 2.10M</td>
+          <td>
+            · Concentrate on two verticals: financial services and telecom<br>
+            · Trade shows: AI EXPO KOREA, Smart Factory + Automation World<br>
+            · Quarterly case study from Korean references<br>
+            · Begin analyst briefings (Gartner, IDC Korea)
+          </td>
+          <td>
+            · 3+ references per vertical<br>
+            · First T2 build project won<br>
+            · 6+ Korean media placements per year
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Stage 3 · Establish position</strong><br><span class="micro">Years 6–10 (2032–2036)</span></td>
+          <td>USD 3.85M → 34.97M</td>
+          <td>
+            · Specialist-partner relationships with Korean primes (core-system subcontracting)<br>
+            · Open T4 anchor account negotiations<br>
+            · Pursue analyst report inclusion<br>
+            · Screen acquisition targets (upside case)
+          </td>
+          <td>
+            · 1+ T3 large build<br>
+            · 2–3 T4 anchor accounts<br>
+            · Top-5 unaided awareness among foreign IT services firms in Korea <span class="tagbad">to be verified</span>
+          </td>
+        </tr>
+      </tbody>
+    </table></div>
+
+    <h3>4-2. Channel mix — direct sales alone does not reach USD 35M</h3>
+    <div class="tw"><table class="txt">
+      <thead><tr><th style="width:22%;">Channel</th><th style="width:18%;">Year 10 contribution</th><th style="width:60%;">Rationale and operating model</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Direct sales</strong></td><td>50% · USD 17.5M</td><td>Accounts sourced and closed by AEs. All T4 anchor accounts sit in this channel</td></tr>
+        <tr><td><strong>Technology partner co-sell</strong></td><td>25% · USD 8.7M</td><td>Joint selling with Databricks, Google Cloud, Salesforce, Adobe and Microsoft Korea. HQ already holds the global partnerships, so connecting to the Korean subsidiaries is comparatively fast — <strong>the shortest path in the first two years</strong></td></tr>
+        <tr><td><strong>Korean SI subcontract</strong></td><td>15% · USD 5.2M</td><td>Specialist scope under primes on large financial-sector programmes. Works around the reality that a new foreign entity will not win prime position</td></tr>
+        <tr><td><strong>HQ global account succession</strong></td><td>10% · USD 3.5M</td><td>Expansion into the Korean subsidiaries of Tenarai's existing Fortune 500 clients. <strong>The list of such clients with Korean operations has not been obtained, so this share is unverified</strong> <span class="tagbad">to be verified</span></td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>4-3. Marketing programmes and budget</h3>
+    <div class="tw"><table>
+      <thead><tr><th style="text-align:left;">Programme</th><th>Years 1–2</th><th>Years 3–5</th><th>Years 6–10</th><th style="text-align:left;">Purpose</th></tr></thead>
+      <tbody>
+        <tr><td style="text-align:left;">Reference and case study production</td><td>Top priority</td><td>Sustain</td><td>Sustain</td><td style="text-align:left;">The only remedy for zero local references</td></tr>
+        <tr><td style="text-align:left;">Partner co-marketing</td><td>Top priority</td><td>Sustain</td><td>Reduce</td><td style="text-align:left;">Borrow credibility from partner brands</td></tr>
+        <tr><td style="text-align:left;">Trade shows and conferences</td><td>Attend</td><td>Exhibit</td><td>Sponsor / keynote</td><td style="text-align:left;">Vertical lead generation</td></tr>
+        <tr><td style="text-align:left;">Analyst relations (Gartner, IDC)</td><td>—</td><td>Briefings</td><td>Report inclusion</td><td style="text-align:left;">A gating requirement in conglomerate vendor screening</td></tr>
+        <tr><td style="text-align:left;">Korean media and bylines</td><td>2 / yr</td><td>6 / yr</td><td>12 / yr</td><td style="text-align:left;">Brand awareness</td></tr>
+        <tr><td style="text-align:left;">Employer branding</td><td>—</td><td>Begin</td><td>Scale</td><td style="text-align:left;">Countering the technical-sales hiring shortage</td></tr>
+        <tr class="rule"><td style="text-align:left;"><strong>Marketing budget (% of revenue)</strong></td><td class="hi">n/a<br><span class="micro">fixed USD 35K / yr</span></td><td class="hi">8–10%</td><td class="hi">4–5%</td><td style="text-align:left;">Revenue-linked budgeting is meaningless at this scale; run on a fixed allocation early</td></tr>
+      </tbody>
+    </table></div>
+    <p class="fine" style="margin-top:14px;">The 8–10% → 4–5% range applies a customary B2B technology-services band and is <strong>this document's setting</strong>; a Korea-specific benchmark was not obtained. <span class="tagbad">to be verified</span></p>
+  </div>
+</div>
+
+<!-- ============ 05 ============ -->
+<div class="tile" id="s5">
+  <div class="wrap">
+    <p class="eyebrow">05 · Sales KPI</p>
+    <h2>Sales KPI system<br>and headcount</h2>
+    <p class="lead">Revenue is a lagging indicator. Managing an organisation through Years 1–3, when there is little revenue to manage by, requires leading indicators derived from the revenue target itself.</p>
+
+    <h3>5-1. Three-layer KPI structure</h3>
+    <div class="tw"><table class="txt">
+      <thead><tr><th style="width:14%;">Layer</th><th style="width:26%;">Metric</th><th style="width:16%;">Cadence</th><th style="width:44%;">Definition and standard</th></tr></thead>
+      <tbody>
+        <tr><td rowspan="3"><strong>Leading</strong><br><span class="micro">activity</span></td><td>New meetings</td><td>Weekly</td><td>First meeting with a new decision maker. The only direct measure of AE activity</td></tr>
+        <tr><td>Pipeline coverage ratio</td><td>Monthly</td><td>Weighted pipeline ÷ revenue target. Enterprise IT services firms typically require <strong>3–5×</strong>; teams with 15–25% win rates need 4–7× to forecast reliably <span class="micro">[11]</span></td></tr>
+        <tr><td>PoCs started</td><td>Monthly</td><td>The only route out of zero references. The top metric for Years 1–3</td></tr>
+        <tr><td rowspan="2"><strong>Mid</strong><br><span class="micro">conversion</span></td><td>Qualified opportunities</td><td>Monthly</td><td>Budget, timeline and decision authority confirmed</td></tr>
+        <tr><td>Win rate</td><td>Quarterly</td><td>B2B averages run at 21% of all opportunities and 29% of qualified ones. This plan targets <strong>22–25%</strong> <span class="micro">[11]</span></td></tr>
+        <tr><td rowspan="3"><strong>Lagging</strong><br><span class="micro">outcome</span></td><td>New logos</td><td>Quarterly</td><td>New client companies — the source of active-account growth</td></tr>
+        <tr><td>Total contract value (TCV)</td><td>Quarterly</td><td>New and renewal contract value. Exceeds in-year revenue because it includes multi-year terms</td></tr>
+        <tr><td>Revenue</td><td>Monthly</td><td>Revenue recognised in period</td></tr>
+        <tr><td rowspan="2"><strong>Health</strong></td><td>Net revenue retention (NRR)</td><td>Annual</td><td>Existing-account revenue versus prior year. The basis for rising revenue per account</td></tr>
+        <tr><td>Logo retention</td><td>Annual</td><td>90% assumed. The 10% churn is already built into the new-logo targets</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>5-2. KPI targets by year</h3>
+    <div class="tw"><table>
+      <caption>Derived backwards from the revenue target — meeting-to-opportunity 13%, opportunity-to-win 22–25%</caption>
+      <thead><tr><th style="text-align:left;">KPI</th><th>Year 1</th><th>Year 3</th><th>Year 5</th><th>Year 7</th><th>Year 10</th></tr></thead>
+      <tbody>
+        <tr><td style="text-align:left;">New meetings (annual)</td><td>60</td><td>120</td><td>180</td><td>260</td><td>400</td></tr>
+        <tr><td style="text-align:left;">Pipeline coverage</td><td>5.0×</td><td>4.5×</td><td>4.0×</td><td>4.0×</td><td>4.0×</td></tr>
+        <tr><td style="text-align:left;">PoCs started</td><td>3</td><td>8</td><td>14</td><td>22</td><td>35</td></tr>
+        <tr><td style="text-align:left;">Qualified opportunities</td><td>8</td><td>14</td><td>18</td><td>32</td><td>52</td></tr>
+        <tr><td style="text-align:left;">Win rate</td><td>25%</td><td>22%</td><td>22%</td><td>25%</td><td>25%</td></tr>
+        <tr><td style="text-align:left;">New logos</td><td>2</td><td>3</td><td>4</td><td>8</td><td>13</td></tr>
+        <tr><td style="text-align:left;">TCV (USD M)</td><td>0.10</td><td>1.12</td><td>3.15</td><td>10.49</td><td>52.45</td></tr>
+        <tr><td style="text-align:left;">Net revenue retention</td><td>—</td><td>110%</td><td>115%</td><td>120%</td><td>120%</td></tr>
+        <tr class="rule"><td style="text-align:left;"><strong>Revenue (USD M)</strong></td><td class="hi">0.07</td><td class="hi">0.77</td><td class="hi">2.10</td><td class="hi">6.99</td><td class="hi">34.97</td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="figure">
+      <p class="cap">Year 10 sales funnel</p>
+      <p class="sub">400 new meetings a year converting into 13 new contracts</p>
+      <svg viewBox="0 0 1000 240" role="img" aria-label="Funnel narrowing from 400 meetings to 52 qualified opportunities to 13 wins">
+        <title>Year 10 sales funnel</title>
+        <g class="mark-fill">
+          <rect x="60" y="20" width="860" height="52" rx="4"></rect>
+          <rect x="60" y="94" width="112" height="52" rx="4"></rect>
+          <rect x="60" y="168" width="28" height="52" rx="4"></rect>
+        </g>
+        <g class="lbl" style="font-size:15px;">
+          <text x="80" y="52" fill="var(--canvas)">400</text>
+          <text x="80" y="126" fill="var(--canvas)">52</text>
+          <text x="100" y="200">13</text>
+        </g>
+        <g class="axis-txt" style="font-size:13px;">
+          <text x="900" y="41" text-anchor="end" fill="var(--canvas)">New meetings</text>
+          <text x="900" y="59" text-anchor="end" fill="var(--canvas)" opacity=".75">400 / year · 33 / month</text>
+          <text x="192" y="116">Qualified opportunities</text>
+          <text x="192" y="132" fill="var(--muted-2)">13% conversion</text>
+          <text x="130" y="190">New logos won</text>
+          <text x="130" y="206" fill="var(--muted-2)">25% win rate · USD 777K per account</text>
+        </g>
+      </svg>
+      <p class="src">With 18 AEs this is 1.9 new meetings per AE per month. The activity load is not the constraint — <strong>the difficulty lies in growing accounts to USD 777K</strong>, not in booking meetings.</p>
+    </div>
+
+    <h3>5-3. Headcount plan</h3>
+    <div class="tw"><table>
+      <caption>Technical sales organisation only — no engineering or delivery staff included</caption>
+      <thead><tr><th style="text-align:left;">Function</th><th>Year 1</th><th>Year 3</th><th>Year 5</th><th>Year 7</th><th>Year 10</th></tr></thead>
+      <tbody>
+        <tr><td style="text-align:left;">Account executives</td><td>2</td><td>3</td><td>4</td><td>7</td><td>18</td></tr>
+        <tr><td style="text-align:left;">Presales / solution architects</td><td>—</td><td>1</td><td>2</td><td>4</td><td>10</td></tr>
+        <tr><td style="text-align:left;">Delivery management <span class="micro">(HQ liaison)</span></td><td>—</td><td>1</td><td>2</td><td>5</td><td>14</td></tr>
+        <tr><td style="text-align:left;">Marketing</td><td>—</td><td>—</td><td>1</td><td>2</td><td>3</td></tr>
+        <tr><td style="text-align:left;">G&amp;A</td><td>1</td><td>1</td><td>2</td><td>2</td><td>5</td></tr>
+        <tr class="rule"><td style="text-align:left;"><strong>Total</strong></td><td>3</td><td>6</td><td>11</td><td>20</td><td>50</td></tr>
+        <tr><td style="text-align:left;">Revenue per head (USD K)</td><td class="neg">23</td><td>128</td><td>191</td><td>350</td><td class="hi">699</td></tr>
+        <tr><td style="text-align:left;">Revenue per AE (USD K)</td><td class="neg">35</td><td>256</td><td>525</td><td>999</td><td class="hi">1,943</td></tr>
+      </tbody>
+    </table></div>
+    <div class="callout">
+      <p class="t">What makes USD 699K per head possible</p>
+      <p>Revenue per head varies too widely with business mix (systems integration versus logistics BPO versus consulting) for a direct comparison between firms. The Korea entity <strong>holds no engineering or delivery staff</strong>, so it cannot be set against Korean SI firms on that metric at all. USD 699K per head (USD 1.94M per AE) holds only while delivery sits entirely with HQ; <strong>if a local engineering organisation is ever established, the same revenue requires three to five times the headcount</strong>. The comparable measure is organisation size, and on that basis it stays the smallest of its peer set: 50 people at Year 10 against Wipro Korea's 250+ and FPT Software Korea's 300+ in-country. <span class="micro">[9]</span></p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 06 ============ -->
+<div class="tile dark" id="s6">
+  <div class="wrap">
+    <p class="eyebrow">06 · P&amp;L</p>
+    <h2>P&amp;L structure<br>and payback</h2>
+    <p class="lead">One decision precedes the revenue plan — <strong>whose income statement does this USD 35M land on?</strong></p>
+
+    <h3>6-1. Settle the transfer-pricing structure first</h3>
+    <p>If the Korea entity sells while HQ delivers, the contracting structure determines <strong>the entity's reported revenue itself</strong>. There are two options and the USD 35M target holds under only one of them.</p>
+    <div class="tw"><table class="txt">
+      <thead><tr><th style="width:22%;">Dimension</th><th style="width:39%;">Principal model</th><th style="width:39%;">Commissionaire / agent model</th></tr></thead>
+      <tbody>
+        <tr><td>Contracting party</td><td>Korea entity contracts directly with the client</td><td>HQ contracts; Korea entity introduces</td></tr>
+        <tr><td>Korea entity revenue</td><td><strong>Full contract value</strong> (USD 35.0M at Year 10)</td><td>Commission only, at 8–15% of contract value → <strong>USD 2.8–5.2M</strong></td></tr>
+        <tr><td>Cost of revenue</td><td>Intercompany delivery charge (transfer price)</td><td>None</td></tr>
+        <tr><td>Permanent establishment risk</td><td>Low — the Korea entity is the taxpayer</td><td><strong>High</strong> — a Korean sales force habitually concluding HQ contracts can create a Korean PE for HQ</td></tr>
+        <tr><td>Conglomerate vendor registration</td><td>Favourable — a domestic entity is the counterparty</td><td>Unfavourable — the counterparty is a foreign entity</td></tr>
+        <tr><td>USD 35M target holds</td><td><strong>Yes</strong></td><td>No</td></tr>
+      </tbody>
+    </table></div>
+    <div class="callout">
+      <p class="t">Recommendation</p>
+      <p>Every figure in this document assumes the <strong>principal model</strong>. Under a commissionaire model the same commercial performance reports as USD 2.8–5.2M of entity revenue, and the USD 35M target must be redefined as <strong>total contract value originated in Korea</strong> rather than entity revenue. <strong>Settle this with HQ finance and tax before the target is fixed.</strong> Actual transfer-pricing policy must follow the OECD Transfer Pricing Guidelines and Korea's international tax adjustment law, with local tax and legal counsel. <span class="tagbad">to be verified</span></p>
+    </div>
+
+    <h3>6-2. 10-year P&amp;L — group contribution basis</h3>
+    <p>The table below is <strong>group contribution</strong>: revenue originated in Korea × global gross margin, less Korea entity SG&amp;A. The entity's standalone statutory P&amp;L depends on transfer-pricing policy and must be modelled separately.</p>
+    <div class="tw"><table>
+      <caption>USD M · 32% gross margin assumed · SG&amp;A = headcount × USD 84K × 3% annual inflation</caption>
+      <thead><tr><th style="text-align:left;">Line</th><th>Y1</th><th>Y2</th><th>Y3</th><th>Y4</th><th>Y5</th><th>Y6</th><th>Y7</th><th>Y8</th><th>Y9</th><th>Y10</th></tr></thead>
+      <tbody>
+        <tr><td style="text-align:left;">Revenue</td><td>0.07</td><td>0.28</td><td>0.77</td><td>1.26</td><td>2.10</td><td>3.85</td><td>6.99</td><td>11.89</td><td>20.28</td><td>34.97</td></tr>
+        <tr><td style="text-align:left;">Gross profit (32%)</td><td>0.02</td><td>0.09</td><td>0.25</td><td>0.40</td><td>0.67</td><td>1.23</td><td>2.24</td><td>3.80</td><td>6.49</td><td>11.19</td></tr>
+        <tr><td style="text-align:left;">Korea entity SG&amp;A</td><td>0.30</td><td>0.35</td><td>0.53</td><td>0.73</td><td>1.04</td><td>1.36</td><td>2.00</td><td>2.79</td><td>4.04</td><td>5.47</td></tr>
+        <tr class="rule"><td style="text-align:left;"><strong>Group contribution</strong></td><td class="neg">−0.27</td><td class="neg">−0.26</td><td class="neg">−0.29</td><td class="neg">−0.33</td><td class="neg">−0.37</td><td class="neg">−0.13</td><td class="hi">+0.23</td><td class="hi">+1.02</td><td class="hi">+2.45</td><td class="hi">+5.71</td></tr>
+        <tr><td style="text-align:left;">Cumulative</td><td class="neg">−0.27</td><td class="neg">−0.53</td><td class="neg">−0.82</td><td class="neg">−1.15</td><td class="neg">−1.52</td><td class="neg">−1.65</td><td class="neg">−1.41</td><td class="neg">−0.40</td><td class="hi">+2.06</td><td class="hi">+7.77</td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="figure">
+      <p class="cap">Group contribution by year</p>
+      <p class="sub">USD M · annual break-even in Year 7, cumulative payback in Year 9</p>
+      <svg viewBox="0 0 1000 270" role="img" aria-label="Losses in years one to six, break-even in year seven, USD 5.71M profit in year ten">
+        <title>Group contribution by year</title>
+        <line class="grid-line" x1="60" y1="225" x2="980" y2="225" stroke="currentColor" opacity=".5"></line>
+        <line class="grid-line" x1="60" y1="20.8" x2="980" y2="20.8"></line>
+        <line class="grid-line" x1="60" y1="123" x2="980" y2="123"></line>
+        <text class="axis-txt" x="52" y="24.8" text-anchor="end">5.6</text>
+        <text class="axis-txt" x="52" y="127" text-anchor="end">2.8</text>
+        <text class="axis-txt" x="52" y="229" text-anchor="end">0</text>
+        <g>
+          <rect x="76" y="225" width="60" height="9.8" rx="3" fill="var(--muted-2)"></rect>
+          <rect x="168" y="225" width="60" height="9.3" rx="3" fill="var(--muted-2)"></rect>
+          <rect x="260" y="225" width="60" height="10.3" rx="3" fill="var(--muted-2)"></rect>
+          <rect x="352" y="225" width="60" height="11.8" rx="3" fill="var(--muted-2)"></rect>
+          <rect x="444" y="225" width="60" height="13.3" rx="3" fill="var(--muted-2)"></rect>
+          <rect x="536" y="225" width="60" height="4.8" rx="3" fill="var(--muted-2)"></rect>
+          <rect x="628" y="216.8" width="60" height="8.3" rx="3" class="mark-fill"></rect>
+          <rect x="720" y="188.5" width="60" height="36.5" rx="4" class="mark-fill"></rect>
+          <rect x="812" y="137.5" width="60" height="87.5" rx="4" class="mark-fill"></rect>
+          <rect x="904" y="20.8" width="60" height="204.2" rx="4" class="mark-fill"></rect>
+        </g>
+        <g class="axis-txt">
+          <text x="106" y="248" text-anchor="middle" fill="var(--on-dark-muted)">−0.27</text>
+          <text x="474" y="252" text-anchor="middle" fill="var(--on-dark-muted)">−0.37</text>
+          <text x="658" y="210" text-anchor="middle" class="b" fill="var(--primary)">+0.23</text>
+          <text x="934" y="14" text-anchor="middle" class="b" fill="var(--primary)">+5.71</text>
+        </g>
+        <g class="axis-txt">
+          <text x="106" y="266" text-anchor="middle">Y1</text>
+          <text x="198" y="266" text-anchor="middle">Y2</text>
+          <text x="290" y="266" text-anchor="middle">Y3</text>
+          <text x="382" y="266" text-anchor="middle">Y4</text>
+          <text x="474" y="266" text-anchor="middle">Y5</text>
+          <text x="566" y="266" text-anchor="middle">Y6</text>
+          <text x="658" y="266" text-anchor="middle">Y7</text>
+          <text x="750" y="266" text-anchor="middle">Y8</text>
+          <text x="842" y="266" text-anchor="middle">Y9</text>
+          <text x="934" y="266" text-anchor="middle">Y10</text>
+        </g>
+      </svg>
+    </div>
+
+    <h3>6-3. Payback</h3>
+    <div class="stats c4">
+      <div class="stat"><div class="v">USD 1.65M</div><div class="k">Peak cumulative investment (end of Year 6)</div><div class="s">KRW 2.36B</div></div>
+      <div class="stat"><div class="v b">2033</div><div class="k">Annual break-even (Year 7)</div></div>
+      <div class="stat"><div class="v b">2035</div><div class="k">Cumulative payback (Year 9)</div></div>
+      <div class="stat"><div class="v">4.7×</div><div class="k">10-yr cumulative ÷ peak investment</div><div class="s">USD 7.77M ÷ 1.65M</div></div>
+    </div>
+    <p class="fine" style="margin-top:24px;">The USD 1.65M peak sits inside the USD 1.81M (KRW 2.583B) five-year funding requirement in the existing <em>Korea Entity Establishment and Five-Year Investment</em> report (Aug 2026, v1, base case at 20% annual escalation). That report carried the country-manager salary at zero, however; adding an expatriate package of USD 35–42K a year raises the peak to approximately <strong>USD 1.89–2.03M</strong>, and it must be included in any externally submitted version.</p>
+  </div>
+</div>
+
+<!-- ============ 07 ============ -->
+<div class="tile alt" id="s7">
+  <div class="wrap">
+    <p class="eyebrow">07 · Risks</p>
+    <h2>Risks and<br>prerequisites</h2>
+    <p class="lead">The points where this plan breaks are stated first. A question the committee will ask is better raised by the document than by the room.</p>
+
+    <div class="tw"><table class="txt">
+      <thead><tr>
+        <th style="width:23%;">Risk</th><th style="width:11%;">Impact</th><th style="width:34%;">Description</th><th style="width:32%;">Mitigation</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Transfer-pricing structure unsettled</strong></td><td class="hi">Critical</td>
+          <td>Under a commissionaire model the entity's revenue is USD 2.8–5.2M and <strong>the USD 35M target does not exist as stated</strong></td>
+          <td>Settle the structure with HQ finance and tax first. State in the plan whether the target means entity revenue or originated TCV</td>
+        </tr>
+        <tr>
+          <td><strong>Zero local track record</strong></td><td class="hi">High</td>
+          <td>Wipro has been in Korea since 2002 and FPT and Infosys since the 2010s. Where conglomerate vendor screening requires in-country delivery history, <strong>the right to bid does not exist</strong></td>
+          <td>Make two citable references by Year 2 the single top KPI, funded through free or at-cost PoCs (4-1)</td>
+        </tr>
+        <tr>
+          <td><strong>No T4 anchor account</strong></td><td class="hi">High</td>
+          <td>Without two to three anchor accounts from Year 8, Year 10 converges on <strong>USD 17–21M</strong> rather than USD 35M</td>
+          <td>Manage anchor candidates as a separate portfolio from Year 6. Define in advance the decision point at which the target steps down to the conservative case</td>
+        </tr>
+        <tr>
+          <td><strong>Misalignment with Korea's largest investment axis</strong></td><td>Medium</td>
+          <td>Semiconductor manufacturing and automotive — Korea's largest IT investment pools — are not among Tenarai's six core industries, and Wipro holds that ground after acquiring HARMAN's DTS division</td>
+          <td>Exclude the segment from the plan. Concentrate on financial services, telecom and retail (1-2)</td>
+        </tr>
+        <tr>
+          <td><strong>Technical sales hiring</strong></td><td>Medium</td>
+          <td>18 AEs at Year 10 means 18 people able to sell AI and modernisation work in Korea. With a national AI talent shortfall above 7% (SPRi survey), this is hard to hire and expensive when hired <span class="micro">[9]</span></td>
+          <td>Start employer branding in Year 3 (4-3). Carry the USD 84K per-head SG&amp;A assumption as a sensitivity, not a fixed input</td>
+        </tr>
+        <tr>
+          <td><strong>Global account succession unverified</strong></td><td>Medium</td>
+          <td>10% of Year 10 revenue (USD 3.5M) is attributed to HQ Fortune 500 clients expanding through their Korean subsidiaries, but <strong>no list of such clients with Korean operations has been obtained</strong></td>
+          <td>Request the global account footprint from HQ. If unconfirmed, set this channel to zero and raise the direct-sales target</td>
+        </tr>
+        <tr>
+          <td><strong>Prime position on large programmes</strong></td><td>Medium</td>
+          <td>Primes on Korean core-system programmes are the domestic SI majors; a newly incorporated foreign entity is not a realistic prime</td>
+          <td>Adopt the subcontract and specialist-partner position openly (4-2, 15% of Year 10). Prime wins are not modelled</td>
+        </tr>
+        <tr>
+          <td><strong>Currency</strong></td><td>Low</td>
+          <td>USD figures use a KRW 1,430 planning rate. A KRW 1,300–1,600 range moves USD-reported revenue by <strong>±11%</strong></td>
+          <td>Report KRW as the governing currency with USD alongside. Reset the planning rate annually</td>
+        </tr>
+      </tbody>
+    </table></div>
+
+    <h3>7-2. Five conditions for this plan to hold</h3>
+    <ol>
+      <li><strong>Adopt the principal model for transfer pricing.</strong> Until this is settled, the definition of the target itself is open.</li>
+      <li><strong>Delivery stays 100% with HQ.</strong> A local engineering organisation changes the headcount and the P&amp;L structure entirely.</li>
+      <li><strong>Secure two citable Korean references in Years 1–2.</strong> Without them nothing from Year 3 onward is executable.</li>
+      <li><strong>Secure two to three T4 anchor accounts from Year 8.</strong> This is the single variable separating USD 35M from USD 17M.</li>
+      <li><strong>Stay inside financial services, telecom and retail.</strong> Extending into semiconductors and automotive means a direct collision with Wipro and a diluted team.</li>
+    </ol>
+  </div>
+</div>
+
+<!-- ============ 08 ============ -->
+<div class="tile foot" id="s8">
+  <div class="wrap">
+    <p class="eyebrow">08 · Sources</p>
+    <h2 style="font-size:28px;">Sources</h2>
+    <ol style="font-size:14px; color:var(--muted); max-width:80ch;">
+      <li><strong>[1]</strong> "Korean financial-sector next-generation system projects to surge in 2026 — over KRW 2 trillion expected over one to two years" — DigitalDaily, 30 Dec 2025. Includes NH Nonghyup Bank NEO phase 1 at KRW 305.5B, phases 1+2 at KRW 600–620B, and Nonghyup Mutual Finance (SK AX).</li>
+      <li><strong>[2]</strong> Korea Software Industry Association (KOSA), as cited — Korean universities produce 22,000–25,000 IT graduates annually against far greater demand in AI, 5G, blockchain and automation. <span class="tagbad">secondary citation — KOSA original not obtained</span></li>
+      <li><strong>[3]</strong> Ministry of Science and ICT (MSIT) — KRW 310T (USD 217B) annual economic effect from AI diffusion projected for 2026 (KRW 123T new products, KRW 185T cost savings; services KRW 136T, manufacturing KRW 77T, ICT KRW 24T).</li>
+      <li><strong>[4]</strong> Megazone Cloud / Foundry survey of 749 Korean enterprise AI and IT decision makers — "85% of Korean enterprises to adopt generative AI in 2026", CIO Korea. Current use: 22.4% company-wide, 33.2% departmental; 35.1% company-wide among large enterprises; 74.0% increased investment year on year.</li>
+      <li><strong>[5]</strong> Q3 2025 revenue of the Korean IT services majors — Samsung SDS KRW 3,391.3B (USD 2.37B), LG CNS KRW 1,522.3B consolidated (USD 1.06B), SK AX KRW 665.2B standalone (USD 465M). Point Daily and Hankyung reporting.</li>
+      <li><strong>[6]</strong> Mordor Intelligence — South Korea IT Services Market: USD 29.92B in 2025 → USD 53.63B by 2030, 12.38% CAGR.</li>
+      <li><strong>[7]</strong> Grand View Research — South Korea IT Services Market: USD 35.8B in 2025, 11% CAGR 2026–2033.</li>
+      <li><strong>[8]</strong> IMARC Group — South Korea IT Services Market: USD 23.2B in 2025 → USD 43.9B by 2034, 6.6% CAGR.</li>
+      <li><strong>[9]</strong> <em>Tenarai Corporate Research Report v2</em> (4 Aug 2026, internal), section 4 — FPT Software Korea (entered 2016; 300+ in-country and 2,500+ in Vietnam; 30+ Korean clients), Infosys Korea branch (2010), Wipro Korea (entered 2002; 250+ staff, 25% localised; Seoul Innovation Centre March 2026). Section 3 — Tenarai India entity 3,374 staff (1 Apr 2026); no Tenarai legal entity, office or delivery centre in Korea. Section 5-1 — Software Policy &amp; Research Institute (SPRi) survey: Korean enterprise AI talent shortfall above 7%.</li>
+      <li><strong>[10]</strong> USD/KRW 1,434.21 on 4 Aug 2026 (Trading Economics). This document applies a planning rate of <strong>KRW 1,430</strong>.</li>
+      <li><strong>[11]</strong> Enterprise B2B sales benchmarks (2026) — pipeline coverage of 3–5× (4–7× for teams with 15–25% win rates); B2B win rates of 21% of all and 29% of qualified opportunities; enterprise sales cycles of 120–270 days. Composite of Clari, Data-Mania and PipelineGrader benchmark publications. <span class="tagbad">global benchmarks — no Korea-specific source obtained</span></li>
+      <li><strong>[12]</strong> <em>Tenarai Korea Entity Establishment and Five-Year Investment Report v1</em> (Aug 2026, internal) — five-year cumulative funding requirement KRW 2.583B (USD 1.81M) base case; Year 1 KRW 401.4M; establishment costs KRW 62.84M; recommended initial capital KRW 807.8M.</li>
+    </ol>
+
+    <details>
+      <summary>Items without a verified source (resolve before external submission)</summary>
+      <ol>
+        <li>Transfer-pricing policy (principal vs commissionaire) — requires HQ finance and tax plus Korean tax counsel. <strong>The highest-priority open item; it governs the definition of the revenue target</strong></li>
+        <li>Tenarai Fortune 500 clients with Korean operations — HQ query required. This is the basis for the "global account succession" channel (USD 3.5M at Year 10)</li>
+        <li>The 15% coefficient used for SAM — an assumption for Tenarai's six verticals as a share of TAM. Should be replaced with an industry-level IT spend breakdown</li>
+        <li>Marketing budget ratios (8–10% → 4–5% of revenue) — no Korea-specific B2B technology-services benchmark obtained</li>
+        <li>Sales KPI benchmarks — global B2B figures applied; no measured Korean enterprise IT services win rates or cycle lengths obtained</li>
+        <li>The 1.54× spread in Korean IT services market estimates (USD 23.2B–35.8B) — the research houses' scope and methodology documents were not obtained</li>
+        <li>Korean revenue of FPT, Infosys and Wipro — requires DART filings and statutory audit reports. This governs the precision of the per-head and organisation-size comparisons</li>
+        <li>KOSA workforce supply original — cited via a secondary source; the KOSA report itself was not obtained</li>
+      </ol>
+    </details>
+
+    <p class="fine" style="margin-top:32px;">
+      Figures are stated in <strong>USD</strong> unless marked otherwise, converted at a planning rate of KRW 1,430 per USD.
+      The revenue targets (KRW 0.1B, 0.4B, 1.1B, 3.0B and 10.0B, and KRW 50.0B at steady state) are HQ-set; all other year values, the supporting basis, the KPI system and the P&amp;L are derived and designed in this document.
+      Items marked "estimate" or "to be verified" carry no external source and must be validated before any external submission.
+    </p>
+    <p class="micro" style="margin-top:16px;">Tenarai Korea Entity · Revenue Plan v1 · 4 August 2026 · Internal review</p>
+  </div>
+</div>
+
+</body>
+</html>
+</script>
 <script>
   function loadFrame(scriptId, frameId) {
     var htmlSrc = document.getElementById(scriptId).textContent;
@@ -732,6 +1814,7 @@
   }
   loadFrame('src-a', 'frame-a');
   loadFrame('src-b', 'frame-b');
+  loadFrame('src-c', 'frame-c');
 
   var tabs = document.querySelectorAll('.tab');
   var panels = document.querySelectorAll('.panel');
