@@ -149,6 +149,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<script>try{if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('js-anim');}}catch(e){}<\/script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Korea Market Entry — Tenarai Business Case</title>
 <style>
@@ -253,6 +254,11 @@
   tbody tr:nth-child(even) { background: var(--canvas-soft); }
   footer.doc-footer { text-align: center; font-size: 13px; color: var(--muted-soft); padding-top: 40px; }
   a.back-to-top { display: inline-block; margin-top: 8px; font-size: 13px; color: var(--purple); text-decoration: none; }
+  html.js-anim .stat-card { opacity: 0; transform: translateY(14px); }
+  html.js-anim .stat-card.rv-in {
+    opacity: 1; transform: translateY(0);
+    transition: opacity .6s cubic-bezier(.22,.61,.36,1), transform .6s cubic-bezier(.22,.61,.36,1);
+  }
   @media print {
     body { background: #fff; }
     .cover, nav.toc { box-shadow: none; }
@@ -452,10 +458,54 @@
   </footer>
 
 </div>
+<script>
+(function(){
+  if (!document.documentElement.classList.contains('js-anim')) return;
+  function easeOutCubic(t){ return 1 - Math.pow(1 - t, 3); }
+  function formatNum(v, decimals, comma){
+    var s = v.toFixed(decimals);
+    if (comma) { var p = s.split('.'); p[0] = p[0].replace(/\B(?=(\d{3})+(?!\d))/g, ','); s = p.join('.'); }
+    return s;
+  }
+  function animateCount(el){
+    var raw = el.textContent;
+    var m = raw.match(/^([^\d\-−]*)([\-−]?)([\d,]+(?:\.\d+)?)([^\d]*)$/);
+    if (!m) return;
+    var prefix = m[1], sign = m[2], digits = m[3], suffix = m[4];
+    var comma = digits.indexOf(',') !== -1;
+    var decimals = (digits.split('.')[1] || '').length;
+    var end = parseFloat(digits.replace(/,/g, ''));
+    if (isNaN(end)) return;
+    var dur = 1200, t0 = null;
+    function step(ts){
+      if (!t0) t0 = ts;
+      var p = Math.min((ts - t0) / dur, 1);
+      var v = end * easeOutCubic(p);
+      el.textContent = prefix + sign + formatNum(v, decimals, comma) + suffix;
+      if (p < 1) requestAnimationFrame(step); else el.textContent = raw;
+    }
+    requestAnimationFrame(step);
+  }
+  var cards = document.querySelectorAll('.stat-card');
+  if (!cards.length) return;
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (!entry.isIntersecting) return;
+      var card = entry.target;
+      card.classList.add('rv-in');
+      var n = card.querySelector('.n');
+      if (n) animateCount(n);
+      io.unobserve(card);
+    });
+  }, { threshold: 0.3 });
+  cards.forEach(function(c){ io.observe(c); });
+})();
+<\/script>
 </body>
 </html>
 </script>
-<script type="text/plain" id="src-b"><title>Tenarai Korea · Entity Setup &amp; Five-Year Investment Plan</title>
+<script type="text/plain" id="src-b"><script>try{if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('js-anim');}}catch(e){}<\/script>
+<title>Tenarai Korea · Entity Setup &amp; Five-Year Investment Plan</title>
 <style>
   :root{
     --cream:#faf6ee; --ink:#1c1a16; --ink-soft:#6b6558; --card:#fff;
@@ -513,6 +563,16 @@
   .card .v{ font-size:30px; line-height:1.25; margin-top:6px; font-variant-numeric:tabular-nums; }
   .card .v.big{ font-size:42px; }
   .card .s{ font-size:12.5px; color:var(--ink-soft); margin-top:8px; }
+
+  html.js-anim .bento .card { opacity: 0; transform: translateY(16px) scale(.98); }
+  html.js-anim .bento .card.rv-in {
+    opacity: 1; transform: translateY(0) scale(1);
+    transition: opacity .65s cubic-bezier(.22,.61,.36,1) var(--rv-delay,0ms),
+                transform .65s cubic-bezier(.22,.61,.36,1) var(--rv-delay,0ms);
+  }
+  .bento .card:nth-child(1){ --rv-delay: 0ms; }
+  .bento .card:nth-child(2){ --rv-delay: 90ms; }
+  .bento .card:nth-child(3){ --rv-delay: 180ms; }
 
   .tw{ overflow-x:auto; margin:22px 0 0; border-radius:14px; }
   table{ border-collapse:collapse; width:100%; min-width:640px; font-size:14px;
@@ -776,12 +836,57 @@
     <hr>
     <p class="note">Amounts converted at USD 1 = KRW 1,430 and rounded to the nearest dollar. Tax rates and fees are current as of August 2026. Confirm with the competent registry office, district tax office and Korean legal counsel before execution.</p>
   </section>
-</div></script>
+</div>
+<script>
+(function(){
+  if (!document.documentElement.classList.contains('js-anim')) return;
+  function easeOutCubic(t){ return 1 - Math.pow(1 - t, 3); }
+  function formatNum(v, decimals, comma){
+    var s = v.toFixed(decimals);
+    if (comma) { var p = s.split('.'); p[0] = p[0].replace(/\B(?=(\d{3})+(?!\d))/g, ','); s = p.join('.'); }
+    return s;
+  }
+  function animateCount(el){
+    var raw = el.textContent;
+    var m = raw.match(/^([^\d\-−]*)([\-−]?)([\d,]+(?:\.\d+)?)([^\d]*)$/);
+    if (!m) return;
+    var prefix = m[1], sign = m[2], digits = m[3], suffix = m[4];
+    if (/[^\dA-Za-z%×.\-−$₩ ]/.test(suffix)) return;
+    var comma = digits.indexOf(',') !== -1;
+    var decimals = (digits.split('.')[1] || '').length;
+    var end = parseFloat(digits.replace(/,/g, ''));
+    if (isNaN(end)) return;
+    var dur = 1200, t0 = null;
+    function step(ts){
+      if (!t0) t0 = ts;
+      var p = Math.min((ts - t0) / dur, 1);
+      var v = end * easeOutCubic(p);
+      el.textContent = prefix + sign + formatNum(v, decimals, comma) + suffix;
+      if (p < 1) requestAnimationFrame(step); else el.textContent = raw;
+    }
+    requestAnimationFrame(step);
+  }
+  var cards = document.querySelectorAll('.bento .card');
+  if (!cards.length) return;
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (!entry.isIntersecting) return;
+      var card = entry.target;
+      card.classList.add('rv-in');
+      var v = card.querySelector('.v');
+      if (v) animateCount(v);
+      io.unobserve(card);
+    });
+  }, { threshold: 0.3 });
+  cards.forEach(function(c){ io.observe(c); });
+})();
+<\/script></script>
 <script type="text/plain" id="src-c"><!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>try{if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('js-anim');}}catch(e){}<\/script>
 <title>Tenarai Korea · 10-Year Revenue Plan v1</title>
 <style>
   /* ===== Apple Precision — design tokens (DESIGN-apple.md) ===== */
@@ -880,6 +985,12 @@
   .stat .k{ font-size:14px; color:var(--muted); margin-top:8px; letter-spacing:-0.224px; }
   .stat .s{ font-size:12px; color:var(--muted-2); margin-top:4px; }
   .tile.dark .stats, .tile.dark .stat{ border-color:var(--tile-hairline); }
+
+  html.js-anim .stat .v { opacity: 0; transform: translateY(10px); }
+  html.js-anim .stat.rv-in .v {
+    opacity: 1; transform: translateY(0);
+    transition: opacity .6s cubic-bezier(.22,.61,.36,1), transform .6s cubic-bezier(.22,.61,.36,1);
+  }
   @media (max-width:760px){
     .stats.c4{ grid-template-columns:repeat(2,1fr); }
     .stats.c3{ grid-template-columns:1fr; }
@@ -1851,6 +1962,133 @@
   </div>
 </div>
 
+<script>
+(function(){
+  if (!document.documentElement.classList.contains('js-anim')) return;
+
+  function fadeIn(el, delay){
+    var target = getComputedStyle(el).opacity;
+    el.style.transition = 'none';
+    el.style.opacity = '0';
+    void el.getBoundingClientRect();
+    el.style.transition = 'opacity .8s ease ' + delay + 'ms';
+    el.style.opacity = target;
+  }
+  function drawLine(path, delay){
+    var len;
+    try { len = path.getTotalLength(); } catch(e){ return; }
+    if (!len) return;
+    path.style.transition = 'none';
+    path.style.strokeDasharray = len;
+    path.style.strokeDashoffset = len;
+    void path.getBoundingClientRect();
+    path.style.transition = 'stroke-dashoffset 1.1s cubic-bezier(.22,.61,.36,1) ' + delay + 'ms';
+    path.style.strokeDashoffset = '0';
+  }
+  function growBars(rects, delayBase){
+    if (!rects.length) return;
+    var widths = rects.map(function(r){ return parseFloat(r.getAttribute('width') || 0); });
+    var heights = rects.map(function(r){ return parseFloat(r.getAttribute('height') || 0); });
+    var wRange = Math.max.apply(null, widths) - Math.min.apply(null, widths);
+    var hRange = Math.max.apply(null, heights) - Math.min.apply(null, heights);
+    var horizontal = wRange > hRange;
+    rects.forEach(function(r, i){
+      r.style.transition = 'none';
+      r.style.transformBox = 'fill-box';
+      r.style.transformOrigin = horizontal ? 'left' : 'bottom';
+      r.style.transform = horizontal ? 'scaleX(0)' : 'scaleY(0)';
+      void r.getBoundingClientRect();
+      var delay = delayBase + i * 45;
+      r.style.transition = 'transform .7s cubic-bezier(.22,.61,.36,1) ' + delay + 'ms';
+      r.style.transform = horizontal ? 'scaleX(1)' : 'scaleY(1)';
+    });
+  }
+  function popDot(circle, delay){
+    circle.style.transition = 'none';
+    circle.style.transformBox = 'fill-box';
+    circle.style.transformOrigin = 'center';
+    circle.style.transform = 'scale(0)';
+    void circle.getBoundingClientRect();
+    circle.style.transition = 'transform .45s cubic-bezier(.34,1.56,.64,1) ' + delay + 'ms';
+    circle.style.transform = 'scale(1)';
+  }
+
+  function revealSvg(svg){
+    Array.prototype.forEach.call(svg.querySelectorAll('path'), function(p){
+      var fill = getComputedStyle(p).fill;
+      var hasDash = p.getAttribute('stroke-dasharray');
+      if (fill === 'none') {
+        if (hasDash) { fadeIn(p, 200); } else { drawLine(p, 0); }
+      } else {
+        fadeIn(p, 150);
+      }
+    });
+    var groups = [];
+    var seen = [];
+    Array.prototype.forEach.call(svg.querySelectorAll('rect'), function(r){
+      var parent = r.parentNode;
+      var idx = seen.indexOf(parent);
+      if (idx === -1) { seen.push(parent); groups.push([r]); }
+      else { groups[idx].push(r); }
+    });
+    groups.forEach(function(g){ growBars(g, 0); });
+    Array.prototype.forEach.call(svg.querySelectorAll('circle'), function(c, i){ popDot(c, 650 + i * 60); });
+    Array.prototype.forEach.call(svg.querySelectorAll('.lbl'), function(t, i){ fadeIn(t, 750 + i * 60); });
+  }
+
+  var svgs = document.querySelectorAll('svg');
+  if (svgs.length) {
+    var ioSvg = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (!entry.isIntersecting) return;
+        revealSvg(entry.target);
+        ioSvg.unobserve(entry.target);
+      });
+    }, { threshold: 0.25 });
+    svgs.forEach(function(s){ ioSvg.observe(s); });
+  }
+
+  function easeOutCubic(t){ return 1 - Math.pow(1 - t, 3); }
+  function formatNum(v, decimals, comma){
+    var s = v.toFixed(decimals);
+    if (comma) { var p = s.split('.'); p[0] = p[0].replace(/\B(?=(\d{3})+(?!\d))/g, ','); s = p.join('.'); }
+    return s;
+  }
+  function animateCount(el){
+    var raw = el.textContent;
+    var m = raw.match(/^([^\d\-−]*)([\-−]?)([\d,]+(?:\.\d+)?)([^\d]*)$/);
+    if (!m) return;
+    var prefix = m[1], sign = m[2], digits = m[3], suffix = m[4];
+    var comma = digits.indexOf(',') !== -1;
+    var decimals = (digits.split('.')[1] || '').length;
+    var end = parseFloat(digits.replace(/,/g, ''));
+    if (isNaN(end)) return;
+    var dur = 1200, t0 = null;
+    function step(ts){
+      if (!t0) t0 = ts;
+      var p = Math.min((ts - t0) / dur, 1);
+      var v = end * easeOutCubic(p);
+      el.textContent = prefix + sign + formatNum(v, decimals, comma) + suffix;
+      if (p < 1) requestAnimationFrame(step); else el.textContent = raw;
+    }
+    requestAnimationFrame(step);
+  }
+  var stats = document.querySelectorAll('.stat');
+  if (stats.length) {
+    var ioStat = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (!entry.isIntersecting) return;
+        var stat = entry.target;
+        stat.classList.add('rv-in');
+        var v = stat.querySelector('.v');
+        if (v) animateCount(v);
+        ioStat.unobserve(stat);
+      });
+    }, { threshold: 0.3 });
+    stats.forEach(function(s){ ioStat.observe(s); });
+  }
+})();
+<\/script>
 </body>
 </html>
 </script>
@@ -1859,6 +2097,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>try{if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('js-anim');}}catch(e){}<\/script>
 <title>Tenarai Korea Entity — Investment Return Analysis</title>
 <style>
   :root{
@@ -1953,6 +2192,11 @@
   .metrics .k{ font-size:13px; color:var(--ink-48); margin-top:9px; letter-spacing:0; }
   section.dark .metrics .k{ color:var(--on-tile-mute); }
   .metrics .s{ font-size:12px; color:var(--ink-32); margin-top:3px; letter-spacing:0; }
+  html.js-anim .metrics > div .v { opacity: 0; transform: translateY(10px); }
+  html.js-anim .metrics > div.rv-in .v {
+    opacity: 1; transform: translateY(0);
+    transition: opacity .6s cubic-bezier(.22,.61,.36,1), transform .6s cubic-bezier(.22,.61,.36,1);
+  }
   @media (max-width:760px){ .m4{ grid-template-columns:repeat(2,1fr); } .m3{ grid-template-columns:1fr; }
     .m4 > div:nth-child(2n), .m3 > div{ border-right:0; } }
 
@@ -2004,6 +2248,11 @@
     font-weight:600; margin-bottom:2px; }
   .sm3 .pk{ font-size:20px; font-weight:600; letter-spacing:-0.02em; font-variant-numeric:tabular-nums;
     margin-bottom:6px; }
+  html.js-anim .sm3 figure .pk { opacity: 0; transform: translateY(8px); }
+  html.js-anim .sm3 figure.rv-in .pk {
+    opacity: 1; transform: translateY(0);
+    transition: opacity .55s cubic-bezier(.22,.61,.36,1), transform .55s cubic-bezier(.22,.61,.36,1);
+  }
 
   /* --- staged capital ladder --- */
   .ladder{ border-top:1px solid var(--hair); margin-top:28px; }
@@ -2866,12 +3115,156 @@
       differ from actual results.</p>
   </div>
 </footer>
+<script>
+(function(){
+  if (!document.documentElement.classList.contains('js-anim')) return;
+
+  function fadeIn(el, delay){
+    var target = getComputedStyle(el).opacity;
+    el.style.transition = 'none';
+    el.style.opacity = '0';
+    void el.getBoundingClientRect();
+    el.style.transition = 'opacity .8s ease ' + delay + 'ms';
+    el.style.opacity = target;
+  }
+  function drawLine(path, delay){
+    var len;
+    try { len = path.getTotalLength(); } catch(e){ return; }
+    if (!len) return;
+    path.style.transition = 'none';
+    path.style.strokeDasharray = len;
+    path.style.strokeDashoffset = len;
+    void path.getBoundingClientRect();
+    path.style.transition = 'stroke-dashoffset 1.1s cubic-bezier(.22,.61,.36,1) ' + delay + 'ms';
+    path.style.strokeDashoffset = '0';
+  }
+  function popDot(circle, delay){
+    circle.style.transition = 'none';
+    circle.style.transformBox = 'fill-box';
+    circle.style.transformOrigin = 'center';
+    circle.style.transform = 'scale(0)';
+    void circle.getBoundingClientRect();
+    circle.style.transition = 'transform .45s cubic-bezier(.34,1.56,.64,1) ' + delay + 'ms';
+    circle.style.transform = 'scale(1)';
+  }
+  function growBars(rects, delayBase){
+    if (!rects.length) return;
+    var widths = rects.map(function(r){ return parseFloat(r.getAttribute('width') || 0); });
+    var heights = rects.map(function(r){ return parseFloat(r.getAttribute('height') || 0); });
+    var wRange = Math.max.apply(null, widths) - Math.min.apply(null, widths);
+    var hRange = Math.max.apply(null, heights) - Math.min.apply(null, heights);
+    var horizontal = wRange > hRange;
+    rects.forEach(function(r, i){
+      r.style.transition = 'none';
+      r.style.transformBox = 'fill-box';
+      r.style.transformOrigin = horizontal ? 'left' : 'bottom';
+      r.style.transform = horizontal ? 'scaleX(0)' : 'scaleY(0)';
+      void r.getBoundingClientRect();
+      var delay = delayBase + i * 45;
+      r.style.transition = 'transform .7s cubic-bezier(.22,.61,.36,1) ' + delay + 'ms';
+      r.style.transform = horizontal ? 'scaleX(1)' : 'scaleY(1)';
+    });
+  }
+
+  function revealSvg(svg){
+    Array.prototype.forEach.call(svg.querySelectorAll('path'), function(p){
+      var fill = getComputedStyle(p).fill;
+      var hasDash = p.getAttribute('stroke-dasharray');
+      if (fill === 'none') {
+        if (hasDash) { fadeIn(p, 200); } else { drawLine(p, 0); }
+      } else {
+        fadeIn(p, 150);
+      }
+    });
+    var groups = [];
+    var seen = [];
+    Array.prototype.forEach.call(svg.querySelectorAll('rect'), function(r){
+      var parent = r.parentNode;
+      var idx = seen.indexOf(parent);
+      if (idx === -1) { seen.push(parent); groups.push([r]); }
+      else { groups[idx].push(r); }
+    });
+    groups.forEach(function(g){ growBars(g, 0); });
+    Array.prototype.forEach.call(svg.querySelectorAll('circle'), function(c, i){ popDot(c, 650 + i * 70); });
+    Array.prototype.forEach.call(svg.querySelectorAll('.mk'), function(t, i){ fadeIn(t, 750 + i * 70); });
+  }
+
+  var svgs = document.querySelectorAll('svg.chart');
+  if (svgs.length) {
+    var ioSvg = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (!entry.isIntersecting) return;
+        revealSvg(entry.target);
+        ioSvg.unobserve(entry.target);
+      });
+    }, { threshold: 0.25 });
+    svgs.forEach(function(s){ ioSvg.observe(s); });
+  }
+
+  function easeOutCubic(t){ return 1 - Math.pow(1 - t, 3); }
+  function formatNum(v, decimals, comma){
+    var s = v.toFixed(decimals);
+    if (comma) { var p = s.split('.'); p[0] = p[0].replace(/\B(?=(\d{3})+(?!\d))/g, ','); s = p.join('.'); }
+    return s;
+  }
+  function animateCount(el){
+    var raw = el.textContent;
+    var m = raw.match(/^([^\d\-−]*)([\-−]?)([\d,]+(?:\.\d+)?)([^\d]*)$/);
+    if (!m) return;
+    var prefix = m[1], sign = m[2], digits = m[3], suffix = m[4];
+    var comma = digits.indexOf(',') !== -1;
+    var decimals = (digits.split('.')[1] || '').length;
+    var end = parseFloat(digits.replace(/,/g, ''));
+    if (isNaN(end)) return;
+    var dur = 1200, t0 = null;
+    function step(ts){
+      if (!t0) t0 = ts;
+      var p = Math.min((ts - t0) / dur, 1);
+      var v = end * easeOutCubic(p);
+      el.textContent = prefix + sign + formatNum(v, decimals, comma) + suffix;
+      if (p < 1) requestAnimationFrame(step); else el.textContent = raw;
+    }
+    requestAnimationFrame(step);
+  }
+
+  var metricRows = document.querySelectorAll('.metrics > div');
+  if (metricRows.length) {
+    var ioM = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (!entry.isIntersecting) return;
+        var row = entry.target;
+        row.classList.add('rv-in');
+        var v = row.querySelector('.v');
+        if (v) animateCount(v);
+        ioM.unobserve(row);
+      });
+    }, { threshold: 0.3 });
+    metricRows.forEach(function(r){ ioM.observe(r); });
+  }
+
+  var pkFigs = document.querySelectorAll('.sm3 figure');
+  if (pkFigs.length) {
+    var ioP = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (!entry.isIntersecting) return;
+        var fig = entry.target;
+        fig.classList.add('rv-in');
+        var pk = fig.querySelector('.pk');
+        if (pk) animateCount(pk);
+        ioP.unobserve(fig);
+      });
+    }, { threshold: 0.3 });
+    pkFigs.forEach(function(f){ ioP.observe(f); });
+  }
+})();
+<\/script>
 </body>
 </html>
 </script>
 <script>
   function loadFrame(scriptId, frameId) {
     var htmlSrc = document.getElementById(scriptId).textContent;
+    htmlSrc = htmlSrc.split('<\\/script').join('</script');
     var frame = document.getElementById(frameId);
     var doc = frame.contentDocument || frame.contentWindow.document;
     doc.open(); doc.write(htmlSrc); doc.close();
