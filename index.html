@@ -18,7 +18,7 @@
     --ci-border: #e4e4e4;
     --ci-ink: #0c0c0c;
     --ci-muted: #8a8a8a;
-    --dot-1: #7db8ff; --dot-2: #d7a75c; --dot-3: #7be0b0; --dot-4: #e79a9a;
+    --dot-1: #7db8ff; --dot-2: #d7a75c; --dot-3: #7be0b0; --dot-4: #e79a9a; --dot-5: #c9a8e0;
   }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
   * { box-sizing: border-box; }
@@ -123,6 +123,10 @@
         <span class="dot" style="background:var(--dot-4)"></span>
         <span class="txt2"><span class="eyebrow">Part IV &middot; Returns</span><span class="title">Investment Return Analysis</span></span>
       </button>
+      <button class="tab" role="tab" aria-selected="false" data-target="panel-e">
+        <span class="dot" style="background:var(--dot-5)"></span>
+        <span class="txt2"><span class="eyebrow">Part V &middot; Go-to-Market</span><span class="title">Market-Entry Marketing Plan</span></span>
+      </button>
     </div>
   </div>
 
@@ -142,6 +146,7 @@
     <div class="panel" id="panel-b"><iframe id="frame-b" title="Entity Setup and Investment Plan"></iframe></div>
     <div class="panel" id="panel-c"><iframe id="frame-c" title="10-Year Revenue Plan"></iframe></div>
     <div class="panel" id="panel-d"><iframe id="frame-d" title="Investment Return Analysis"></iframe></div>
+    <div class="panel" id="panel-e"><iframe id="frame-e" title="Market-Entry Marketing Plan"></iframe></div>
   </div>
 </div>
 
@@ -3319,6 +3324,1367 @@
 </body>
 </html>
 </script>
+<script type="text/plain" id="src-e"><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tenarai Korea · Market-Entry Marketing Plan v1</title>
+<style>
+/* ============================================================
+   Warm Bento — Tenarai Korea Marketing Plan
+   Tokens from ~/디자인 라이브러리/DESIGN-warm-bento.md
+   Signature rule: bento card sizes are deliberately unequal.
+   Chart palette validated with dataviz/validate_palette.js —
+   light #c8542e/#00789a/#a08a22, dark #d9714a/#2f9dbe/#a08c34 (all PASS)
+   ============================================================ */
+:root{
+  --bg:#faf6ee; --card:#ffffff; --ink:#1c1a16; --ink-soft:#6b6558; --ink-faint:#918a7b;
+  --hairline:#ece5d6; --rust:#c8542e; --rust-soft:#f3e2da; --olive:#7c8a5e; --olive-soft:#e8ecdf;
+  --s1:#c8542e; --s2:#00789a; --s3:#a08a22;
+  --shadow:0 1px 2px rgba(28,26,22,.04), 0 8px 24px rgba(28,26,22,.06);
+  --r-card:20px; --r-pill:999px;
+  --serif:Georgia,"Noto Serif KR","Times New Roman",serif;
+  --sans:system-ui,-apple-system,"Segoe UI",Pretendard,"Apple SD Gothic Neo",sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#14120e; --card:#1e1b15; --ink:#f3eee2; --ink-soft:#a49b88; --ink-faint:#8b8271;
+    --hairline:#2e2921; --rust:#e0784f; --rust-soft:#33211a; --olive:#9aab77; --olive-soft:#22261a;
+    --s1:#d9714a; --s2:#2f9dbe; --s3:#a08c34;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#14120e; --card:#1e1b15; --ink:#f3eee2; --ink-soft:#a49b88; --ink-faint:#8b8271;
+  --hairline:#2e2921; --rust:#e0784f; --rust-soft:#33211a; --olive:#9aab77; --olive-soft:#22261a;
+  --s1:#d9714a; --s2:#2f9dbe; --s3:#a08c34;
+  --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+}
+:root[data-theme="light"]{
+  --bg:#faf6ee; --card:#ffffff; --ink:#1c1a16; --ink-soft:#6b6558; --ink-faint:#918a7b;
+  --hairline:#ece5d6; --rust:#c8542e; --rust-soft:#f3e2da; --olive:#7c8a5e; --olive-soft:#e8ecdf;
+  --s1:#c8542e; --s2:#00789a; --s3:#a08a22;
+  --shadow:0 1px 2px rgba(28,26,22,.04), 0 8px 24px rgba(28,26,22,.06);
+}
+*,*::before,*::after{box-sizing:border-box;}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important;}}
+html{scroll-behavior:smooth;}
+body{
+  margin:0; background:var(--bg); color:var(--ink-soft);
+  font:400 16.5px/1.68 var(--sans);
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1000px;margin:0 auto;padding:0 28px;}
+h1,h2,h3,h4,.serif{font-family:var(--serif);font-weight:500;letter-spacing:-.01em;color:var(--ink);}
+p{margin:0 0 16px;}
+a{color:var(--rust);}
+strong{color:var(--ink);font-weight:600;}
+em.q{font-style:normal;color:var(--rust);}
+
+/* ---------- theme toggle ---------- */
+.toggle{
+  position:fixed;top:16px;right:16px;z-index:60;
+  background:var(--card);border:1px solid var(--hairline);color:var(--ink-soft);
+  border-radius:var(--r-pill);padding:8px 15px;font:500 13px var(--sans);cursor:pointer;
+  box-shadow:var(--shadow);
+}
+.toggle:focus-visible{outline:2px solid var(--rust);outline-offset:2px;}
+
+/* ---------- cover ---------- */
+.cover{padding:88px 0 40px;}
+.eyebrow{
+  display:inline-block;font:600 11.5px/1 var(--sans);letter-spacing:.11em;text-transform:uppercase;
+  color:var(--rust);background:var(--rust-soft);border-radius:var(--r-pill);padding:8px 15px;margin-bottom:26px;
+}
+h1{font-size:clamp(38px,6.2vw,62px);line-height:1.08;margin:0 0 22px;text-wrap:balance;max-width:16ch;}
+.deck{font-size:20px;line-height:1.6;max-width:56ch;color:var(--ink-soft);margin:0 0 30px;}
+.cover-meta{
+  display:flex;flex-wrap:wrap;gap:8px 10px;font-size:13.5px;color:var(--ink-faint);
+  padding-top:24px;border-top:1px solid var(--hairline);
+}
+.cover-meta span{background:var(--card);border:1px solid var(--hairline);border-radius:var(--r-pill);padding:6px 14px;}
+
+/* ---------- generic bento ---------- */
+.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;margin:32px 0;}
+.card{
+  background:var(--card);border:1px solid var(--hairline);border-radius:var(--r-card);
+  padding:26px 28px;box-shadow:var(--shadow);
+}
+.card h3{font-size:20px;margin:0 0 10px;}
+.card h4{font-size:15.5px;font-family:var(--sans);font-weight:650;margin:0 0 8px;letter-spacing:0;}
+.card p{font-size:14.5px;line-height:1.62;margin:0 0 12px;}
+.card p:last-child{margin-bottom:0;}
+.sp2{grid-column:span 2;} .sp3{grid-column:span 3;} .sp4{grid-column:span 4;} .sp6{grid-column:span 6;}
+.row2{grid-row:span 2;}
+.card.rust{background:var(--rust);border-color:var(--rust);color:#fdf0ea;}
+.card.rust h3,.card.rust h4,.card.rust .big{color:#fff;}
+.card.rust p,.card.rust .lbl{color:rgba(255,255,255,.86);}
+.card.olive{background:var(--olive);border-color:var(--olive);color:#f4f7ee;}
+.card.olive h3,.card.olive h4,.card.olive .big{color:#fff;}
+.card.olive p,.card.olive .lbl{color:rgba(255,255,255,.88);}
+.card.ink{background:var(--ink);border-color:var(--ink);color:var(--bg);}
+.card.ink h3,.card.ink h4,.card.ink .big{color:var(--bg);}
+.card.ink p{color:rgba(250,246,238,.78);}
+/* Dark theme: solid accent fills lose contrast against light text, so the
+   accent cards become tinted panels with an accent rule and accent headings. */
+:root[data-theme="dark"] .card.ink,
+:root[data-theme="dark"] .card.ink h3,:root[data-theme="dark"] .card.ink h4,:root[data-theme="dark"] .card.ink .big{color:#14120e;}
+:root[data-theme="dark"] .card.rust{background:var(--rust-soft);border-color:var(--rust);color:var(--ink-soft);}
+:root[data-theme="dark"] .card.rust h3,:root[data-theme="dark"] .card.rust h4,:root[data-theme="dark"] .card.rust .big{color:var(--rust);}
+:root[data-theme="dark"] .card.rust p{color:var(--ink-soft);}
+:root[data-theme="dark"] .card.rust .lbl{color:var(--ink-faint);}
+:root[data-theme="dark"] .card.olive{background:var(--olive-soft);border-color:var(--olive);color:var(--ink-soft);}
+:root[data-theme="dark"] .card.olive h3,:root[data-theme="dark"] .card.olive h4,:root[data-theme="dark"] .card.olive .big{color:var(--olive);}
+:root[data-theme="dark"] .card.olive p{color:var(--ink-soft);}
+:root[data-theme="dark"] .card.olive .lbl{color:var(--ink-faint);}
+:root[data-theme="dark"] tr.total td{background:var(--rust-soft);}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .card.ink,
+  :root:not([data-theme="light"]) .card.ink h3,
+  :root:not([data-theme="light"]) .card.ink h4,
+  :root:not([data-theme="light"]) .card.ink .big{color:#14120e;}
+  :root:not([data-theme="light"]) .card.ink p{color:rgba(20,18,14,.75);}
+  :root:not([data-theme="light"]) .card.rust{background:var(--rust-soft);border-color:var(--rust);color:var(--ink-soft);}
+  :root:not([data-theme="light"]) .card.rust h3,
+  :root:not([data-theme="light"]) .card.rust h4,
+  :root:not([data-theme="light"]) .card.rust .big{color:var(--rust);}
+  :root:not([data-theme="light"]) .card.rust p{color:var(--ink-soft);}
+  :root:not([data-theme="light"]) .card.rust .lbl{color:var(--ink-faint);}
+  :root:not([data-theme="light"]) .card.olive{background:var(--olive-soft);border-color:var(--olive);color:var(--ink-soft);}
+  :root:not([data-theme="light"]) .card.olive h3,
+  :root:not([data-theme="light"]) .card.olive h4,
+  :root:not([data-theme="light"]) .card.olive .big{color:var(--olive);}
+  :root:not([data-theme="light"]) .card.olive p{color:var(--ink-soft);}
+  :root:not([data-theme="light"]) .card.olive .lbl{color:var(--ink-faint);}
+}
+.big{font-family:var(--serif);font-size:clamp(34px,4.4vw,46px);line-height:1;color:var(--ink);display:block;letter-spacing:-.02em;font-variant-numeric:tabular-nums;}
+.big.sm{font-size:clamp(26px,3.2vw,32px);}
+.lbl{display:block;font-size:13px;line-height:1.5;color:var(--ink-faint);margin-top:10px;}
+
+/* ---------- sections ---------- */
+section{padding:52px 0;border-top:1px solid var(--hairline);}
+.sec-no{
+  font:600 11.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--rust);
+  display:block;margin-bottom:14px;
+}
+h2{font-size:clamp(28px,3.8vw,40px);line-height:1.14;margin:0 0 16px;text-wrap:balance;max-width:24ch;}
+.lede{font-size:18.5px;line-height:1.62;color:var(--ink-soft);max-width:60ch;margin:0 0 6px;}
+h3.sub{font-size:23px;margin:44px 0 12px;}
+h4.sub{font-size:17px;font-family:var(--sans);font-weight:650;letter-spacing:0;margin:30px 0 10px;color:var(--ink);}
+.body{max-width:66ch;}
+.body p{font-size:16.5px;}
+ul.clean{list-style:none;padding:0;margin:0 0 18px;max-width:66ch;}
+ul.clean li{position:relative;padding-left:22px;margin-bottom:11px;font-size:16px;line-height:1.62;}
+ul.clean li::before{content:"";position:absolute;left:2px;top:.62em;width:7px;height:7px;border-radius:2px;background:var(--rust);}
+ul.clean.olive li::before{background:var(--olive);}
+
+/* ---------- pull quote / callout ---------- */
+.callout{
+  background:var(--ink);color:var(--bg);border-radius:24px;padding:40px 44px;margin:36px 0;
+}
+.callout p{font-family:var(--serif);font-size:24px;line-height:1.5;margin:0;color:var(--bg);max-width:36ch;}
+.callout .who{font-family:var(--sans);font-size:13.5px;opacity:.62;margin-top:16px;display:block;}
+:root[data-theme="dark"] .callout{background:var(--card);border:1px solid var(--hairline);}
+:root[data-theme="dark"] .callout p{color:var(--ink);}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .callout{background:var(--card);border:1px solid var(--hairline);}
+  :root:not([data-theme="light"]) .callout p{color:var(--ink);}
+}
+
+/* ---------- tables ---------- */
+.tw{overflow-x:auto;margin:24px 0 8px;border:1px solid var(--hairline);border-radius:var(--r-card);background:var(--card);box-shadow:var(--shadow);}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:14.5px;}
+caption{caption-side:top;text-align:left;padding:20px 24px 0;font-size:14px;color:var(--ink-faint);}
+th,td{padding:13px 18px;text-align:left;vertical-align:top;border-bottom:1px solid var(--hairline);line-height:1.55;}
+thead th{
+  font:600 11.5px/1.4 var(--sans);letter-spacing:.07em;text-transform:uppercase;color:var(--ink-faint);
+  background:var(--bg);
+}
+tbody tr:last-child td{border-bottom:0;}
+td strong{color:var(--ink);}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;}
+tr.total td{background:var(--rust-soft);font-weight:600;color:var(--ink);border-bottom:0;}
+.tnote{font-size:13px;color:var(--ink-faint);margin:10px 2px 0;line-height:1.6;max-width:74ch;}
+
+/* ---------- pills / tags ---------- */
+.pill{
+  display:inline-block;font:600 11.5px/1 var(--sans);letter-spacing:.05em;
+  border-radius:var(--r-pill);padding:6px 12px;white-space:nowrap;
+}
+.p-conf{background:var(--olive-soft);color:var(--olive);}
+.p-est{background:var(--rust-soft);color:var(--rust);}
+.p-ver{background:var(--bg);color:var(--ink-faint);border:1px solid var(--hairline);}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 0;}
+.tags .pill{font-weight:500;background:var(--bg);border:1px solid var(--hairline);color:var(--ink-soft);}
+
+/* ---------- chart: horizontal bars ---------- */
+.chart{background:var(--card);border:1px solid var(--hairline);border-radius:var(--r-card);padding:26px 28px;box-shadow:var(--shadow);margin:26px 0;}
+.chart .ct{font-family:var(--serif);font-size:19px;color:var(--ink);margin:0 0 4px;}
+.chart .cs{font-size:13.5px;color:var(--ink-faint);margin:0 0 22px;}
+.bars{display:flex;flex-direction:column;gap:14px;}
+.bar-row{display:grid;grid-template-columns:minmax(120px,1.1fr) 3fr minmax(72px,auto);gap:14px;align-items:center;font-size:14px;}
+.bar-row .bn{color:var(--ink);line-height:1.35;}
+.bar-track{display:block;background:var(--bg);border:1px solid var(--hairline);border-radius:4px;height:22px;position:relative;overflow:hidden;}
+.bar-fill{display:block;height:100%;min-width:2px;border-radius:0 4px 4px 0;background:var(--s1);}
+
+/* ---------- motion ----------
+   Bars reveal with clip-path (GPU-composited, no reflow, keeps the 4px end
+   radius intact — animating width would thrash layout). The hidden state is
+   applied ONLY when the .js-anim class is on the root element, which the
+   script sets after confirming the reader has not asked for reduced motion.
+   If the script never runs, or motion is reduced, everything renders in its
+   final state. */
+.js-anim .bar-fill{clip-path:inset(0 100% 0 0);}
+.js-anim .bar-fill.in{
+  clip-path:inset(0 0 0 0);
+  transition:clip-path 520ms cubic-bezier(.22,1,.36,1);
+  transition-delay:var(--d,0ms);
+}
+@media (prefers-reduced-motion:reduce){
+  .js-anim .bar-fill,.js-anim .bar-fill.in{clip-path:none;transition:none;}
+}
+.bar-fill.s2{background:var(--s2);} .bar-fill.s3{background:var(--s3);}
+.bar-row .bv{text-align:right;font-variant-numeric:tabular-nums;color:var(--ink);font-weight:600;}
+.legend{display:flex;flex-wrap:wrap;gap:16px;margin-top:20px;padding-top:16px;border-top:1px solid var(--hairline);font-size:13px;color:var(--ink-soft);}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:7px;vertical-align:-1px;}
+
+/* ---------- timeline ---------- */
+.tl{display:grid;gap:14px;margin:26px 0;}
+.tl-row{
+  display:grid;grid-template-columns:minmax(150px,200px) 1fr;gap:20px;
+  background:var(--card);border:1px solid var(--hairline);border-radius:var(--r-card);padding:22px 26px;box-shadow:var(--shadow);
+}
+.tl-row .when{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--rust);padding-top:3px;}
+.tl-row .when b{display:block;font-family:var(--serif);font-size:22px;letter-spacing:-.01em;color:var(--ink);text-transform:none;margin-top:6px;font-weight:500;}
+.tl-row h4{font-family:var(--serif);font-weight:500;font-size:19px;margin:0 0 8px;letter-spacing:-.01em;}
+.tl-row p{font-size:14.5px;margin:0 0 10px;}
+.tl-row ul.clean li{font-size:14.5px;margin-bottom:7px;}
+
+/* ---------- creative concept cards ---------- */
+.ad{
+  background:var(--card);border:1px solid var(--hairline);border-radius:var(--r-card);
+  padding:0;overflow:hidden;box-shadow:var(--shadow);
+}
+.ad-vis{
+  background:var(--ink);color:var(--bg);padding:34px 30px;min-height:190px;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.ad-vis .kr{font-family:var(--sans);font-size:12px;letter-spacing:.1em;text-transform:uppercase;opacity:.55;margin-bottom:14px;}
+.ad-vis .hl{font-family:var(--serif);font-size:25px;line-height:1.3;color:var(--bg);margin:0;text-wrap:balance;}
+.ad-vis .sl{font-size:14px;opacity:.72;margin:14px 0 0;}
+.ad-body{padding:22px 26px;}
+.ad-body p{font-size:14.5px;margin:0 0 10px;}
+.ad-body .why{font-size:13.5px;color:var(--ink-faint);border-top:1px solid var(--hairline);padding-top:12px;margin-top:14px;}
+
+/* ---------- source list ---------- */
+ol.src{font-size:14px;line-height:1.7;color:var(--ink-soft);padding-left:22px;max-width:80ch;}
+ol.src li{margin-bottom:10px;}
+ol.src a{word-break:break-word;}
+
+footer{padding:56px 0 90px;border-top:1px solid var(--hairline);font-size:13.5px;color:var(--ink-faint);}
+
+/* ---------- responsive ---------- */
+@media (max-width:860px){
+  .bento{grid-template-columns:repeat(2,1fr);}
+  .sp2,.sp3,.sp4,.sp6{grid-column:span 2;}
+  .row2{grid-row:auto;}
+  .tl-row{grid-template-columns:1fr;gap:12px;}
+  .bar-row{grid-template-columns:1fr;gap:6px;}
+  .bar-row .bv{text-align:left;}
+  .callout{padding:30px 26px;}
+  .callout p{font-size:20px;}
+}
+@media (max-width:520px){
+  .wrap{padding:0 18px;}
+  .cover{padding:70px 0 30px;}
+  .card{padding:22px 20px;}
+}
+
+/* ---------- print (A4) ---------- */
+@media print{
+  @page{size:A4;margin:16mm 14mm;}
+  :root{--bg:#fff;--card:#fff;--ink:#000;--ink-soft:#333;--ink-faint:#666;--hairline:#ccc;--shadow:none;}
+  body{font-size:10.5pt;background:#fff;}
+  .toggle{display:none;}
+  .wrap{max-width:none;padding:0;}
+  section{page-break-inside:auto;padding:20pt 0;}
+  h1{font-size:26pt;} h2{font-size:17pt;} .big{font-size:20pt;}
+  .card,.chart,.tw,.tl-row,.callout,.ad{break-inside:avoid;box-shadow:none;border:1px solid #ccc;}
+  .callout{background:#f4f4f4;color:#000;} .callout p{color:#000;}
+  .card.rust,.card.olive,.card.ink{background:#f4f4f4!important;color:#000!important;border:1px solid #999!important;}
+  .card.rust *,.card.olive *,.card.ink *{color:#000!important;}
+  .ad-vis{background:#f4f4f4;color:#000;} .ad-vis .hl{color:#000;}
+  .js-anim .bar-fill,.js-anim .bar-fill.in{clip-path:none!important;transition:none!important;}
+  table{min-width:0;font-size:9pt;}
+  a{color:#000;text-decoration:underline;}
+}
+</style>
+</head>
+<body>
+
+<button class="toggle" id="themeToggle" type="button" aria-label="Switch colour theme">Theme</button>
+
+<div class="wrap">
+
+<!-- ================= COVER ================= -->
+<header class="cover">
+  <span class="eyebrow">Corporate Marketing · Confidential</span>
+  <h1>Korea Market-Entry Marketing Plan</h1>
+  <p class="deck">A 36-month programme to convert a brand nobody in Korea has heard of into a name that appears on the shortlist before the sales team asks to be on it.</p>
+  <div class="cover-meta">
+    <span>Prepared for Tenarai HQ · Los Gatos, CA</span>
+    <span>August 2026 · v1</span>
+    <span>Part V of the Korea Entity Executive Report Series</span>
+    <span>Planning rate USD 1 = KRW 1,430</span>
+  </div>
+</header>
+
+<!-- ================= 01 EXEC SUMMARY ================= -->
+<section id="s1">
+  <span class="sec-no">01 — Executive Summary</span>
+  <h2>Three bets, one window, and a budget that does not yet exist</h2>
+  <p class="lede">The Korea entity's revenue plan assumes marketing will produce 60 qualified first meetings in Year 1 and 400 by Year 10. It allocates USD 35,000 a year to do it. This plan accepts that operating budget and argues for one additional, ring-fenced line item — because the single hardest thing to buy in Korea is not leads, it is the right to be taken seriously.</p>
+
+  <div class="bento">
+    <div class="card sp4 row2">
+      <h3>The situation in one paragraph</h3>
+      <p>Wipro has been selling in Seoul since 2002 and now runs 250+ staff and a Seoul Innovation Center. FPT has been there since 2016 with 300+ local people. Infosys since 2010. Tenarai has no entity, no office, no Korean client of record, and a brand name that is four months old and unfamiliar to Korean buyers. Meanwhile 84% of B2B buyers say the <em class="q">first</em> vendor they contacted won the business — which means the entire commercial outcome is decided in a phase where Tenarai is currently invisible.</p>
+      <p>Every marketing decision below follows from that asymmetry. We are not running a demand-generation programme against competitors we can outspend. We are running a <strong>legitimacy programme</strong> against incumbents we cannot outspend, in a market where legitimacy is the gate.</p>
+    </div>
+    <div class="card rust sp2">
+      <span class="big">0%</span>
+      <span class="lbl">Estimated unaided awareness of Tenarai among Korean enterprise IT buyers today. No entity, no office, no local reference.</span>
+    </div>
+    <div class="card sp2">
+      <span class="big">84%</span>
+      <span class="lbl">of B2B buyers said the first vendor they contacted won the deal <span class="pill p-conf">Confirmed</span></span>
+    </div>
+    <div class="card olive sp3">
+      <span class="big sm">USD 35K/yr</span>
+      <span class="lbl">Approved operating marketing budget, Years 1–2, per the Korea Revenue Plan. This plan works inside it.</span>
+    </div>
+    <div class="card sp3">
+      <span class="big sm">KRW 150M</span>
+      <span class="lbl">Additional one-time brand-investment ask (~USD 105K), ring-fenced, spent in Month 20 — not from the operating line. See §10.</span>
+    </div>
+  </div>
+
+  <h3 class="sub">The three bets</h3>
+
+  <div class="bento">
+    <div class="card sp2 row2">
+      <h4>Bet 1 — Borrow credibility before building it</h4>
+      <p>Tenarai's global partner ecosystem (Databricks, Microsoft, AWS, Adobe, Google Cloud, Salesforce) and its analyst posture are the only assets that transfer to Korea on day one. Every one of those partners already has a Korean subsidiary with enterprise relationships Tenarai does not have.</p>
+      <p><strong>Move:</strong> partner co-marketing is the Month 1 priority, not the Month 12 one. The Revenue Plan already assigns 25% of Year-10 revenue to partner co-sell — this plan front-loads the marketing that makes it real.</p>
+    </div>
+    <div class="card sp4">
+      <h4>Bet 2 — Buy fame in a 3km radius, not a country</h4>
+      <p>Tenarai will never need mass awareness. At Year 10 the plan calls for 45 active accounts. What it needs is for roughly two thousand specific people — enterprise IT executives who walk between Samseong Station, COEX, and the Teheran-ro towers — to have seen the name three times before an AE emails them. That is an out-of-home problem with a very small target, not a media-weight problem. <strong>An 8-week station takeover aimed at that corridor is the cheapest institutional-legitimacy purchase available to a foreign firm with no local track record.</strong></p>
+    </div>
+    <div class="card sp4">
+      <h4>Bet 3 — Make the AI company market itself with AI</h4>
+      <p>Tenarai sells agent orchestration and AI-accelerated delivery. The most persuasive proof available is a marketing operation visibly run on its own technology. Korea is unusually well-suited to this: <strong>public tender notices, DART disclosures and enterprise hiring postings are, functionally, free intent data</strong> — structured, public, and updated daily. Western intent providers have thin Korean coverage. Building the Korea intent engine on Tenarai-IGNIS turns a martech cost line into a referenceable case study. See §9.</p>
+    </div>
+  </div>
+
+  <h3 class="sub">What this plan commits to</h3>
+  <div class="tw">
+    <table>
+      <caption>Marketing outcomes by stage, derived backwards from the Revenue Plan's KPI targets (§11 defines measurement).</caption>
+      <thead>
+        <tr><th>Horizon</th><th>Marketing outcome</th><th class="num">Meetings sourced</th><th>Gate to clear</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Months 1–12</strong><br><span class="pill p-ver">Earn the right</span></td><td>Entity is registered, findable, and citable. Korean-language site live. 5+ conglomerate vendor registrations. 3 partner co-sell motions running.</td><td class="num">60</td><td>2 citable Korean references with named-client consent</td></tr>
+        <tr><td><strong>Months 13–24</strong><br><span class="pill p-ver">Be seen</span></td><td>OOH + viral burst executed (Month 20). IT Builders Live Seoul launched. First analyst briefings held. Branded search on Naver measurable for the first time.</td><td class="num">~90</td><td>Measured lift in AE meeting-acceptance rate</td></tr>
+        <tr><td><strong>Months 25–36</strong><br><span class="pill p-ver">Be shortlisted</span></td><td>Category position defended with 3+ references per vertical. Analyst report inclusion pursued. Employer brand active against the hiring constraint.</td><td class="num">120</td><td>First T2 build project won</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="tnote">Meeting figures for Months 1–12 and 25–36 are the Revenue Plan's Year 1 and Year 3 targets. The Months 13–24 figure is interpolated <span class="pill p-est">Estimated</span> — the Revenue Plan does not publish a Year 2 meeting target.</p>
+</section>
+
+<!-- ================= 02 DIAGNOSIS ================= -->
+<section id="s2">
+  <span class="sec-no">02 — Diagnosis</span>
+  <h2>What we are actually up against</h2>
+  <p class="lede">Three structural facts define the problem. None of them is "our messaging isn't sharp enough."</p>
+
+  <h4 class="sub">Fact 1 — The deal is decided before marketing knows it exists</h4>
+  <div class="body">
+    <p>6sense's buyer research — 900+ B2B buyers surveyed June–July 2023, all of whom had completed purchases above USD 10,000 in the prior 24 months — found that buyers do not contact a vendor until roughly 70% of the way through their buying journey; by that point 78% have already fixed their requirements, and <strong>84% of buyers said the first vendor they contacted ultimately won</strong>. <span class="pill p-conf">Confirmed — 6sense primary source</span></p>
+    <p>6sense's later Buyer Experience reporting describes a shift from that "70/30" pattern to a "60/40" one, with first contact moving earlier to about 61% of journey completion. <span class="pill p-ver">Single source — the 61% figure was not confirmed against the 6sense primary release and should be re-checked before external citation</span> The direction of that shift does not change the argument below; if anything it shortens the window further.</p>
+    <p>Read against Korea, this is unforgiving. A firm that is not in the consideration set during the first 60% of the journey is not competing at a disadvantage — it is competing for the ~16% of deals that are still open. Marketing's job here is not lead capture. It is <em class="q">being one of the two or three names that come to mind unprompted</em>, months before an RFP exists.</p>
+  </div>
+
+  <h4 class="sub">Fact 2 — The incumbents' advantage is time, and time cannot be bought</h4>
+  <div class="tw">
+    <table>
+      <caption>Competitive position in Korea. Sourced from the Korea Business Case v2 §3.</caption>
+      <thead><tr><th>Firm</th><th>In Korea since</th><th>Local headcount</th><th>What that buys them</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Wipro Korea</strong></td><td>2002</td><td>250+ (25% locally hired)</td><td>Two decades of vendor-registration history, government relationships (KRCF, NIPA), a Seoul Innovation Center opened March 2026</td></tr>
+        <tr><td><strong>FPT Software Korea</strong></td><td>2016</td><td>300+ local, 2,500+ Vietnam remote</td><td>30+ Korean client engagements; a proven offshore-arbitrage narrative Korean buyers already understand</td></tr>
+        <tr><td><strong>Infosys Korea</strong></td><td>2010</td><td>5 registered <span class="pill p-ver">likely understated</span></td><td>Global brand recognition without a large local footprint</td></tr>
+        <tr><td><strong>Tenarai</strong></td><td>—</td><td>0</td><td>Nothing yet. Also: no legacy positioning to unlearn.</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="tnote">The last column matters more than it looks. Wipro, FPT and Infosys all entered Korea as systems integrators and have layered AI on top. Tenarai enters with no Korean legacy identity to contradict. That is the one place where being late is an asset — but only if the first impression is made deliberately rather than by default.</p>
+
+  <h4 class="sub">Fact 3 — The market is real, growing, and about to get noisier</h4>
+  <div class="bento">
+    <div class="card sp3">
+      <span class="big sm">55.7%</span>
+      <span class="lbl">of 749 surveyed Korean companies already use generative AI — 22.4% company-wide, 33.2% in some departments. Among large enterprises, 35.1% use it company-wide. <span class="pill p-conf">Confirmed</span></span>
+    </div>
+    <div class="card sp3">
+      <span class="big sm">85%</span>
+      <span class="lbl">projected 2026 adoption including firms currently implementing or planning within 1–2 years; 74% report increased AI investment year-over-year. <span class="pill p-conf">Confirmed</span></span>
+    </div>
+    <div class="card olive sp6">
+      <h4>The implication is uncomfortable</h4>
+      <p>Korean enterprises are not waiting to be educated about AI. They are already buying. A "why AI matters" content programme — the default opening move for a services firm entering a market — would land two years late and mark Tenarai as a follower. <strong>The message must skip the category-education phase entirely and go straight to a claim about delivery.</strong></p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <p>We are not selling AI to a market that doesn't understand it. We are selling <em class="q">execution</em> to a market that has already bought the idea and is now discovering how hard the work is.</p>
+    <span class="who">The strategic pivot this plan is built on</span>
+  </div>
+</section>
+
+<!-- ================= 03 STRATEGIC FRAME ================= -->
+<section id="s3">
+  <span class="sec-no">03 — Strategic Frame</span>
+  <h2>What Tenarai claims in Korea, to whom, in what words</h2>
+  <p class="lede">Positioning is not a tagline exercise. It is a decision about which fight to pick. The Revenue Plan already narrowed the offer to two things; the marketing frame must not be broader than the offer.</p>
+
+  <h4 class="sub">The category claim</h4>
+  <div class="bento">
+    <div class="card ink sp6">
+      <h3>"The last mile of enterprise AI."</h3>
+      <p>Korea has five government-funded sovereign foundation-model teams (Naver Cloud, Upstage, SK Telecom, NC AI, LG AI Research) and three domestic SI giants with proprietary platforms (Samsung SDS, LG CNS, SK AX). None of the five model builders is a systems integrator. None of the three SI giants is AI-native. <strong>The gap between "we have a model" and "it is running in production against our core systems" is the entire market Tenarai should claim.</strong></p>
+    </div>
+    <div class="card sp3">
+      <h4>What we do NOT claim</h4>
+      <ul class="clean">
+        <li><strong>Not a platform vendor.</strong> Selling Tenarai-IGNIS as a platform against Samsung SDS, LG CNS and SK AX with zero local track record is not a viable opening move — the Revenue Plan defers it past Year 5, and marketing must not undercut that.</li>
+        <li><strong>Not a model builder.</strong> Positioning near the K-AI programme invites a comparison Tenarai loses.</li>
+        <li><strong>Not "cheaper offshore."</strong> FPT owns that story in Korea and owns it well.</li>
+      </ul>
+    </div>
+    <div class="card sp3">
+      <h4>What we do claim</h4>
+      <ul class="clean olive">
+        <li><strong>Legacy modernisation that finishes.</strong> Tenarai-Archer against bank and insurance core systems — where over KRW 2 trillion of Korean financial-sector IT tenders sit across 2026–2027.</li>
+        <li><strong>Delivery capacity that exists today.</strong> Hybrid Agentic PODs against a talent shortage Korean employers cannot hire their way out of.</li>
+        <li><strong>Data residency that survives the AI Basic Act.</strong> A Korean entity, a domestic representative, and the ability to integrate sovereign models like K-EXAONE for clients who require Korea-based handling.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h4 class="sub">The buying committee — who the marketing actually has to reach</h4>
+  <div class="tw">
+    <table>
+      <caption>Korean enterprise buying committee for a modernisation or managed-capacity engagement. Roles are structural to Korean large-enterprise IT organisations.</caption>
+      <thead><tr><th>Role</th><th>What they are afraid of</th><th>What convinces them</th><th>Where marketing reaches them</th></tr></thead>
+      <tbody>
+        <tr><td><strong>CIO / IT 본부장</strong><br>Economic buyer</td><td>Choosing an unproven foreign vendor and owning the failure personally</td><td>Analyst listings, named references, a physical Korean office, a Korean advisory board member</td><td>Analyst relations, OOH in the executive corridor, peer referral, executive roundtables</td></tr>
+        <tr><td><strong>Head of DX / AI TF장</strong><br>Champion</td><td>Being handed a mandate with no capacity to deliver it</td><td>Working PoCs, a delivery model that doesn't require them to hire</td><td>Webinars, technical events, partner co-sell, LinkedIn</td></tr>
+        <tr><td><strong>구매 / 벤더 심사팀</strong><br>Gatekeeper</td><td>Procedural risk — an unregistered vendor, a compliance gap</td><td>Vendor registration completeness, AI Basic Act domestic representative, financial standing</td><td>Not reachable by marketing. Cleared by operations. <strong>This is why §8 exists.</strong></td></tr>
+        <tr><td><strong>Senior architects / PL</strong><br>Technical influencer</td><td>Being handed a vendor whose engineers they have to teach</td><td>Technical depth in public — talks, open-source, honest engineering writing</td><td>Developer media, communities, IT Builders Live, GitHub</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="tnote">The gatekeeper row is the one most marketing plans quietly skip. In Korean large enterprises the vendor-registration screen kills more foreign vendors than any competitive loss does, and no amount of brand spend clears it. It is listed here so the plan does not take credit for an outcome it cannot influence.</p>
+
+  <h4 class="sub">Message architecture</h4>
+  <div class="bento">
+    <div class="card sp2"><h4>Brand line (corporate image)</h4><p><strong>"AI가 멈춘 곳에서 시작합니다."</strong><br><span style="font-size:13.5px;color:var(--ink-faint);">"We start where the AI demo stops."</span></p><p>Used in OOH, employer brand, and the corporate film. Deliberately not a product claim — its job is recognition and stance, not conversion.</p></div>
+    <div class="card sp2"><h4>Commercial line (demand)</h4><p><strong>"레거시는 옮겨야 끝납니다."</strong><br><span style="font-size:13.5px;color:var(--ink-faint);">"A legacy system isn't done until it's moved."</span></p><p>Used in Archer campaigns, tender-adjacent content, partner co-sell material. Names the job, not the technology.</p></div>
+    <div class="card sp2"><h4>Talent line (capacity)</h4><p><strong>"사람을 더 뽑지 않아도 됩니다."</strong><br><span style="font-size:13.5px;color:var(--ink-faint);">"You don't have to hire more people."</span></p><p>Used for Hybrid Agentic PODs. Directly addresses the shortage Korean IT leaders report and cannot solve locally.</p></div>
+    <div class="card rust sp6">
+      <h4>Copy discipline — three rules, no exceptions</h4>
+      <p><strong>1. Korean-first, not Korean-translated.</strong> Every asset is written in Korean by a Korean copywriter and back-checked against the English, never machine-translated from HQ decks. A translated tagline reads as a translated company.</p>
+      <p><strong>2. No unverifiable performance claims in Korea.</strong> Tenarai's global marketing carries figures like "80% time reduction" and "3–4× throughput" that are self-reported with no third-party validation. Korean enterprise buyers and the trade press treat unsourced vendor numbers harshly. In Korea these appear only with a named client and a stated measurement basis, or not at all.</p>
+      <p><strong>3. Say "아직 없습니다" out loud.</strong> The plan's most distinctive asset is that Tenarai is new in Korea. Pretending otherwise is both detectable and boring. Owning it is the basis of the entire creative platform in §6.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 04 US PLAYBOOK ================= -->
+<section id="s4">
+  <span class="sec-no">04 — The Existing Playbook</span>
+  <h2>What Tenarai already runs, and what survives the trip to Korea</h2>
+  <p class="lede">Tenarai's global marketing since the April 2026 rebrand is not a blank slate. Seven programmes are already funded and running. Porting them is cheaper than inventing Korean equivalents — but three of the seven do not transfer, and saying so is more useful than pretending they do.</p>
+
+  <div class="tw">
+    <table>
+      <caption>Transfer assessment of existing global marketing programmes.</caption>
+      <thead><tr><th style="min-width:180px">Existing programme</th><th>What it does globally</th><th>Korea verdict</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Technology partner ecosystem</strong><br>Databricks, Microsoft, AWS, Adobe, Google Cloud, Salesforce</td>
+          <td>Co-sell, co-marketing, borrowed enterprise credibility</td>
+          <td><span class="pill p-conf">Port first — Month 1</span><br>Highest-leverage transfer in the entire plan. Each partner has a Korean subsidiary with existing enterprise relationships and a partner-marketing budget Tenarai can access without spending its own. The Revenue Plan already books 25% of Year-10 revenue here; nothing else converts a zero-reputation position into meetings this fast.</td>
+        </tr>
+        <tr>
+          <td><strong>Analyst relations</strong><br>Everest Group "Top 50 Engineering Services" listing <span class="pill p-ver">self-announced; not independently confirmed</span></td>
+          <td>Third-party validation for enterprise procurement</td>
+          <td><span class="pill p-conf">Port and prioritise — Month 6</span><br>Korean conglomerate vendor screening treats Gartner / IDC / Everest coverage as a credibility gate rather than a nice-to-have. Briefings with IDC Korea and Gartner Korea should start a full year earlier than the Revenue Plan's "Years 3–5" schedule, because the analyst calendar has a 6–12 month lag before coverage appears.</td>
+        </tr>
+        <tr>
+          <td><strong>IT Builders Live</strong><br>Technical community event (Montevideo, Sep 2026)</td>
+          <td>Developer-facing technical event, no sales pitch</td>
+          <td><span class="pill p-conf">Port as the engine — Month 14</span><br>The single most efficient channel in the Korean B2B benchmark data is webinars / seminars / conferences: used by 44% of Korean B2B firms overall, yet ranked several places higher on effectiveness than on usage — the largest efficiency gap in the dataset. A ported <strong>IT Builders Live Seoul</strong> is simultaneously a lead source, an earned-media asset, an employer-brand asset, and the content engine for a year of clips. See §6.</td>
+        </tr>
+        <tr>
+          <td><strong>Board and leadership signalling</strong><br>Shashank Samant appointment, April 2026</td>
+          <td>Credibility through people rather than claims</td>
+          <td><span class="pill p-conf">Port, adapted — Month 3</span><br>Korea-specific version: recruit one Korean advisory board member with large-enterprise CIO or CTO tenure. In a market where the economic buyer's core fear is personal exposure for choosing an unknown foreign vendor, a familiar Korean name on the masthead does more than any campaign. <strong>Lowest cost, highest leverage single move in this plan.</strong></td>
+        </tr>
+        <tr>
+          <td><strong>Academic partnerships</strong><br>NIT Delhi MoU, BITS Pilani</td>
+          <td>Talent pipeline and employer brand</td>
+          <td><span class="pill p-est">Port, adapted — Month 24</span><br>Korean equivalents (KAIST, POSTECH, SNU AI graduate programmes) serve the employer-brand problem the Revenue Plan flags: a 50-person technical-sales org cannot be hired in Korea without a reason for people to join. But this is a Year-3 move — an academic MoU signed before there is a Korean office to place anyone in reads as a press release, not a programme.</td>
+        </tr>
+        <tr>
+          <td><strong>Startup Acceleration Program</strong></td>
+          <td>Ecosystem positioning, early-stage deal flow</td>
+          <td><span class="pill p-ver">Defer past Month 36</span><br>Korea's startup ecosystem is crowded and heavily government-subsidised (TIPS, Pangyo, K-Startup). A foreign firm with no local brand adds nothing differentiated, and the audience is not the buying committee in §3. Skipped, deliberately.</td>
+        </tr>
+        <tr>
+          <td><strong>The rebrand campaign itself</strong><br>Infogain → Tenarai, April 2026</td>
+          <td>Global category reset; press pickup across Business Wire, Yahoo Finance, APAC and CXO trade media</td>
+          <td><span class="pill p-est">Do not port</span><br>A rebrand narrative only works where the old brand had equity. In Korea, "Infogain" has none — there is no entity, no client, nothing to transition from. Running rebrand messaging in Korea spends the launch moment explaining a company nobody knew. <strong>Korea launches as a first-time introduction, not a relaunch.</strong> This is a genuine advantage: no legacy SI positioning to unlearn.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout">
+    <p>Four programmes port, one adapts late, two are dropped. A plan that claimed all seven transfer would be easier to approve and worse to execute.</p>
+  </div>
+</section>
+
+<!-- ================= 05 CHANNEL REALITY ================= -->
+<section id="s5">
+  <span class="sec-no">05 — Channel Reality</span>
+  <h2>Where Korean B2B buyers actually are</h2>
+  <p class="lede">Korea's B2B channel hierarchy does not match the US one, and importing a US channel mix is the most common failure mode for foreign entrants. Two structural differences matter most: relationships outrank content, and Naver is not Google.</p>
+
+  <div class="chart">
+    <p class="ct">Channel effectiveness vs. usage — Korean B2B firms</p>
+    <p class="cs">Share of firms using each channel, by revenue band. Firms above KRW 10B revenue shown — the band closest to Tenarai's Korean targets' own vendor behaviour.</p>
+    <div class="bars">
+      <div class="bar-row"><span class="bn">Content<br><span style="color:var(--ink-faint);font-size:12.5px">blog · YouTube</span></span><span class="bar-track"><span class="bar-fill" style="width:91.7%"></span></span><span class="bv">91.7%</span></div>
+      <div class="bar-row"><span class="bn">Email · newsletter</span><span class="bar-track"><span class="bar-fill" style="width:83.3%"></span></span><span class="bv">83.3%</span></div>
+      <div class="bar-row"><span class="bn">Partnerships</span><span class="bar-track"><span class="bar-fill s2" style="width:75.0%"></span></span><span class="bv">75.0%</span></div>
+      <div class="bar-row"><span class="bn">Webinars · seminars<br><span style="color:var(--ink-faint);font-size:12.5px">conferences</span></span><span class="bar-track"><span class="bar-fill s2" style="width:75.0%"></span></span><span class="bv">75.0%</span></div>
+      <div class="bar-row"><span class="bn">Existing network</span><span class="bar-track"><span class="bar-fill s3" style="width:66.7%"></span></span><span class="bv">66.7%</span></div>
+      <div class="bar-row"><span class="bn">Performance marketing</span><span class="bar-track"><span class="bar-fill" style="width:66.7%"></span></span><span class="bv">66.7%</span></div>
+    </div>
+    <div class="legend">
+      <span><i style="background:var(--s2)"></i>Channels this plan over-weights vs. Tenarai's global default</span>
+      <span><i style="background:var(--s3)"></i>The channel ranked most effective overall (32.1% of all firms named it #1)</span>
+    </div>
+  </div>
+  <p class="tnote">Source: Korean B2B benchmark survey of 93 domestic B2B firms (Recatch, 2023). Percentages are usage rates within the KRW 10B+ revenue band. "Existing network" was named the single most effective channel by 32.1% of all respondents; webinars/seminars ranked several places higher on effectiveness than on usage — the largest efficiency gap in the dataset. <span class="pill p-conf">Confirmed</span> <span class="pill p-ver">Survey is 2023; a 2026 refresh exists but its detailed tables are gated</span></p>
+
+  <h4 class="sub">Three consequences for the channel mix</h4>
+  <div class="bento">
+    <div class="card sp2 row2">
+      <h4>1. Relationships beat reach — so buy relationships, not reach</h4>
+      <p>"Existing network" being the top-ranked channel in a B2B market is a statement about how Korean enterprise procurement works. Tenarai has no Korean network, which means the only route in is <em class="q">borrowing someone else's</em>: partner subsidiaries (§4), a Korean advisory board member (§4), and the Korean subsidiaries of Tenarai's existing Fortune 500 accounts.</p>
+      <p><strong>Open decision:</strong> whether any current Tenarai Fortune 500 client operates a Korean business unit has still not been checked against the internal account list. It is the fastest, cheapest validation step available and it remains open. See §13.</p>
+    </div>
+    <div class="card sp4">
+      <h4>2. Naver is a different index, not a smaller Google</h4>
+      <p>Korean search behaviour splits across Naver, Google, and — increasingly — LLM assistants. Naver privileges its own properties (blog, cafe, knowledge-in, news) over external domains, so a conventional English-language SEO programme produces almost no Korean visibility. The Korean content programme must be built <strong>inside</strong> Naver's surfaces (a Naver-indexed Korean technical blog, Naver Search Ad on tender-adjacent terms) rather than only on tenarai.com.</p>
+      <p>Simultaneously, buyers increasingly research through ChatGPT and other assistants before contacting anyone — which makes answer-engine visibility a distinct workstream, not an SEO subtask. Both are covered in §9.</p>
+    </div>
+    <div class="card olive sp4">
+      <h4>3. LinkedIn is real in Korea now — but it is a niche, and that is fine</h4>
+      <p>LinkedIn's Korean audience is roughly <strong>6.0 million</strong> users as of July 2026, about 11.3% of the population, with the 25–34 band the largest at ~3 million — half the entire Korean user base. <span class="pill p-ver">Compiled from platform marketing APIs, not audited — treat as directional</span></p>
+      <p>Six million is small next to KakaoTalk, and irrelevant next to it for consumer marketing. For this plan it is close to ideal: the people who maintain a Korean LinkedIn profile skew toward multinational-experienced, English-capable enterprise professionals — which is a near-exact description of the champion role in §3. LinkedIn is the primary owned-audience channel, led personally by the Korea GM in Korean.</p>
+    </div>
+  </div>
+
+  <h4 class="sub">Trade events — the one paid channel that clears its bar immediately</h4>
+  <div class="bento">
+    <div class="card sp3">
+      <span class="big sm">48,678</span>
+      <span class="lbl">Visitors and buyers at AI EXPO KOREA 2026 (COEX, 6–8 May 2026) <span class="pill p-conf">Confirmed</span></span>
+    </div>
+    <div class="card sp3">
+      <span class="big sm">330 / 562</span>
+      <span class="lbl">Exhibiting companies and institutions from 18 countries, across 562 booths <span class="pill p-conf">Confirmed</span></span>
+    </div>
+    <div class="card sp6">
+      <p>The next edition — <strong>AI EXPO KOREA 2027, 14–16 April 2027, COEX Hall A</strong>, the show's tenth anniversary — falls inside this plan's first year and is the single dated commitment in the Month 1–12 calendar. <span class="pill p-conf">Confirmed — organiser site</span></p>
+      <p>The Revenue Plan schedules trade-show <em class="q">attendance</em> in Years 1–2 and exhibiting in Years 3–5. This plan agrees with the sequencing and adds one refinement: <strong>attend in Year 1 to run 30 pre-booked meetings, not to walk the floor.</strong> An exhibition booth without a reference story is an expensive way to be ignored next to 329 other exhibitors; a two-person team with a pre-booked calendar converts the same event into the cheapest meeting-density day of the year.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 06 PROGRAMME A: FAME ================= -->
+<section id="s6">
+  <span class="sec-no">06 — Programme A</span>
+  <h2>Fame: the corridor takeover and the viral engine</h2>
+  <p class="lede">This is the section the plan will be argued about. It proposes spending roughly three times the annual operating marketing budget in a single eight-week burst, on a medium with no click-through, aimed at a few thousand people. The argument for it is not reach. It is that in Korea, for a foreign vendor, physical visibility is a proxy for institutional permanence — and permanence is what the economic buyer in §3 is actually screening for.</p>
+
+  <h4 class="sub">First, why not newspapers</h4>
+  <div class="body">
+    <p>The conventional corporate-image buy for a foreign B2B entrant in Korea is a full-page advertisement in the major dailies or the economic press. This plan rejects it, for three reasons that have nothing to do with cost:</p>
+    <ul class="clean">
+      <li><strong>It produces no artifact.</strong> A newspaper page is read once and recycled. A station wall is photographed, posted, and re-circulated by people who were not paid to circulate it. For a brand with zero awareness, the second-order distribution <em class="q">is</em> the value.</li>
+      <li><strong>It signals the wrong category.</strong> Full-page daily-newspaper advertising in Korea is the visual grammar of conglomerates, banks, and public institutions making announcements. Tenarai using it would read as a company imitating incumbency it does not have — the exact impression §3 rule 3 forbids.</li>
+      <li><strong>It cannot be targeted.</strong> There is no daily-newspaper buy that concentrates against "enterprise IT decision-makers in the Teheran-ro and COEX corridor." A station buy is, structurally, that targeting.</li>
+    </ul>
+    <p class="tnote">Comparative newspaper rate cards were not obtained for this plan. The argument above is made on mechanism, not price. <span class="pill p-ver">To verify if a paid-print option is formally evaluated</span></p>
+  </div>
+
+  <h4 class="sub">The corridor: why these stations, and no others</h4>
+  <div class="body">
+    <p>Seoul's subway carried 2.44 billion passengers in 2025, averaging 6.69 million a day across lines 1–8 — up 1.3% on 2024. Line 2 alone carries 1.99 million daily. But raw footfall is the wrong selection criterion here, and following it would put this campaign in the wrong stations.</p>
+  </div>
+
+  <div class="chart">
+    <p class="ct">Seoul Metro stations by daily boardings + alightings</p>
+    <p class="cs">2024 full-year daily average. Highlighted bars are the stations this plan buys; grey bars are higher-traffic stations it deliberately skips.</p>
+    <div class="bars">
+      <div class="bar-row"><span class="bn">Jamsil <span style="color:var(--ink-faint)">잠실</span></span><span class="bar-track"><span class="bar-fill" style="width:100%;background:var(--hairline)"></span></span><span class="bv">156,177</span></div>
+      <div class="bar-row"><span class="bn">Hongdae Ip-gu <span style="color:var(--ink-faint)">홍대입구</span></span><span class="bar-track"><span class="bar-fill" style="width:96.3%;background:var(--hairline)"></span></span><span class="bv">150,369</span></div>
+      <div class="bar-row"><span class="bn"><strong>Gangnam</strong> <span style="color:var(--ink-faint)">강남</span></span><span class="bar-track"><span class="bar-fill" style="width:95.9%"></span></span><span class="bv">149,757</span></div>
+      <div class="bar-row"><span class="bn">Guro Digital Complex <span style="color:var(--ink-faint)">구로디지털단지</span></span><span class="bar-track"><span class="bar-fill" style="width:67.9%;background:var(--hairline)"></span></span><span class="bv">106,085</span></div>
+      <div class="bar-row"><span class="bn">Seoul Station <span style="color:var(--ink-faint)">서울역</span></span><span class="bar-track"><span class="bar-fill" style="width:67.6%;background:var(--hairline)"></span></span><span class="bv">105,634</span></div>
+      <div class="bar-row"><span class="bn">Sillim <span style="color:var(--ink-faint)">신림</span></span><span class="bar-track"><span class="bar-fill" style="width:66.9%;background:var(--hairline)"></span></span><span class="bv">104,459</span></div>
+      <div class="bar-row"><span class="bn"><strong>Samseong</strong> <span style="color:var(--ink-faint)">삼성</span></span><span class="bar-track"><span class="bar-fill" style="width:65.7%"></span></span><span class="bv">102,631</span></div>
+      <div class="bar-row"><span class="bn">Express Bus Terminal <span style="color:var(--ink-faint)">고속터미널</span></span><span class="bar-track"><span class="bar-fill" style="width:63.0%;background:var(--hairline)"></span></span><span class="bv">98,434</span></div>
+      <div class="bar-row"><span class="bn">Sindorim <span style="color:var(--ink-faint)">신도림</span></span><span class="bar-track"><span class="bar-fill" style="width:62.8%;background:var(--hairline)"></span></span><span class="bv">98,023</span></div>
+      <div class="bar-row"><span class="bn"><strong>Seolleung</strong> <span style="color:var(--ink-faint)">선릉</span></span><span class="bar-track"><span class="bar-fill" style="width:61.8%"></span></span><span class="bv">96,542</span></div>
+    </div>
+    <div class="legend">
+      <span><i style="background:var(--s1)"></i>Bought — enterprise IT corridor</span>
+      <span><i style="background:var(--hairline)"></i>Skipped — higher traffic, wrong audience</span>
+    </div>
+  </div>
+  <p class="tnote">Source: Seoul Metro 2024 transport statistics, top-10 stations by daily average boardings + alightings. <span class="pill p-conf">Confirmed</span> — Jamsil and Hongdae, the two largest stations in Seoul, are deliberately not bought: they are retail, nightlife and tourism nodes. Yeouido (the finance corridor) does not appear in the top 10 and its station-level figure was not obtained. <span class="pill p-ver">To verify before finalising the buy</span></p>
+
+  <div class="bento">
+    <div class="card sp4 row2">
+      <h4>The fourth station is not in Seoul</h4>
+      <p><strong>Pangyo Station</strong> is bought alongside the three Seoul Metro stations, and it is the most important of the four for the technical-influencer role in §3. Pangyo Techno Valley housed <strong>1,780 companies and 83,465 employees</strong> as of the Gyeonggi Province 2025 survey — up 6% year-on-year — with IT firms making up 61.5% of tenants. Pangyo Station is the busiest station on the entire Shinbundang Line, ahead of Gangnam, and ridership has grown roughly fivefold since the line opened in 2011. <span class="pill p-conf">Confirmed</span></p>
+      <p>Pangyo concentrates Korean enterprise technology decision-influence more densely than any square kilometre in Seoul. It is also where the employer-brand programme in §8 needs to be visible. Because Shinbundang Line is operated separately from Seoul Metro, it is a separate media buy on a separate rate card. <span class="pill p-ver">Rate card to be obtained during planning</span></p>
+    </div>
+    <div class="card rust sp2">
+      <span class="big sm">83,465</span>
+      <span class="lbl">People working in Pangyo Techno Valley, 2025 — 61.5% of tenant firms are IT</span>
+    </div>
+    <div class="card sp2">
+      <span class="big sm">348,930</span>
+      <span class="lbl">Combined daily passages at the three Seoul stations bought (Gangnam + Samseong + Seolleung), before Pangyo</span>
+    </div>
+  </div>
+
+  <h4 class="sub">Media plan — 8 weeks, Month 20</h4>
+  <div class="tw">
+    <table>
+      <caption>Recommended buy (Scenario B in §10). Rates are market ranges from a 2026 Korean OOH rate guide; actual rates are negotiated per station and season.</caption>
+      <thead><tr><th>Format</th><th>Placement</th><th>Duration</th><th class="num">KRW</th><th class="num">USD</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Screen-door panels (PSD)</strong></td><td>Gangnam, Samseong, Seolleung, Pangyo</td><td>8 weeks (2 cycles)</td><td class="num">40,000,000</td><td class="num">27,970</td></tr>
+        <tr><td><strong>Digital signage</strong></td><td>3 faces, Samseong ↔ COEX concourse</td><td>8 weeks (2 cycles)</td><td class="num">24,000,000</td><td class="num">16,780</td></tr>
+        <tr><td><strong>Large transfer panel</strong></td><td>1 face, Samseong transfer hall</td><td>4 weeks (peak only)</td><td class="num">25,000,000</td><td class="num">17,480</td></tr>
+        <tr><td><strong>Creative production</strong></td><td>5 executions, stills, 2 short films</td><td>—</td><td class="num">25,000,000</td><td class="num">17,480</td></tr>
+        <tr><td><strong>Earned amplification</strong></td><td>PR, community seeding, creator partnerships</td><td>10 weeks</td><td class="num">15,000,000</td><td class="num">10,490</td></tr>
+        <tr><td><strong>Measurement</strong></td><td>Brand-lift survey (n≈300 enterprise IT), Naver branded-search baseline</td><td>Pre + post</td><td class="num">8,000,000</td><td class="num">5,590</td></tr>
+        <tr><td>Contingency</td><td>~9.5% on a KRW 137M subtotal, rounded to a KRW 150M ask</td><td>—</td><td class="num">13,000,000</td><td class="num">9,090</td></tr>
+        <tr class="total"><td colspan="3"><strong>Total — Scenario B</strong></td><td class="num"><strong>150,000,000</strong></td><td class="num"><strong>104,880</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="tnote">Rate basis: PSD KRW 2–8M per station / 4 weeks; digital signage KRW 1.5–6M per face / 4 weeks; large transfer-station panels KRW 10–40M per face / 4 weeks. This plan budgets at or near the midpoint of each range. <span class="pill p-est">Estimated — vendor quotes not yet obtained</span> Approximately 19.5 million passages across the three Seoul stations over 56 days, for a raw CPM of about KRW 7,700. The share of those passages that are actually target-audience is unknown and is precisely what the brand-lift survey exists to establish. <strong>Do not report the raw CPM as if it were an on-target CPM.</strong></p>
+
+  <h4 class="sub">Why Month 20 and not Month 2</h4>
+  <div class="callout">
+    <p>Out-of-home with nothing to convert to is a donation. The burst is scheduled for the first month in which a Korean prospect who searches the name will find a registered entity, a Korean site, two named references, and an AE who can take the meeting.</p>
+  </div>
+
+  <h4 class="sub">The creative platform — built to be photographed</h4>
+  <div class="body">
+    <p>Korean subway advertising travels beyond the station when it does one of three things: tells an uncomfortable truth about working life, uses a format the reader did not expect, or changes between viewings. All five executions below are built on the §3 rule that Tenarai should say out loud that it is new here. The platform is <strong>"아직 없습니다" — "We don't have that yet."</strong></p>
+  </div>
+
+  <div class="bento">
+    <div class="card sp3">
+      <div class="ad-vis" style="border-radius:0;margin:-26px -28px 20px;">
+        <span class="kr">Execution 01 · PSD, all stations</span>
+        <p class="hl">"한국 고객사요?<br>아직 없습니다."</p>
+        <p class="sl">"Korean clients? We don't have any yet.<br>3,374 engineers. 0 Korean references. We're starting here."</p>
+      </div>
+      <h4>The admission</h4>
+      <p>The opening execution states the weakness the buying committee would discover anyway. In a medium saturated with superlatives, an unprompted admission of a gap is the most photographed thing on the platform.</p>
+      <p class="why"><strong>Why it travels:</strong> Korean office workers screenshot advertising that says the thing companies are not supposed to say. It also disarms the single objection every AE will face in Month 21.</p>
+    </div>
+    <div class="card sp3">
+      <div class="ad-vis" style="border-radius:0;margin:-26px -28px 20px;">
+        <span class="kr">Execution 02 · PSD, Seolleung + Pangyo</span>
+        <p class="hl">"구인: 1998년에 만든<br>배치 스크립트를<br>읽을 수 있는 사람."</p>
+        <p class="sl">"Wanted: someone who can read a batch script written in 1998. We have 3,374 of them. It still isn't enough."</p>
+      </div>
+      <h4>The job posting that isn't</h4>
+      <p>Formatted exactly like a Korean recruitment ad, down to the typography. It is a capability claim disguised as a hiring notice — and it doubles as an actual recruitment asset for the employer-brand programme in §8.</p>
+      <p class="why"><strong>Why it travels:</strong> developer communities re-post recruitment ads reflexively. The format buys distribution the media plan did not pay for.</p>
+    </div>
+    <div class="card sp2">
+      <div class="ad-vis" style="border-radius:0;margin:-26px -28px 20px;min-height:150px;">
+        <span class="kr">Execution 03 · Large panel, Samseong</span>
+        <p class="hl" style="font-size:21px;">"SAS 배치<br>(1998–2029)"</p>
+        <p class="sl">"Survived by 200 engineers who still work weekends."</p>
+      </div>
+      <h4>The legacy obituary</h4>
+      <p>A memorial notice for a system, not a person. Dark, specific, and instantly legible to anyone who has maintained one.</p>
+      <p class="why"><strong>Risk noted:</strong> obituary formats carry real cultural weight in Korea. This execution requires Korean creative sign-off and a named approver. It ships only if that approval is unambiguous.</p>
+    </div>
+    <div class="card sp2">
+      <div class="ad-vis" style="border-radius:0;margin:-26px -28px 20px;min-height:150px;">
+        <span class="kr">Execution 04 · Digital signage, COEX</span>
+        <p class="hl" style="font-size:21px;">이번 분기<br>옮긴 레거시<br><span class="ad-count" style="font-family:var(--mono);font-size:32px;">10,412</span></p>
+        <p class="sl">Updated daily. Yes, really.</p>
+      </div>
+      <h4>The live counter</h4>
+      <p>A digital face showing a real, daily-updating count of legacy artifacts migrated by Tenarai globally, fed from delivery systems.</p>
+      <p class="why"><strong>Why it travels:</strong> a number that changes is worth re-photographing. It is also the only execution that literally demonstrates the product, and it makes the OOH buy a live integration case study.</p>
+    </div>
+    <div class="card sp2">
+      <div class="ad-vis" style="border-radius:0;margin:-26px -28px 20px;min-height:150px;">
+        <span class="kr">Execution 05 · PSD, Gangnam + Samseong</span>
+        <p class="hl" style="font-size:21px;">"AI가 멈춘 곳에서<br>시작합니다."</p>
+        <p class="sl">Tenarai. Enterprise AI, all the way to production.</p>
+      </div>
+      <h4>The brand line</h4>
+      <p>One in five faces carries the plain brand statement with no joke and no admission. The platform needs a resting note or it reads as a stunt rather than a company.</p>
+      <p class="why"><strong>Ratio discipline:</strong> 4 tactical executions to 1 brand execution. Inverting that ratio is how OOH campaigns become forgettable.</p>
+    </div>
+  </div>
+
+  <h4 class="sub">The viral engine — what carries it past the station</h4>
+  <div class="body">
+    <p>Out-of-home alone decays the day it comes down. Five mechanisms extend it, all of them earned rather than paid:</p>
+    <ul class="clean">
+      <li><strong>IT Builders Live Seoul (Month 14, before the burst).</strong> Tenarai's existing technical-event format, ported. Free, genuinely technical, no sales pitch, filmed in full. This runs <em class="q">six months before</em> the OOH so that when the name appears on a wall, a searchable body of Korean-language technical content already sits behind it. It is also the highest-efficiency channel in the Korean benchmark data (§5).</li>
+      <li><strong>Korea GM personal channel.</strong> Weekly Korean-language LinkedIn posting by the Korea GM, starting Month 3. Founder- and executive-led posting is the documented pattern behind Korean B2B brand building at small scale, and it costs nothing but discipline. The GM's job description must say so explicitly or it will not happen.</li>
+      <li><strong>Developer and IT media placement.</strong> Korean IT trade press and specialist newsletters — not general dailies. As one reference point, a leading Korean IT newsletter reports roughly 44,000 subscribers at a 10–15% open rate <span class="pill p-est">Estimated</span>: small, but composed almost entirely of the §3 champion and technical-influencer roles.</li>
+      <li><strong>Community seeding, done honestly.</strong> Korean developer and professional communities punish detectable astroturfing severely, and a foreign brand caught doing it loses more than the campaign. Rule: Tenarai employees post under their real names with disclosure, or Tenarai does not post.</li>
+      <li><strong>The making-of film.</strong> A short documentary of the campaign itself — writing an ad that admits you have no clients — released the week the burst ends. Campaign-about-the-campaign content is the cheapest way to buy a second news cycle from one media spend.</li>
+    </ul>
+  </div>
+
+  <div class="bento">
+    <div class="card ink sp6">
+      <h4>The honest counter-argument, stated plainly</h4>
+      <p>An 8-week station buy for a firm that needs 13 new logos a year is not defensible on reach economics, and no amount of CPM arithmetic will make it so. It is defensible on one specific mechanism: <strong>in Korea, a foreign vendor with no physical presence fails the "is this company real" screen before it reaches a commercial evaluation, and there is no cheaper instrument that clears that screen with the executive population concentrated in this corridor.</strong> If HQ does not accept that mechanism, Scenario C in §10 is the correct choice and this section should be cut rather than trimmed. A half-funded OOH burst is worse than none.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 07 PROGRAMME B: DEMAND ================= -->
+<section id="s7">
+  <span class="sec-no">07 — Programme B</span>
+  <h2>Demand: account-based, because there are only forty accounts</h2>
+  <p class="lede">The Revenue Plan targets 45 active accounts at Year 10 and 13 new logos in that year. A named-account universe that small makes broad demand generation the wrong instrument and account-based marketing the only rational one.</p>
+
+  <h4 class="sub">The account universe</h4>
+  <div class="tw">
+    <table>
+      <caption>Tier structure for the Korean named-account list. Tiering follows the Revenue Plan's vertical priorities; specific account assignment is an operating decision, not a marketing one.</caption>
+      <thead><tr><th>Tier</th><th>Definition</th><th class="num">Accounts</th><th>Marketing treatment</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Tier 1 — Anchor</strong></td><td>Financial-sector core-modernisation buyers and the three telcos. The KRW 2T+ tender pool sits here.</td><td class="num">~12</td><td>One-to-one. Bespoke research briefs, named-executive content, custom event invitations, individual OOH proximity targeting during the burst.</td></tr>
+        <tr><td><strong>Tier 2 — Growth</strong></td><td>Retail/CPG groups, insurers, healthcare systems matching Tenarai's stated verticals.</td><td class="num">~40</td><td>One-to-few. Vertical clusters of 5–8 accounts sharing a campaign theme and a webinar.</td></tr>
+        <tr><td><strong>Tier 3 — Programmatic</strong></td><td>Korean subsidiaries of Tenarai's existing global Fortune 500 accounts.</td><td class="num">Unknown <span class="pill p-ver">Blocking</span></td><td>One-to-many, warm. Cheapest possible entry — but the account list has not been checked. See §13.</td></tr>
+        <tr><td><strong>Excluded</strong></td><td>Semiconductor and automotive manufacturing</td><td class="num">—</td><td>Not pursued. Neither is among Tenarai's stated core industries, and Wipro's HARMAN DTS acquisition already holds the automotive SDV position. Marketing should not manufacture demand the delivery organisation is not built to serve.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h4 class="sub">The Korean intent signal — the strongest idea in this plan</h4>
+  <div class="body">
+    <p>Western intent-data providers (6sense, Demandbase, Bombora) resolve buying signals from cookie and IP activity across Western publisher networks. Their coverage of Korean-domain activity is thin, and buying one of them for Korea would be paying enterprise pricing for a sparse signal. <span class="pill p-est">Estimated — vendor-specific Korean coverage should be tested before any purchase</span></p>
+    <p>Korea, however, publishes more structured buying intent in public than almost any comparable market:</p>
+    <ul class="clean">
+      <li><strong>KONEPS / 나라장터 tender notices</strong> — public-sector and public-institution IT procurement, published with scope, budget and timeline. This is not a proxy for intent; it <em class="q">is</em> intent, with a delivery date attached.</li>
+      <li><strong>DART disclosures</strong> — Korea's mandatory corporate filing system. Capital expenditure decisions, new-subsidiary formation, and large system investments surface here before they surface anywhere else.</li>
+      <li><strong>Enterprise hiring postings</strong> — a Korean bank posting for twelve core-banking migration engineers has announced a modernisation programme more reliably than any content-consumption signal would.</li>
+      <li><strong>Regulatory calendars</strong> — the AI Basic Act's high-impact-AI obligations create dated compliance deadlines per industry, which are dated buying windows.</li>
+    </ul>
+    <p>All four are public, structured, and updated continuously. Turning them into an account-scored intent feed is an agent-orchestration problem — which is the product Tenarai sells.</p>
+  </div>
+
+  <div class="bento">
+    <div class="card rust sp4">
+      <h4>Build it on Tenarai-IGNIS, and the marketing cost becomes a reference</h4>
+      <p>The Korea intent engine should be built on Tenarai's own agent-orchestration platform rather than bought. Three returns from one build: a Korea-specific signal no competitor has; a working IGNIS deployment with a measurable outcome, in a market where Tenarai has zero references; and a demonstrable answer to the question every Korean prospect will ask — <em class="q">"어디에 적용해 보셨나요?"</em> ("Where have you actually used this?")</p>
+      <p><strong>This is the only line in the plan where marketing spend produces a sellable asset.</strong> It should be protected before anything else if the budget is cut.</p>
+    </div>
+    <div class="card sp2">
+      <h4>Guardrails</h4>
+      <ul class="clean" style="margin-bottom:0">
+        <li>Public sources only. No scraping of gated or personal data.</li>
+        <li>PIPA compliance reviewed by Korean counsel before launch, not after.</li>
+        <li>Signals inform outreach targeting; they are never quoted back to a prospect.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h4 class="sub">The demand motion, month by month</h4>
+  <div class="tl">
+    <div class="tl-row">
+      <div class="when">Months 1–6<br><b>Foundation</b></div>
+      <div>
+        <h4>Be findable before being loud</h4>
+        <ul class="clean">
+          <li>Korean-language site live, indexed on Naver as well as Google, with the AI Basic Act domestic-representative disclosure visible — a compliance requirement that doubles as a credibility signal.</li>
+          <li>Partner co-marketing motions opened with the Korean subsidiaries of Databricks, Google Cloud, Salesforce and Adobe. Target: 3 registered co-sell opportunities, matching the Revenue Plan's Stage 1 exit criteria.</li>
+          <li>Named-account list built and tiered. Tier 3 blocker escalated to HQ (see §13).</li>
+          <li>Korea GM LinkedIn cadence begins. Weekly, in Korean.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tl-row">
+      <div class="when">Months 7–14<br><b>Signal</b></div>
+      <div>
+        <h4>Turn public data into a meeting calendar</h4>
+        <ul class="clean">
+          <li>Korea intent engine v1 live on IGNIS: KONEPS + DART + hiring signals scored against the named-account list.</li>
+          <li>Vertical webinar series launched — financial-sector modernisation first, telecom second. Two per quarter, partner-co-hosted where possible.</li>
+          <li>AI EXPO KOREA 2027 (14–16 April 2027, COEX Hall A) attended with a pre-booked meeting calendar, not a booth.</li>
+          <li>IT Builders Live Seoul, first edition (Month 14). Filmed in full; becomes the content library.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tl-row">
+      <div class="when">Months 15–24<br><b>Convert</b></div>
+      <div>
+        <h4>Spend the awareness the moment it exists</h4>
+        <ul class="clean">
+          <li>OOH + viral burst (Month 20). Every AE sequence, every partner motion and every open Tier-1 account is re-touched during the burst window — the campaign's commercial value is almost entirely in this concurrency.</li>
+          <li>Tier-1 one-to-one programmes running against all ~12 anchor accounts.</li>
+          <li>First analyst briefings (IDC Korea, Gartner Korea) — a year ahead of the Revenue Plan's schedule, for the lag reasons in §4.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tl-row">
+      <div class="when">Months 25–36<br><b>Compound</b></div>
+      <div>
+        <h4>Make the references do the selling</h4>
+        <ul class="clean">
+          <li>Quarterly Korean case study, each with named-client consent negotiated at contract signature rather than at publication.</li>
+          <li>IT Builders Live Seoul becomes semi-annual; Pangyo edition added.</li>
+          <li>Employer-brand programme scaled against the technical-sales hiring constraint (§8).</li>
+          <li>Analyst report inclusion pursued; Everest Group Korea-relevant coverage targeted.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 08 PROGRAMME C: CREDIBILITY ================= -->
+<section id="s8">
+  <span class="sec-no">08 — Programme C</span>
+  <h2>Credibility: the unglamorous programme that decides the outcome</h2>
+  <p class="lede">Fame gets the meeting. Credibility survives the procurement screen. In Korea the second one kills more foreign vendors than the first one saves, and it is almost entirely operational rather than creative.</p>
+
+  <div class="bento">
+    <div class="card sp3 row2">
+      <h4>1. Analyst relations — start twelve months early</h4>
+      <p>Korean conglomerate vendor screening treats Gartner, IDC and Everest Group coverage as a procedural credibility input. Analyst coverage has a 6–12 month lag from first briefing to appearing in a report, which means the Revenue Plan's "Years 3–5" schedule delivers coverage in Year 4 at the earliest — after the first vendor registrations are already being screened.</p>
+      <p><strong>Recommendation: move first briefings to Month 6.</strong> Cost is analyst-relations time, not media spend, so this accelerates without touching the budget.</p>
+    </div>
+    <div class="card sp3">
+      <h4>2. References — negotiate consent at signature</h4>
+      <p>The Revenue Plan's Stage 1 exit criterion is 2 citable Korean references with named-client consent. Korean enterprises routinely refuse naming after the fact. <strong>Named-reference consent must be a clause in the first three contracts, negotiated by the AE at signature, not requested by marketing at publication.</strong> This is a contracting decision that marketing depends on and cannot make.</p>
+    </div>
+    <div class="card olive sp3">
+      <h4>3. The Korean advisory board member</h4>
+      <p>One appointment, recruited by Month 3. A Korean executive with large-enterprise CIO or CTO tenure, publicly named. Against a buying committee whose economic buyer fears personal exposure for choosing an unknown foreign vendor, this does more per won than any other line in the plan.</p>
+    </div>
+    <div class="card sp3">
+      <h4>4. Employer brand — a commercial requirement, not HR's problem</h4>
+      <p>The Revenue Plan needs 50 people in Korea by Year 10 and flags technical-sales hiring as a constraint. In Korea, employer reputation is also read by <em class="q">buyers</em> — a vendor nobody wants to work for is assumed to be a vendor nobody wants to buy from. Pangyo OOH, IT Builders Live and the Execution 02 recruitment format all serve this simultaneously, which is why it is funded here rather than separately.</p>
+    </div>
+    <div class="card sp3">
+      <h4>5. Trade press, on a schedule</h4>
+      <p>The Revenue Plan sets 2 Korean media placements in Years 1–2, 6/year in Years 3–5, 12/year thereafter. This plan accepts those targets and constrains the outlet mix: <strong>IT and enterprise-technology trade press only.</strong> General-daily business coverage is not pursued — it reaches the wrong audience and, per §6, signals the wrong category.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 09 MARTECH ================= -->
+<section id="s9">
+  <span class="sec-no">09 — Marketing Technology</span>
+  <h2>The stack: three people cannot run this plan without it</h2>
+  <p class="lede">The Korea entity has one marketing headcount at Year 5 and three at Year 10. Every recommendation in this plan has to be executable by a team that small, which makes tooling a strategic rather than administrative decision. The test applied to each layer below is simple: does this let one person do the work of five, and does it work in Korean?</p>
+
+  <div class="tw">
+    <table>
+      <caption>Recommended stack by layer. "Korea fit" is the differentiator — several category-leading Western tools degrade badly in this market.</caption>
+      <thead><tr><th>Layer</th><th>Recommendation</th><th>Korea fit</th><th>When</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>CRM + marketing automation</strong></td>
+          <td>Salesforce + Account Engagement</td>
+          <td>Strong. Salesforce Korea is already a named Tenarai partner, which makes the platform decision and the co-sell motion the same decision. Choosing a different CRM would weaken a channel worth 25% of Year-10 revenue.</td>
+          <td>Month 1</td>
+        </tr>
+        <tr>
+          <td><strong>Intent + account scoring</strong></td>
+          <td><strong>Build on Tenarai-IGNIS</strong> — KONEPS, DART, hiring and regulatory feeds</td>
+          <td>Decisive. Western intent vendors have thin Korean-domain coverage; Korean public data is unusually rich. Building it produces the reference case Tenarai does not otherwise have. See §7.</td>
+          <td>Month 7</td>
+        </tr>
+        <tr>
+          <td><strong>Professional-network reach</strong></td>
+          <td>LinkedIn Sales Navigator + Ads, Korea-targeted</td>
+          <td>Good within its niche. ~6.0M Korean users, skewed toward multinational-experienced professionals — a close match to the champion role in §3.</td>
+          <td>Month 3</td>
+        </tr>
+        <tr>
+          <td><strong>Korean search</strong></td>
+          <td>Naver Search Ad + Naver-native content; Google Ads secondary</td>
+          <td>Mandatory. Naver privileges its own properties over external domains, so Korean visibility has to be built inside Naver's surfaces rather than won by conventional SEO against tenarai.com.</td>
+          <td>Month 4</td>
+        </tr>
+        <tr>
+          <td><strong>Answer-engine visibility (AEO/GEO)</strong></td>
+          <td>Structured Korean content designed for LLM retrieval; quarterly assistant-answer audit</td>
+          <td>Emerging and under-served. Korean B2B buyers increasingly research through AI assistants before contacting any vendor. Being absent from those answers is the 2026 equivalent of being absent from page one — and almost no Korean B2B competitor is managing it yet.</td>
+          <td>Month 8</td>
+        </tr>
+        <tr>
+          <td><strong>Attribution</strong></td>
+          <td>Pipeline-influence model, multi-touch, 18-month window</td>
+          <td>Required by the sales cycle, not by preference. Last-click attribution on an 18-month enterprise cycle will attribute every win to the final demo and will recommend cancelling this entire plan. See §11.</td>
+          <td>Month 6</td>
+        </tr>
+        <tr>
+          <td><strong>Content production</strong></td>
+          <td>Korean copywriter (contract) + AI-assisted drafting, human-finished</td>
+          <td>Necessary compromise. Volume targets are unreachable for one marketer without AI assistance; publishing machine-translated Korean is a brand risk per §3. Draft with AI, finish with a native writer, always.</td>
+          <td>Month 2</td>
+        </tr>
+        <tr>
+          <td><strong>DOOH programmatic</strong></td>
+          <td>Optional overlay on the Month-20 burst</td>
+          <td>Situational. Programmatic DOOH runs at roughly KRW 3,000–15,000 CPM and can extend the burst into office-building and elevator inventory in the same corridor without a second fixed contract. Evaluate only if Scenario A is approved.</td>
+          <td>Month 19</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout">
+    <p>The stack has one non-negotiable: whatever is bought must work in Korean, on Naver, against Korean data. Category leadership in the US market is not evidence of any of those three.</p>
+  </div>
+</section>
+
+<!-- ================= 10 BUDGET ================= -->
+<section id="s10">
+  <span class="sec-no">10 — Budget</span>
+  <h2>Three scenarios, and what each one buys</h2>
+  <p class="lede">The operating marketing budget is fixed by the Revenue Plan and this plan does not contest it. The only open financial question is whether the Month-20 brand investment is funded, and at what level.</p>
+
+  <h4 class="sub">The operating line — accepted as approved</h4>
+  <div class="tw">
+    <table>
+      <caption>Operating marketing budget, Months 1–36, per the Korea Revenue Plan §4-3.</caption>
+      <thead><tr><th>Period</th><th>Basis</th><th class="num">USD</th><th class="num">KRW</th></tr></thead>
+      <tbody>
+        <tr><td>Year 1 (Months 1–12)</td><td>Fixed allocation</td><td class="num">35,000</td><td class="num">50,050,000</td></tr>
+        <tr><td>Year 2 (Months 13–24)</td><td>Fixed allocation</td><td class="num">35,000</td><td class="num">50,050,000</td></tr>
+        <tr><td>Year 3 (Months 25–36)</td><td>9% of USD 0.77M revenue</td><td class="num">69,000</td><td class="num">98,670,000</td></tr>
+        <tr class="total"><td colspan="2"><strong>36-month operating total</strong></td><td class="num"><strong>139,000</strong></td><td class="num"><strong>198,770,000</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="tnote">The Revenue Plan sets marketing at 8–10% of revenue in Years 3–5 and notes that this band is a customary B2B technology-services setting rather than a Korea-specific benchmark. <span class="pill p-ver">A Korea-specific benchmark was not obtained and remains unverified</span></p>
+
+  <h4 class="sub">The brand-investment ask — three options</h4>
+  <div class="chart">
+    <p class="ct">Brand investment scenarios, Month 20</p>
+    <p class="cs">One-time, ring-fenced. Shown against the 36-month operating budget for scale.</p>
+    <div class="bars">
+      <div class="bar-row"><span class="bn"><strong>Scenario A</strong><br><span style="color:var(--ink-faint);font-size:12.5px">12 weeks, 6 stations + stunt</span></span><span class="bar-track"><span class="bar-fill s3" style="width:100%"></span></span><span class="bv">₩300M</span></div>
+      <div class="bar-row"><span class="bn"><strong>Scenario B</strong><br><span style="color:var(--ink-faint);font-size:12.5px">8 weeks, 4 stations — recommended</span></span><span class="bar-track"><span class="bar-fill" style="width:50%"></span></span><span class="bv">₩150M</span></div>
+      <div class="bar-row"><span class="bn"><strong>Scenario C</strong><br><span style="color:var(--ink-faint);font-size:12.5px">digital only, no incremental spend</span></span><span class="bar-track"><span class="bar-fill s2" style="width:0.5%"></span></span><span class="bv">₩0</span></div>
+      <div class="bar-row"><span class="bn">36-mo operating budget<br><span style="color:var(--ink-faint);font-size:12.5px">for comparison</span></span><span class="bar-track"><span class="bar-fill" style="width:66.3%;background:var(--hairline)"></span></span><span class="bv">₩199M</span></div>
+    </div>
+    <div class="legend">
+      <span><i style="background:var(--s1)"></i>Recommended</span>
+      <span><i style="background:var(--s3)"></i>Upside case</span>
+      <span><i style="background:var(--s2)"></i>Fallback</span>
+      <span><i style="background:var(--hairline)"></i>Existing approved operating budget</span>
+    </div>
+  </div>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th>Scenario</th><th class="num">Cost</th><th>What it buys</th><th>What it risks</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>A — Own the corridor</strong><br>12 weeks · Gangnam, Samseong, Seolleung, Pangyo, Yeouido, Gwanghwamun · 2 large panels · physical stunt · DOOH overlay</td>
+          <td class="num">₩300M<br><span style="color:var(--ink-faint)">~$210K</span></td>
+          <td>Corridor saturation with genuine frequency. Near-certain trade-press coverage. Highest probability of the campaign becoming the thing Korean marketers talk about, which is itself a distribution channel.</td>
+          <td>~1.5× the entire 36-month operating budget on one burst. If the Month-14 to Month-19 credibility work (references, vendor registrations) slips, the spend lands on an entity that still cannot contract.</td>
+        </tr>
+        <tr style="background:var(--rust-soft)">
+          <td><strong>B — The Teheran-ro ambush</strong> <span class="pill p-est">Recommended</span><br>8 weeks · Gangnam, Samseong, Seolleung, Pangyo · 1 large panel · 5 executions · brand-lift measurement</td>
+          <td class="num">₩150M<br><span style="color:var(--ink-faint)">~$105K</span></td>
+          <td>Sufficient frequency in the corridor that actually contains the buying committee. Measurable. Leaves budget headroom for a second burst in Year 4 if the lift data justifies it.</td>
+          <td>Below the threshold at which a campaign becomes a cultural event. Accepts being noticed by the right 2,000 people rather than talked about by 200,000.</td>
+        </tr>
+        <tr>
+          <td><strong>C — Digital only</strong><br>No incremental spend. Reallocate within the approved operating line to LinkedIn, Naver, webinars and IT Builders Live.</td>
+          <td class="num">₩0</td>
+          <td>Zero incremental risk. Every programme in §7 and §8 still runs. The plan is coherent without §6.</td>
+          <td>Leaves the "is this company real" screen unaddressed. Concedes that the entity's physical legitimacy will have to be built by sales, one meeting at a time, over a longer period than the revenue plan assumes.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h4 class="sub">Framing the ask honestly</h4>
+  <div class="bento">
+    <div class="card sp2"><span class="big sm">3.0×</span><span class="lbl">Scenario B relative to a single year's operating marketing budget (KRW 50M). It cannot come from that line.</span></div>
+    <div class="card sp2"><span class="big sm">~5.8%</span><span class="lbl">Scenario B as a share of the USD 1.81M five-year Korea funding requirement already approved.</span></div>
+    <div class="card sp2"><span class="big sm">0.3%</span><span class="lbl">Scenario B as a share of the USD 35.0M Year-10 revenue target the entity is being funded to reach.</span></div>
+    <div class="card ink sp6">
+      <p>Read as a marketing budget, Scenario B is indefensible — it is three times the annual operating line. Read as a market-entry capital item alongside entity formation, legal, and the first two hires, it is under 6% of an investment that has already been approved. <strong>The recommendation is that it be presented to the investment committee as the second option, not the first, because that is what it is.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 11 MEASUREMENT ================= -->
+<section id="s11">
+  <span class="sec-no">11 — Measurement</span>
+  <h2>How to know whether this worked, before the revenue arrives</h2>
+  <p class="lede">Revenue in Year 1 is USD 0.07M. It cannot tell anyone whether the marketing is working. The measurement system therefore has to run almost entirely on leading indicators for the first two years — and it has to be agreed before the OOH burst, not after.</p>
+
+  <div class="tw">
+    <table>
+      <caption>Measurement framework. The north star is deliberately not revenue.</caption>
+      <thead><tr><th>Layer</th><th>Metric</th><th>Cadence</th><th>Standard / target</th></tr></thead>
+      <tbody>
+        <tr><td rowspan="2"><strong>North star</strong></td><td><strong>Qualified first meetings with a named decision-maker at a listed account</strong></td><td>Weekly</td><td>60 in Year 1, ~90 in Year 2, 120 in Year 3 — the Revenue Plan's own targets, which marketing exists to feed</td></tr>
+        <tr><td>Why this and not MQLs</td><td>—</td><td>A 45-account universe makes volume metrics meaningless. One meeting at a Tier-1 anchor outweighs a hundred form fills.</td></tr>
+        <tr><td rowspan="4"><strong>Brand health</strong><br><span style="color:var(--ink-faint);font-size:13px">the OOH burst is judged here</span></td><td>Unaided awareness among Korean enterprise IT decision-makers</td><td>Pre-burst and post-burst survey, n≈300</td><td>Baseline assumed ~0%. <strong>Any measurable unaided recall is a pass.</strong> Target 5–8% <span class="pill p-est">Estimated — no Korean category benchmark obtained</span></td></tr>
+        <tr><td>Naver branded-search volume for "Tenarai" / "테나라이"</td><td>Monthly</td><td>Baseline from Month 1. The cleanest single OOH proxy available, and it costs nothing to instrument.</td></tr>
+        <tr><td>AE meeting-acceptance rate</td><td>Monthly, pre/post</td><td>The commercially meaningful test: does a cold approach convert better during and after the burst than before it?</td></tr>
+        <tr><td>Earned media reach and sentiment</td><td>Campaign window</td><td>Tracked, but not used as a primary success measure — earned reach is a means to the three metrics above.</td></tr>
+        <tr><td rowspan="3"><strong>Pipeline</strong></td><td>Pipeline coverage ratio</td><td>Monthly</td><td>5.0× in Year 1 tapering to 4.0× — per the Revenue Plan's KPI table</td></tr>
+        <tr><td>PoCs started</td><td>Monthly</td><td>3 in Year 1, 8 in Year 3. The Revenue Plan calls this the top metric for Years 1–3 and this plan agrees.</td></tr>
+        <tr><td>Marketing-influenced pipeline (18-month window)</td><td>Quarterly</td><td>Multi-touch. Last-click attribution on this sales cycle is actively misleading — see §9.</td></tr>
+        <tr><td><strong>Credibility</strong></td><td>Vendor registrations completed · analyst briefings held · named references secured</td><td>Quarterly</td><td>5+ registrations, 2 named references by end of Year 2 — the Revenue Plan's Stage 1 exit criteria, restated here because §8 is judged on them</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="bento">
+    <div class="card rust sp6">
+      <h4>The measurement commitment that has to be made in advance</h4>
+      <p>The pre-burst brand-lift survey must be fielded in <strong>Month 18</strong>, two months before any media runs. A baseline collected after the campaign has started is not a baseline, and without one the entire Scenario-B spend becomes unfalsifiable. It is budgeted in §6 at KRW 8M for exactly this reason. <strong>If the survey is cut, cut the burst too — an unmeasurable brand spend of this size should not be approved in the first place.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 12 ROADMAP + RACI ================= -->
+<section id="s12">
+  <span class="sec-no">12 — Roadmap &amp; Ownership</span>
+  <h2>Who does what, and in which month</h2>
+  <p class="lede">The Korea entity has one marketing hire at Year 5. For Months 1–36, marketing is the GM, one contract Korean marketer from Month 12, and HQ support. The roadmap below is sized for that, not for a marketing department that does not exist.</p>
+
+  <div class="tw">
+    <table>
+      <caption>RACI. "HQ Marketing" is the existing global function; "Korea GM" is the entity's first hire; "Contract" denotes Korean specialist contractors.</caption>
+      <thead><tr><th>Workstream</th><th>Responsible</th><th>Accountable</th><th>Consulted</th></tr></thead>
+      <tbody>
+        <tr><td>Partner co-marketing (§4)</td><td>Korea GM</td><td>HQ Partner Marketing</td><td>Partner Korean subsidiaries</td></tr>
+        <tr><td>Analyst relations (§8)</td><td>HQ Analyst Relations</td><td>HQ CMO</td><td>Korea GM</td></tr>
+        <tr><td>Korean site, Naver, AEO (§9)</td><td>Contract — Korean digital</td><td>Korea GM</td><td>HQ Web</td></tr>
+        <tr><td>Intent engine on IGNIS (§7)</td><td>HQ Platform Engineering</td><td>Korea GM</td><td>Korean legal counsel (PIPA)</td></tr>
+        <tr><td>OOH + viral burst (§6)</td><td>Contract — Korean creative + media agency</td><td>HQ CMO</td><td>Korea GM, Korean advisory board member</td></tr>
+        <tr><td>IT Builders Live Seoul (§4)</td><td>Korea GM</td><td>HQ Events</td><td>HQ Engineering (speakers)</td></tr>
+        <tr><td>Named-reference consent (§8)</td><td>Korea AEs</td><td>Korea GM</td><td>HQ Legal</td></tr>
+        <tr><td>Employer brand (§8)</td><td>Korea GM</td><td>HQ Talent</td><td>Contract — Korean creative</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="tnote">Two rows are worth reading twice. <strong>Named-reference consent is owned by sales, not marketing</strong> — marketing depends on it and cannot deliver it. And the OOH burst is <strong>accountable to HQ CMO, not the Korea GM</strong>: it is a corporate brand investment being spent in one market, and the approval chain should reflect that.</p>
+
+  <h4 class="sub">First 90 days</h4>
+  <div class="tl">
+    <div class="tl-row">
+      <div class="when">Weeks 1–4<br><b>Unblock</b></div>
+      <div>
+        <ul class="clean">
+          <li>Escalate the Tier-3 blocker to HQ: which existing Fortune 500 accounts operate Korean business units? This is the cheapest pipeline in the plan and it has been open since the Business Case was written.</li>
+          <li>Open partner conversations with Databricks, Google Cloud, Salesforce and Adobe Korea. Ask for the partner-marketing budget, not just the logo.</li>
+          <li>Begin the search for the Korean advisory board member.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tl-row">
+      <div class="when">Weeks 5–8<br><b>Foundation</b></div>
+      <div>
+        <ul class="clean">
+          <li>Korean copywriter engaged. Message architecture (§3) written in Korean first, back-checked against English.</li>
+          <li>Korean site scoped, including the AI Basic Act domestic-representative disclosure.</li>
+          <li>Named-account list built and tiered; Salesforce instance configured against it.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tl-row">
+      <div class="when">Weeks 9–12<br><b>Signal</b></div>
+      <div>
+        <ul class="clean">
+          <li>Korea GM LinkedIn cadence live — weekly, Korean, personal voice.</li>
+          <li>Naver branded-search baseline instrumented. It costs nothing now and is worth a great deal in Month 20.</li>
+          <li>Analyst briefing calendar opened with IDC Korea and Gartner Korea.</li>
+          <li>Intent-engine scope agreed with HQ Platform Engineering and reviewed by Korean counsel.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 13 RISKS ================= -->
+<section id="s13">
+  <span class="sec-no">13 — Risks &amp; Open Decisions</span>
+  <h2>What could make this plan wrong</h2>
+
+  <div class="bento">
+    <div class="card sp3">
+      <h4>Blocking — must be resolved before Month 6</h4>
+      <ul class="clean">
+        <li><strong>Do any current Tenarai Fortune 500 clients operate Korean business units?</strong> Unknown. It is the cheapest possible source of a first Korean reference and it determines whether Tier 3 in §7 exists at all. Requires an internal account-list review, nothing more.</li>
+        <li><strong>Transfer-pricing structure.</strong> The Revenue Plan notes that under a commissionaire model the same commercial performance reports as USD 2.8–5.2M rather than USD 35M. Marketing's budget in Years 3+ is a percentage of revenue, so this decision silently determines the marketing budget for the entire plan.</li>
+        <li><strong>Is the Month-20 brand investment funded, and at which scenario?</strong> §6 and §10 cannot both be half-approved.</li>
+      </ul>
+    </div>
+    <div class="card sp3">
+      <h4>Risks — named, with the response</h4>
+      <ul class="clean olive">
+        <li><strong>The burst lands before the entity can contract.</strong> Highest-probability failure mode. Response: Month 20 is a floor, not a fixture — if vendor registrations or the first two references slip, the burst slips with them. Media contracts should be signed with that flexibility priced in.</li>
+        <li><strong>Creative misfires culturally.</strong> The obituary execution in particular. Response: Korean creative sign-off with a named approver; the advisory board member reviews all five executions before production.</li>
+        <li><strong>Community seeding is read as astroturfing.</strong> Korean professional communities punish this severely and permanently. Response: real names and disclosure, or nothing. Stated as a rule in §6.</li>
+        <li><strong>Competitor response.</strong> Wipro has 20 years of Korean relationships and a Seoul Innovation Center; a visible foreign entrant may prompt a defensive push. Response: none available, and none needed — the plan does not depend on being unnoticed.</li>
+        <li><strong>The self-reported performance claims get challenged.</strong> Tenarai's global figures are unvalidated by third parties. Response: §3 rule 2, applied without exception in Korea.</li>
+      </ul>
+    </div>
+    <div class="card sp6">
+      <h4>What this plan does not cover</h4>
+      <p>Product marketing for individual solutions beyond Archer and Hybrid Agentic PODs; Korean channel-partner recruitment beyond the existing technology partners; any marketing supporting the acquisition screening the Revenue Plan places in Years 6–10; and paid media beyond the Month-20 burst and always-on LinkedIn and Naver Search Ad. Each is a Year-4 conversation, and naming them here is more useful than implying they are handled.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 14 SOURCES ================= -->
+<section id="s14">
+  <span class="sec-no">14 — Sources</span>
+  <h2>Sources and confidence</h2>
+  <p class="lede">Every quantitative claim above carries a confidence marker. <span class="pill p-conf">Confirmed</span> means a named external source. <span class="pill p-est">Estimated</span> means this document's own calculation or assumption. <span class="pill p-ver">To verify</span> means the figure is used but not yet validated and should not survive into an external document unchecked.</p>
+
+  <h4 class="sub">External</h4>
+  <ol class="src">
+    <li>Seoul Metro, "2024 Seoul Subway Lines 1–8 Transport Statistics" (released 19 Feb 2025) — station-level daily boardings + alightings. Cross-checked across <a href="https://mediahub.seoul.go.kr/archives/2013487">Seoul Mediahub</a>, <a href="https://www.datanews.co.kr/news/article.html?no=137249">Datanews</a> and <a href="https://www.hankyung.com/article/2025021965031">Hankyung</a> — all ten station figures agree exactly. Used in §6. <span class="pill p-conf">Confirmed, 3 sources</span></li>
+    <li>Seoul Metro, 2025 transport statistics — 2,442,479,000 annual passengers, 6,692,000 daily average (+1.3% on 2024's 6,605,000), Line 2 at 1,988,000 daily. Cross-checked across <a href="https://www.dt.co.kr/article/12050634">Digital Times</a> and <a href="https://www.economicpost.co.kr/161503">Economic Post</a>. Used in §6. <span class="pill p-conf">Confirmed, 2 sources</span></li>
+    <li>THINKAD, <a href="https://tkad.co.kr/ko/guides/ooh-price-guide">2026 Korean out-of-home advertising rate guide</a> — subway PSD, digital signage, large panel, LED and programmatic DOOH rate ranges. Used in §6 and §9.</li>
+    <li>6sense, <a href="https://6sense.com/newsroom/84-of-b2b-deals-are-decided-before-marketers-even-know-about-them/">"84% of B2B Deals Are Decided Before Marketers Even Know About Them"</a> — survey of 900+ B2B buyers, June–July 2023, all with completed purchases above USD 10,000 in the prior 24 months. Source of the 70% / 78% / 84% figures. Used in §1 and §2. <span class="pill p-conf">Confirmed — primary source</span> The later "60/40" revision (61% at first contact) appears in 6sense's subsequent Buyer Experience reporting but was <strong>not</strong> confirmed against a 6sense primary release for this plan. <span class="pill p-ver">Single source</span></li>
+    <li>Recatch, Korean B2B marketing channel benchmark, 93 domestic B2B firms, combined revenue KRW 700B (2023) — <a href="https://www.recatch.cc/ko/blog/top-b2b-marketing-channel/">channel usage by revenue band; "existing network" named most effective by 32.1%</a>. Used in §4 and §5. <span class="pill p-ver">Single source, and the survey is from 2023 — a 2026 refresh exists but its detailed tables are gated behind a download</span></li>
+    <li>Megazone Cloud × Foundry, 2025 Korean enterprise generative-AI survey, n=749 — 55.7% adoption (22.4% company-wide, 33.2% partial), 35.1% company-wide among large enterprises, 85% projected for 2026, 74% increasing investment. Used in §2.</li>
+    <li>Gyeonggi Province, 2025 Pangyo Techno Valley survey (published 2025-12-25) — 1,780 tenant companies (Pangyo 1: 1,196; Pangyo 2: 584), 83,465 employees (+4,593, +6% YoY), IT 61.5% of tenants, 85% SMEs, average employee age 37.9. Cross-checked across <a href="https://www.startuptoday.co.kr/news/articleView.html?idxno=565156">Oneul Gyeongje</a> and Dailian. Used in §6. <span class="pill p-conf">Confirmed, 2 sources</span></li>
+    <li>AI EXPO KOREA — <a href="https://www.aiexpo.co.kr/en/i1.php?s=11">organiser site</a>. 2026 edition (COEX Hall A, 6–8 May 2026): 48,678 visitors, 330 exhibiting companies and institutions from 18 countries, 562 booths. 2027 edition: 14–16 April 2027, COEX Hall A, tenth anniversary. Used in §5 and §7. <span class="pill p-conf">Confirmed — primary source</span></li>
+    <li>NapoleonCat, <a href="https://stats.napoleoncat.com/social-media-users-in-republic_of_korea/2026/">Social media users in South Korea, July 2026</a> — 5,997,000 LinkedIn users, 11.3% of population, 25–34 largest cohort at 3,000,000 (50% of the base). Compiled from platform marketing APIs rather than audited reporting; directional only. Used in §5. <span class="pill p-ver">Single source</span></li>
+    <li>Business Wire, <a href="https://www.businesswire.com/news/home/20260414424108/en/Infogain-Relaunches-as-Tenarai-to-Accelerate-Enterprise-AI-Adoption">"Infogain Relaunches as Tenarai to Accelerate Enterprise AI Adoption"</a>, 14 April 2026 — rebrand pillars, partner ecosystem, NIT Delhi and BITS Pilani partnerships, Startup Acceleration Program. Used in §4.</li>
+  </ol>
+
+  <h4 class="sub">Internal — the Korea Entity Executive Report Series</h4>
+  <ol class="src" start="11">
+    <li><strong>Tenarai Korea Business Case v2</strong> (Aug 2026) — competitive landscape, AI Basic Act domestic-representative requirement, entity-form comparison, Korean AI policy and sovereign-model programme. Used throughout §2, §3 and §8.</li>
+    <li><strong>Tenarai Korea 10-Year Revenue Plan v1</strong> (Aug 2026) — solution-fit scoring, three-stage entry, channel mix, marketing programme table and budget bands, KPI targets, headcount plan, transfer-pricing options. This plan's operating budget, meeting targets and stage gates are all taken from it. Used in §1, §7, §10, §11 and §12.</li>
+    <li><strong>Tenarai Korea Entity Investment Report v1</strong> — USD 1.81M five-year funding requirement, USD 1.65M peak cumulative investment. Used in §10.</li>
+    <li><strong>Tenarai Corporate Research Report v2</strong> (Aug 2026) — company profile, solution portfolio and self-reported performance figures, global footprint, India delivery hub headcount, Apax ownership. Used in §3 and §4.</li>
+  </ol>
+
+  <h4 class="sub">Known gaps</h4>
+  <ul class="clean">
+    <li>Yeouido and Gwanghwamun station-level ridership — not obtained; required before a Scenario A buy.</li>
+    <li>Shinbundang Line (Pangyo) advertising rate card — not obtained; Pangyo is budgeted at Seoul Metro rates as a placeholder.</li>
+    <li>Korean daily-newspaper advertising rates — not obtained. The argument against print in §6 is made on mechanism, not price.</li>
+    <li>Korea-specific B2B marketing-budget benchmark as a percentage of revenue — not found; the 8–10% band is inherited from the Revenue Plan, which itself flags it as a customary rather than local figure.</li>
+    <li>Korean enterprise-IT brand-awareness category benchmark — not found; the 5–8% unaided-awareness target in §11 is this document's own estimate and should be replaced by the Month-18 baseline survey.</li>
+  </ul>
+</section>
+
+<footer>
+  <p><strong>Tenarai Korea · Market-Entry Marketing Plan v1</strong> — August 2026 · Internal / HQ investment committee</p>
+  <p>Part V of the Korea Entity Executive Report Series. Figures in KRW converted at the Revenue Plan's planning rate of USD 1 = KRW 1,430 and should be re-verified against the prevailing rate before external use. This document contains forward-looking projections and one funding request; it is not an approval.</p>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var btn=document.getElementById('themeToggle');
+  var root=document.documentElement;
+  function current(){
+    var set=root.getAttribute('data-theme');
+    if(set) return set;
+    return window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
+  }
+  btn.addEventListener('click',function(){
+    var next=current()==='dark'?'light':'dark';
+    root.setAttribute('data-theme',next);
+    btn.textContent=next==='dark'?'Light':'Dark';
+  });
+  btn.textContent=current()==='dark'?'Light':'Dark';
+})();
+
+/* ============================================================
+   Scroll-triggered motion — count-up on the figures that carry the
+   argument, clip-path reveal on the chart bars.
+
+   Deliberately NOT animated: section entrances, cards, callouts, timeline
+   rows, table cells. A 14-section report where every block fades in on
+   scroll slows reading and adds nothing; motion here is limited to the two
+   places where it does a job — pulling the eye to the number, and letting a
+   ranked chart resolve in rank order.
+   ============================================================ */
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var NUM = /\d[\d,]*(?:\.\d+)?/g;
+  var counters = [];
+
+  /* Wrap every numeric token in its own span so surrounding text —
+     "USD 35K/yr", "~5.8%", "330 / 562" — survives untouched. */
+  function prepare(el){
+    var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null);
+    var nodes = [], n;
+    while ((n = walker.nextNode())) { if (NUM.test(n.nodeValue)) nodes.push(n); NUM.lastIndex = 0; }
+    var made = [];
+    nodes.forEach(function(node){
+      var frag = document.createDocumentFragment(), last = 0, m;
+      NUM.lastIndex = 0;
+      while ((m = NUM.exec(node.nodeValue))) {
+        if (m.index > last) frag.appendChild(document.createTextNode(node.nodeValue.slice(last, m.index)));
+        var s = document.createElement('span');
+        s.className = 'cnt';
+        s.textContent = m[0];
+        frag.appendChild(s);
+        made.push(s);
+        last = m.index + m[0].length;
+      }
+      if (last < node.nodeValue.length) frag.appendChild(document.createTextNode(node.nodeValue.slice(last)));
+      node.parentNode.replaceChild(frag, node);
+    });
+    return made;
+  }
+
+  function format(value, sample){
+    var dec = (sample.split('.')[1] || '').length;
+    var out = value.toFixed(dec);
+    if (sample.indexOf(',') > -1) {
+      var parts = out.split('.');
+      parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+      out = parts.join('.');
+    }
+    return out;
+  }
+
+  /* easeOutQuint — strong deceleration, no overshoot. An investment-committee
+     document should not bounce. */
+  function ease(t){ return 1 - Math.pow(1 - t, 5); }
+
+  function run(spans, duration, delay){
+    var start = null;
+    function frame(ts){
+      if (start === null) start = ts;
+      var t = Math.min(1, (ts - start) / duration);
+      var k = ease(t);
+      spans.forEach(function(s){
+        s.textContent = format(s._to * k, s._sample);
+      });
+      if (t < 1) requestAnimationFrame(frame);
+      else spans.forEach(function(s){ s.textContent = s._sample; });
+    }
+    setTimeout(function(){ requestAnimationFrame(frame); }, delay || 0);
+  }
+
+  function finalize(){
+    counters.forEach(function(g){ g.spans.forEach(function(s){ s.textContent = s._sample; }); });
+    document.querySelectorAll('.bar-fill').forEach(function(b){ b.classList.add('in'); });
+  }
+
+  /* Print must never capture a half-counted figure or an unfilled bar. */
+  window.addEventListener('beforeprint', finalize);
+
+  if (reduce.matches) return;              // nothing prepared, nothing hidden
+  document.documentElement.classList.add('js-anim');
+
+  /* --- figures: stat numbers, bar value labels, the live-counter ad --- */
+  document.querySelectorAll('.big, .bv, .ad-count').forEach(function(el){
+    var spans = prepare(el);
+    if (!spans.length) return;
+    spans.forEach(function(s){
+      s._sample = s.textContent;
+      s._to = parseFloat(s.textContent.replace(/,/g, ''));
+      s.textContent = format(0, s._sample);
+    });
+    counters.push({ el: el, spans: spans });
+  });
+
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (!e.isIntersecting) return;
+      io.unobserve(e.target);
+      var t = e.target;
+
+      if (t.classList.contains('bars')) {
+        // Bars resolve top-to-bottom so the ranking reads in order.
+        var fills = t.querySelectorAll('.bar-fill');
+        fills.forEach(function(f, i){
+          f.style.setProperty('--d', Math.min(i * 55, 550) + 'ms');
+          f.classList.add('in');
+        });
+        t.querySelectorAll('.bv').forEach(function(v, i){
+          var g = counters.find(function(c){ return c.el === v; });
+          if (g) run(g.spans, 560, Math.min(i * 55, 550));
+        });
+        return;
+      }
+
+      var grp = counters.find(function(c){ return c.el === t; });
+      if (grp) run(grp.spans, t.classList.contains('ad-count') ? 900 : 720, 0);
+    });
+  }, { threshold: 0.35, rootMargin: '0px 0px -8% 0px' });
+
+  document.querySelectorAll('.bars').forEach(function(b){ io.observe(b); });
+  counters.forEach(function(c){ if (!c.el.closest('.bars')) io.observe(c.el); });
+
+  /* If the reader turns reduced-motion on mid-session, settle immediately. */
+  var onChange = function(e){ if (e.matches) { io.disconnect(); finalize(); } };
+  if (reduce.addEventListener) reduce.addEventListener('change', onChange);
+  else if (reduce.addListener) reduce.addListener(onChange);
+})();
+<\/script>
+
+</body>
+</html>
+</script>
 <script>
   function loadFrame(scriptId, frameId) {
     var htmlSrc = document.getElementById(scriptId).textContent;
@@ -3331,6 +4697,7 @@
   loadFrame('src-b', 'frame-b');
   loadFrame('src-c', 'frame-c');
   loadFrame('src-d', 'frame-d');
+  loadFrame('src-e', 'frame-e');
 
   var tabs = document.querySelectorAll('.tab');
   var panels = document.querySelectorAll('.panel');
